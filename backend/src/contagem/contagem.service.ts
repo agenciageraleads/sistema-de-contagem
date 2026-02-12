@@ -826,6 +826,7 @@ export class ContagemService {
     // EXPORTAR PRODUTIVIDADE (Dados pdr operador/hora)
     async getProdutividadeExport() {
         const contagens = await this.prisma.contagem.findMany({
+            where: { tsFim: { not: null } }, // Apenas contagens finalizadas
             include: {
                 user: { select: { nome: true } }
             },
@@ -834,11 +835,11 @@ export class ContagemService {
 
         return contagens.map(c => ({
             ID: c.id,
-            Data: c.tsFim.toISOString(),
+            Data: c.tsFim!.toISOString(),
             Operador: c.user.nome,
             CodProd: c.codprod,
             QtdContada: c.qtdContada,
-            TempoSegundos: c.tsInicio ? Math.floor((c.tsFim.getTime() - c.tsInicio.getTime()) / 1000) : 0,
+            TempoSegundos: c.tsInicio ? Math.floor((c.tsFim!.getTime() - c.tsInicio.getTime()) / 1000) : 0,
             Status: c.statusAnalise
         }));
     }
