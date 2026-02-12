@@ -241,9 +241,21 @@ export class SankhyaService {
                 const bonusAtraso = Math.min(diasSemContar / 30, 2.0); // Até 2x de bônus se 2 meses sem contar
 
                 // 3. Penalidade para Cabos (Metro) - Solicitado pelo usuário para ficar no final
+                // 3. Penalidade para Cabos (Metro) - Solicitado pelo usuário para ficar no final
                 const unidade = String(p.UNIDADE || 'UN').toUpperCase();
-                if (unidade.startsWith('M') || unidade === 'MET') {
-                    score = 0.1; // Força prioridade baixíssima para itens de metro
+                const descricao = String(p.DESCRPROD || '').toUpperCase();
+
+                // Se for unidade de medida linear ou descrição de cabo/fio
+                if (
+                    unidade.startsWith('M') ||
+                    unidade === 'MET' ||
+                    unidade === 'RL' ||
+                    descricao.includes('CABO') ||
+                    descricao.includes('FIO ') ||
+                    descricao.includes('CORDA') ||
+                    descricao.includes('MANGUEIRA')
+                ) {
+                    score = 0.1; // Força prioridade baixíssima para itens de metro/cabos
                 }
 
                 const prioridadeFinal = Math.floor(score * (1 + bonusAtraso));
