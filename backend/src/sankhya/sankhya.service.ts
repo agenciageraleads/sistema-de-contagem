@@ -240,6 +240,12 @@ export class SankhyaService {
 
                 const bonusAtraso = Math.min(diasSemContar / 30, 2.0); // Até 2x de bônus se 2 meses sem contar
 
+                // 3. Penalidade para Cabos (Metro) - Solicitado pelo usuário para ficar no final
+                const unidade = String(p.UNIDADE || 'UN').toUpperCase();
+                if (unidade.startsWith('M') || unidade === 'MET') {
+                    score = 0.1; // Força prioridade baixíssima para itens de metro
+                }
+
                 const prioridadeFinal = Math.floor(score * (1 + bonusAtraso));
 
                 await this.prisma.filaContagem.upsert({
