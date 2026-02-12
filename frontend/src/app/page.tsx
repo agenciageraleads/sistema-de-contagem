@@ -133,10 +133,15 @@ export default function Home() {
     } catch { setError("Erro ao resetar ciclo"); } finally { setLoading(false); }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [itensReportados, setItensReportados] = useState<any[]>([]);
+  const [lastSync, setLastSync] = useState<string>("");
+
   const handleLogout = () => {
     setUser(null);
     setItemAtual(null);
     setSupStats(null);
+    window.location.reload(); // Força recarregamento para limpar estado visual
   };
 
   // --- LÓGICA OPERADOR ---
@@ -679,13 +684,13 @@ export default function Home() {
             <div className={styles.kpiGrid}>
               <div className={styles.configCard} style={{ cursor: 'pointer' }} onClick={() => exportarRelatorio('divergencias')}>
                 <h3 className={styles.configTitle}>📦 Divergências</h3>
-                <p>Exporta histórico de erros e resoluções.</p>
-                <span className={styles.confirmBtnSmall}>Download CSV</span>
+                <p className={styles.configSubtitle}>Exporta histórico de erros e resoluções.</p>
+                <button className={styles.confirmBtnSmall} style={{ marginTop: '16px', display: 'block', width: '100%' }}>Download CSV</button>
               </div>
               <div className={styles.configCard} style={{ cursor: 'pointer' }} onClick={() => exportarRelatorio('produtividade')}>
                 <h3 className={styles.configTitle}>👷 Produtividade</h3>
-                <p>Contagens realizadas e tempos por operador.</p>
-                <span className={styles.confirmBtnSmall}>Download CSV</span>
+                <p className={styles.configSubtitle}>Contagens realizadas e tempos por operador.</p>
+                <button className={styles.confirmBtnSmall} style={{ marginTop: '16px', display: 'block', width: '100%' }}>Download CSV</button>
               </div>
             </div>
           </div>
