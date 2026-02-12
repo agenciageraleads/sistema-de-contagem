@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import styles from "./page.module.css";
 
-const API_URL = "http://10.100.1.72:3001/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://contagem.vps.portaleletricos.com.br/api";
 
 interface User {
   id: number;
