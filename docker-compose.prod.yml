@@ -3,8 +3,6 @@ version: '3.8'
 services:
   db:
     image: postgres:15-alpine
-    container_name: contagem-db-prod
-    restart: always
     environment:
       POSTGRES_DB: ${DB_NAME:-contagem_ciclica}
       POSTGRES_USER: ${DB_USER:-contagem_user}
@@ -19,9 +17,7 @@ services:
           - node.role == manager
 
   backend:
-    image: ghcr.io/${GITHUB_REPOSITORY}/backend:latest
-    container_name: contagem-backend-prod
-    restart: always
+    image: ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest
     environment:
       DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public
       JWT_SECRET: ${JWT_SECRET}
@@ -47,9 +43,7 @@ services:
         - traefik.http.services.contagem-api.loadbalancer.server.port=3001
 
   frontend:
-    image: ghcr.io/${GITHUB_REPOSITORY}/frontend:latest
-    container_name: contagem-frontend-prod
-    restart: always
+    image: ghcr.io/agenciageraleads/sistema-de-contagem/frontend:latest
     environment:
       API_URL: https://contagem.vps.portaleletricos.com.br/api
       NEXT_PUBLIC_API_URL: https://contagem.vps.portaleletricos.com.br/api

@@ -1,0 +1,655 @@
+deploy	Set up job	﻿2026-02-12T01:31:12.0240833Z Current runner version: '2.331.0'
+deploy	Set up job	2026-02-12T01:31:12.0264930Z ##[group]Runner Image Provisioner
+deploy	Set up job	2026-02-12T01:31:12.0265794Z Hosted Compute Agent
+deploy	Set up job	2026-02-12T01:31:12.0266397Z Version: 20260123.484
+deploy	Set up job	2026-02-12T01:31:12.0267036Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+deploy	Set up job	2026-02-12T01:31:12.0267770Z Build Date: 2026-01-23T19:41:17Z
+deploy	Set up job	2026-02-12T01:31:12.0268501Z Worker ID: {49eefded-392d-43de-b912-6565591903c4}
+deploy	Set up job	2026-02-12T01:31:12.0269135Z Azure Region: westus
+deploy	Set up job	2026-02-12T01:31:12.0269662Z ##[endgroup]
+deploy	Set up job	2026-02-12T01:31:12.0271084Z ##[group]Operating System
+deploy	Set up job	2026-02-12T01:31:12.0271706Z Ubuntu
+deploy	Set up job	2026-02-12T01:31:12.0272147Z 24.04.3
+deploy	Set up job	2026-02-12T01:31:12.0272734Z LTS
+deploy	Set up job	2026-02-12T01:31:12.0273205Z ##[endgroup]
+deploy	Set up job	2026-02-12T01:31:12.0273697Z ##[group]Runner Image
+deploy	Set up job	2026-02-12T01:31:12.0274621Z Image: ubuntu-24.04
+deploy	Set up job	2026-02-12T01:31:12.0275167Z Version: 20260201.15.1
+deploy	Set up job	2026-02-12T01:31:12.0276182Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+deploy	Set up job	2026-02-12T01:31:12.0277918Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+deploy	Set up job	2026-02-12T01:31:12.0278865Z ##[endgroup]
+deploy	Set up job	2026-02-12T01:31:12.0279970Z ##[group]GITHUB_TOKEN Permissions
+deploy	Set up job	2026-02-12T01:31:12.0281742Z Contents: read
+deploy	Set up job	2026-02-12T01:31:12.0282482Z Metadata: read
+deploy	Set up job	2026-02-12T01:31:12.0283012Z Packages: read
+deploy	Set up job	2026-02-12T01:31:12.0283569Z ##[endgroup]
+deploy	Set up job	2026-02-12T01:31:12.0285884Z Secret source: Actions
+deploy	Set up job	2026-02-12T01:31:12.0286639Z Prepare workflow directory
+deploy	Set up job	2026-02-12T01:31:12.0851594Z Prepare all required actions
+deploy	Set up job	2026-02-12T01:31:12.0908674Z Getting action download info
+deploy	Set up job	2026-02-12T01:31:12.5599234Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+deploy	Set up job	2026-02-12T01:31:12.6861198Z Download action repository 'appleboy/scp-action@master' (SHA:7179e72a3fa4d4c33870a471708fda724fae7596)
+deploy	Set up job	2026-02-12T01:31:13.4948100Z Download action repository 'appleboy/ssh-action@master' (SHA:0ff4204d59e8e51228ff73bce53f80d53301dee2)
+deploy	Set up job	2026-02-12T01:31:14.5869448Z Complete job name: deploy
+deploy	Checkout repository	﻿2026-02-12T01:31:14.6581750Z ##[group]Run actions/checkout@v3
+deploy	Checkout repository	2026-02-12T01:31:14.6583075Z with:
+deploy	Checkout repository	2026-02-12T01:31:14.6583924Z   repository: agenciageraleads/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:14.6585490Z   token: ***
+deploy	Checkout repository	2026-02-12T01:31:14.6586202Z   ssh-strict: true
+deploy	Checkout repository	2026-02-12T01:31:14.6586988Z   persist-credentials: true
+deploy	Checkout repository	2026-02-12T01:31:14.6587830Z   clean: true
+deploy	Checkout repository	2026-02-12T01:31:14.6588594Z   sparse-checkout-cone-mode: true
+deploy	Checkout repository	2026-02-12T01:31:14.6589525Z   fetch-depth: 1
+deploy	Checkout repository	2026-02-12T01:31:14.6590275Z   fetch-tags: false
+deploy	Checkout repository	2026-02-12T01:31:14.6591017Z   lfs: false
+deploy	Checkout repository	2026-02-12T01:31:14.6591721Z   submodules: false
+deploy	Checkout repository	2026-02-12T01:31:14.6592509Z   set-safe-directory: true
+deploy	Checkout repository	2026-02-12T01:31:14.6593603Z env:
+deploy	Checkout repository	2026-02-12T01:31:14.6594435Z   REGISTRY: ghcr.io
+deploy	Checkout repository	2026-02-12T01:31:14.6595346Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:14.6596408Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:14.7465030Z Syncing repository: agenciageraleads/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:14.7467936Z ##[group]Getting Git version info
+deploy	Checkout repository	2026-02-12T01:31:14.7469487Z Working directory is '/home/runner/work/sistema-de-contagem/sistema-de-contagem'
+deploy	Checkout repository	2026-02-12T01:31:14.7471553Z [command]/usr/bin/git version
+deploy	Checkout repository	2026-02-12T01:31:14.7541420Z git version 2.52.0
+deploy	Checkout repository	2026-02-12T01:31:14.7567955Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:14.7582061Z Temporarily overriding HOME='/home/runner/work/_temp/73f05358-b603-4b90-958d-0e7e4d6daa38' before making global git config changes
+deploy	Checkout repository	2026-02-12T01:31:14.7585184Z Adding repository directory to the temporary git global config as a safe directory
+deploy	Checkout repository	2026-02-12T01:31:14.7587584Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sistema-de-contagem/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:14.7624544Z Deleting the contents of '/home/runner/work/sistema-de-contagem/sistema-de-contagem'
+deploy	Checkout repository	2026-02-12T01:31:14.7627425Z ##[group]Initializing the repository
+deploy	Checkout repository	2026-02-12T01:31:14.7630597Z [command]/usr/bin/git init /home/runner/work/sistema-de-contagem/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:14.7741360Z hint: Using 'master' as the name for the initial branch. This default branch name
+deploy	Checkout repository	2026-02-12T01:31:14.7743248Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+deploy	Checkout repository	2026-02-12T01:31:14.7745456Z hint: to use in all of your new repositories, which will suppress this warning,
+deploy	Checkout repository	2026-02-12T01:31:14.7747055Z hint: call:
+deploy	Checkout repository	2026-02-12T01:31:14.7747887Z hint:
+deploy	Checkout repository	2026-02-12T01:31:14.7748772Z hint: 	git config --global init.defaultBranch <name>
+deploy	Checkout repository	2026-02-12T01:31:14.7749866Z hint:
+deploy	Checkout repository	2026-02-12T01:31:14.7751130Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+deploy	Checkout repository	2026-02-12T01:31:14.7752870Z hint: 'development'. The just-created branch can be renamed via this command:
+deploy	Checkout repository	2026-02-12T01:31:14.7754709Z hint:
+deploy	Checkout repository	2026-02-12T01:31:14.7755469Z hint: 	git branch -m <name>
+deploy	Checkout repository	2026-02-12T01:31:14.7756303Z hint:
+deploy	Checkout repository	2026-02-12T01:31:14.7757631Z hint: Disable this message with "git config set advice.defaultBranchName false"
+deploy	Checkout repository	2026-02-12T01:31:14.7759907Z Initialized empty Git repository in /home/runner/work/sistema-de-contagem/sistema-de-contagem/.git/
+deploy	Checkout repository	2026-02-12T01:31:14.7763266Z [command]/usr/bin/git remote add origin https://github.com/agenciageraleads/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:14.7790765Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:14.7792100Z ##[group]Disabling automatic garbage collection
+deploy	Checkout repository	2026-02-12T01:31:14.7793295Z [command]/usr/bin/git config --local gc.auto 0
+deploy	Checkout repository	2026-02-12T01:31:14.7818344Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:14.7819567Z ##[group]Setting up auth
+deploy	Checkout repository	2026-02-12T01:31:14.7823064Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy	Checkout repository	2026-02-12T01:31:14.7849641Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy	Checkout repository	2026-02-12T01:31:14.8210873Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy	Checkout repository	2026-02-12T01:31:14.8239681Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy	Checkout repository	2026-02-12T01:31:14.8452094Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+deploy	Checkout repository	2026-02-12T01:31:14.8482705Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:14.8484047Z ##[group]Fetching the repository
+deploy	Checkout repository	2026-02-12T01:31:14.8492720Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +3a91a4a7bf5caf4e6cca2a161f8d48f42a015182:refs/remotes/origin/main
+deploy	Checkout repository	2026-02-12T01:31:15.2262703Z remote: Enumerating objects: 440, done.        
+deploy	Checkout repository	2026-02-12T01:31:15.2265123Z remote: Counting objects:   0% (1/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2267033Z remote: Counting objects:   1% (5/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2268707Z remote: Counting objects:   2% (9/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2270367Z remote: Counting objects:   3% (14/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2271504Z remote: Counting objects:   4% (18/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2272682Z remote: Counting objects:   5% (22/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2273778Z remote: Counting objects:   6% (27/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2275275Z remote: Counting objects:   7% (31/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2276391Z remote: Counting objects:   8% (36/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2277693Z remote: Counting objects:   9% (40/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2278799Z remote: Counting objects:  10% (44/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2279895Z remote: Counting objects:  11% (49/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2280991Z remote: Counting objects:  12% (53/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2282094Z remote: Counting objects:  13% (58/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2283193Z remote: Counting objects:  14% (62/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2284493Z remote: Counting objects:  15% (66/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2285610Z remote: Counting objects:  16% (71/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2286697Z remote: Counting objects:  17% (75/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2288041Z remote: Counting objects:  18% (80/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2289484Z remote: Counting objects:  19% (84/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2290598Z remote: Counting objects:  20% (88/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2291683Z remote: Counting objects:  21% (93/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2292778Z remote: Counting objects:  22% (97/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2293869Z remote: Counting objects:  23% (102/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2295175Z remote: Counting objects:  24% (106/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2296278Z remote: Counting objects:  25% (110/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2297634Z remote: Counting objects:  26% (115/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2298757Z remote: Counting objects:  27% (119/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2300235Z remote: Counting objects:  28% (124/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2301448Z remote: Counting objects:  29% (128/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2302554Z remote: Counting objects:  30% (132/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2303676Z remote: Counting objects:  31% (137/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2305064Z remote: Counting objects:  32% (141/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2306178Z remote: Counting objects:  33% (146/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2307279Z remote: Counting objects:  34% (150/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2308376Z remote: Counting objects:  35% (154/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2309474Z remote: Counting objects:  36% (159/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2310577Z remote: Counting objects:  37% (163/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2311677Z remote: Counting objects:  38% (168/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2312783Z remote: Counting objects:  39% (172/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2313886Z remote: Counting objects:  40% (176/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2315214Z remote: Counting objects:  41% (181/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2316324Z remote: Counting objects:  42% (185/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2317426Z remote: Counting objects:  43% (190/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2318573Z remote: Counting objects:  44% (194/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2319922Z remote: Counting objects:  45% (198/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2321013Z remote: Counting objects:  46% (203/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2322111Z remote: Counting objects:  47% (207/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2323210Z remote: Counting objects:  48% (212/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2324536Z remote: Counting objects:  49% (216/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2325664Z remote: Counting objects:  50% (220/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2326780Z remote: Counting objects:  51% (225/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2327879Z remote: Counting objects:  52% (229/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2328981Z remote: Counting objects:  53% (234/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2330077Z remote: Counting objects:  54% (238/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2331187Z remote: Counting objects:  55% (242/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2332303Z remote: Counting objects:  56% (247/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2333426Z remote: Counting objects:  57% (251/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2334737Z remote: Counting objects:  58% (256/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2335848Z remote: Counting objects:  59% (260/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2336950Z remote: Counting objects:  60% (264/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2338042Z remote: Counting objects:  61% (269/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2339139Z remote: Counting objects:  62% (273/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2340222Z remote: Counting objects:  63% (278/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2341329Z remote: Counting objects:  64% (282/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2342426Z remote: Counting objects:  65% (286/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2343529Z remote: Counting objects:  66% (291/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2344775Z remote: Counting objects:  67% (295/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2345873Z remote: Counting objects:  68% (300/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2346967Z remote: Counting objects:  69% (304/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2348060Z remote: Counting objects:  70% (308/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2349341Z remote: Counting objects:  71% (313/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2350435Z remote: Counting objects:  72% (317/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2351545Z remote: Counting objects:  73% (322/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2352666Z remote: Counting objects:  74% (326/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2353764Z remote: Counting objects:  75% (330/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2354971Z remote: Counting objects:  76% (335/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2356062Z remote: Counting objects:  77% (339/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2357155Z remote: Counting objects:  78% (344/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2358254Z remote: Counting objects:  79% (348/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2359343Z remote: Counting objects:  80% (352/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2360440Z remote: Counting objects:  81% (357/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2361537Z remote: Counting objects:  82% (361/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2362640Z remote: Counting objects:  83% (366/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2363748Z remote: Counting objects:  84% (370/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2364932Z remote: Counting objects:  85% (374/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2366031Z remote: Counting objects:  86% (379/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2367134Z remote: Counting objects:  87% (383/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2368238Z remote: Counting objects:  88% (388/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2369336Z remote: Counting objects:  89% (392/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2370435Z remote: Counting objects:  90% (396/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2371548Z remote: Counting objects:  91% (401/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2372668Z remote: Counting objects:  92% (405/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2373757Z remote: Counting objects:  93% (410/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2374959Z remote: Counting objects:  94% (414/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2376054Z remote: Counting objects:  95% (418/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2377145Z remote: Counting objects:  96% (423/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2378280Z remote: Counting objects:  97% (427/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2379527Z remote: Counting objects:  98% (432/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2380626Z remote: Counting objects:  99% (436/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2381718Z remote: Counting objects: 100% (440/440)        
+deploy	Checkout repository	2026-02-12T01:31:15.2382904Z remote: Counting objects: 100% (440/440), done.        
+deploy	Checkout repository	2026-02-12T01:31:15.2384074Z remote: Compressing objects:   0% (1/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2385311Z remote: Compressing objects:   1% (4/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2386439Z remote: Compressing objects:   2% (8/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2387569Z remote: Compressing objects:   3% (11/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2388710Z remote: Compressing objects:   4% (15/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2389846Z remote: Compressing objects:   5% (18/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2391005Z remote: Compressing objects:   6% (22/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2392146Z remote: Compressing objects:   7% (26/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2393296Z remote: Compressing objects:   8% (29/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2394523Z remote: Compressing objects:   9% (33/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2395663Z remote: Compressing objects:  10% (36/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2396799Z remote: Compressing objects:  11% (40/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2397936Z remote: Compressing objects:  12% (44/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2399071Z remote: Compressing objects:  13% (47/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2400210Z remote: Compressing objects:  14% (51/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2748021Z remote: Compressing objects:  15% (54/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2750622Z remote: Compressing objects:  16% (58/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2752310Z remote: Compressing objects:  17% (62/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2753541Z remote: Compressing objects:  18% (65/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2755100Z remote: Compressing objects:  19% (69/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2756352Z remote: Compressing objects:  20% (72/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2757795Z remote: Compressing objects:  21% (76/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2758998Z remote: Compressing objects:  22% (79/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2760199Z remote: Compressing objects:  23% (83/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2761294Z remote: Compressing objects:  24% (87/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2762379Z remote: Compressing objects:  25% (90/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2763425Z remote: Compressing objects:  26% (94/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2764660Z remote: Compressing objects:  27% (97/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2765722Z remote: Compressing objects:  28% (101/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2766769Z remote: Compressing objects:  29% (105/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2767828Z remote: Compressing objects:  30% (108/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2768880Z remote: Compressing objects:  31% (112/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2770441Z remote: Compressing objects:  32% (115/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2772251Z remote: Compressing objects:  33% (119/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2774079Z remote: Compressing objects:  34% (123/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2775425Z remote: Compressing objects:  35% (126/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2776491Z remote: Compressing objects:  36% (130/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2777542Z remote: Compressing objects:  37% (133/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2778585Z remote: Compressing objects:  38% (137/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2779847Z remote: Compressing objects:  39% (141/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2780930Z remote: Compressing objects:  40% (144/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2781988Z remote: Compressing objects:  41% (148/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2783077Z remote: Compressing objects:  42% (151/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2784125Z remote: Compressing objects:  43% (155/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2785459Z remote: Compressing objects:  44% (158/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2786628Z remote: Compressing objects:  45% (162/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2788282Z remote: Compressing objects:  46% (166/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2790365Z remote: Compressing objects:  47% (169/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2792174Z remote: Compressing objects:  48% (173/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2793966Z remote: Compressing objects:  49% (176/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2796107Z remote: Compressing objects:  50% (180/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2797910Z remote: Compressing objects:  51% (184/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2799705Z remote: Compressing objects:  52% (187/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2866840Z remote: Compressing objects:  53% (191/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2868849Z remote: Compressing objects:  54% (194/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2870673Z remote: Compressing objects:  55% (198/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2871605Z remote: Compressing objects:  56% (202/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2872431Z remote: Compressing objects:  57% (205/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2873247Z remote: Compressing objects:  58% (209/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2874092Z remote: Compressing objects:  59% (212/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2875171Z remote: Compressing objects:  60% (216/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2875981Z remote: Compressing objects:  61% (219/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2876773Z remote: Compressing objects:  62% (223/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2877581Z remote: Compressing objects:  63% (227/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2878383Z remote: Compressing objects:  64% (230/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2879174Z remote: Compressing objects:  65% (234/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2879983Z remote: Compressing objects:  66% (237/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2880795Z remote: Compressing objects:  67% (241/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2882177Z remote: Compressing objects:  68% (245/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2883373Z remote: Compressing objects:  69% (248/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2884374Z remote: Compressing objects:  70% (252/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2886112Z remote: Compressing objects:  71% (255/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2887581Z remote: Compressing objects:  72% (259/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2888923Z remote: Compressing objects:  73% (263/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2890254Z remote: Compressing objects:  74% (266/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2891575Z remote: Compressing objects:  75% (270/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2892930Z remote: Compressing objects:  76% (273/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2893940Z remote: Compressing objects:  77% (277/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2894989Z remote: Compressing objects:  78% (281/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2895790Z remote: Compressing objects:  79% (284/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2896578Z remote: Compressing objects:  80% (288/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2897784Z remote: Compressing objects:  81% (291/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2899291Z remote: Compressing objects:  82% (295/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2900639Z remote: Compressing objects:  83% (298/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2901991Z remote: Compressing objects:  84% (302/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2902955Z remote: Compressing objects:  85% (306/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2903758Z remote: Compressing objects:  86% (309/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2904765Z remote: Compressing objects:  87% (313/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2905562Z remote: Compressing objects:  88% (316/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2906359Z remote: Compressing objects:  89% (320/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2907165Z remote: Compressing objects:  90% (324/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2907968Z remote: Compressing objects:  91% (327/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2908768Z remote: Compressing objects:  92% (331/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2909567Z remote: Compressing objects:  93% (334/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2910370Z remote: Compressing objects:  94% (338/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2911163Z remote: Compressing objects:  95% (342/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2911970Z remote: Compressing objects:  96% (345/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2912919Z remote: Compressing objects:  97% (349/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2913719Z remote: Compressing objects:  98% (352/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2914726Z remote: Compressing objects:  99% (356/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2915548Z remote: Compressing objects: 100% (359/359)        
+deploy	Checkout repository	2026-02-12T01:31:15.2916384Z remote: Compressing objects: 100% (359/359), done.        
+deploy	Checkout repository	2026-02-12T01:31:15.2917203Z Receiving objects:   0% (1/440)
+deploy	Checkout repository	2026-02-12T01:31:15.2917896Z Receiving objects:   1% (5/440)
+deploy	Checkout repository	2026-02-12T01:31:15.2925742Z Receiving objects:   2% (9/440)
+deploy	Checkout repository	2026-02-12T01:31:15.3398844Z Receiving objects:   3% (14/440)
+deploy	Checkout repository	2026-02-12T01:31:15.3510385Z Receiving objects:   4% (18/440)
+deploy	Checkout repository	2026-02-12T01:31:15.3520963Z Receiving objects:   5% (22/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4019157Z Receiving objects:   6% (27/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4027916Z Receiving objects:   7% (31/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4032748Z Receiving objects:   8% (36/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4150663Z Receiving objects:   9% (40/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4156885Z Receiving objects:  10% (44/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4160846Z Receiving objects:  11% (49/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4165007Z Receiving objects:  12% (53/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4167388Z Receiving objects:  13% (58/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4169653Z Receiving objects:  14% (62/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4172291Z Receiving objects:  15% (66/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4173596Z Receiving objects:  16% (71/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4174905Z Receiving objects:  17% (75/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4176367Z Receiving objects:  18% (80/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4177698Z Receiving objects:  19% (84/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4179265Z Receiving objects:  20% (88/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4180425Z Receiving objects:  21% (93/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4181774Z Receiving objects:  22% (97/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4183042Z Receiving objects:  23% (102/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4184406Z Receiving objects:  24% (106/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4195726Z Receiving objects:  25% (110/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4197173Z Receiving objects:  26% (115/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4198393Z Receiving objects:  27% (119/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4199981Z Receiving objects:  28% (124/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4202397Z Receiving objects:  29% (128/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4205811Z Receiving objects:  30% (132/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4207050Z Receiving objects:  31% (137/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4208118Z Receiving objects:  32% (141/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4657396Z Receiving objects:  33% (146/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4660169Z Receiving objects:  34% (150/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4665656Z Receiving objects:  35% (154/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4674462Z Receiving objects:  36% (159/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4675925Z Receiving objects:  37% (163/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4678442Z Receiving objects:  38% (168/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4679720Z Receiving objects:  39% (172/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4680955Z Receiving objects:  40% (176/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4682197Z Receiving objects:  41% (181/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4685152Z Receiving objects:  42% (185/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4686595Z Receiving objects:  43% (190/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4689064Z Receiving objects:  44% (194/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4769988Z Receiving objects:  45% (198/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4774138Z Receiving objects:  46% (203/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4783774Z Receiving objects:  47% (207/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4790463Z Receiving objects:  48% (212/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4797164Z Receiving objects:  49% (216/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4800844Z Receiving objects:  50% (220/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4805371Z Receiving objects:  51% (225/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4809037Z Receiving objects:  52% (229/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4810825Z Receiving objects:  53% (234/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4812297Z Receiving objects:  54% (238/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4814660Z Receiving objects:  55% (242/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4817208Z Receiving objects:  56% (247/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4818932Z Receiving objects:  57% (251/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4820374Z Receiving objects:  58% (256/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4821946Z Receiving objects:  59% (260/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4823890Z Receiving objects:  60% (264/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4826085Z Receiving objects:  61% (269/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4827670Z Receiving objects:  62% (273/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4828899Z Receiving objects:  63% (278/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4831277Z Receiving objects:  64% (282/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4833158Z Receiving objects:  65% (286/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4834755Z Receiving objects:  66% (291/440)
+deploy	Checkout repository	2026-02-12T01:31:15.4836241Z Receiving objects:  67% (295/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5240618Z Receiving objects:  68% (300/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5241821Z Receiving objects:  69% (304/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5242964Z Receiving objects:  70% (308/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5244705Z Receiving objects:  71% (313/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5285688Z Receiving objects:  72% (317/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5288252Z Receiving objects:  73% (322/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5290643Z Receiving objects:  74% (326/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5293965Z Receiving objects:  75% (330/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5295461Z Receiving objects:  76% (335/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5297902Z Receiving objects:  77% (339/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5299100Z Receiving objects:  78% (344/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5300276Z Receiving objects:  79% (348/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5301472Z Receiving objects:  80% (352/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5302646Z Receiving objects:  81% (357/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5303829Z Receiving objects:  82% (361/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5305365Z Receiving objects:  83% (366/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5306578Z Receiving objects:  84% (370/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5309726Z Receiving objects:  85% (374/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5311433Z Receiving objects:  86% (379/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5313788Z Receiving objects:  87% (383/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5315041Z Receiving objects:  88% (388/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5316362Z Receiving objects:  89% (392/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5317597Z Receiving objects:  90% (396/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5320443Z Receiving objects:  91% (401/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5321695Z Receiving objects:  92% (405/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5322904Z Receiving objects:  93% (410/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5326840Z Receiving objects:  94% (414/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5420906Z Receiving objects:  95% (418/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5424672Z Receiving objects:  96% (423/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5438206Z Receiving objects:  97% (427/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5440070Z remote: Total 440 (delta 16), reused 429 (delta 15), pack-reused 0 (from 0)        
+deploy	Checkout repository	2026-02-12T01:31:15.5447731Z Receiving objects:  98% (432/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5457954Z Receiving objects:  99% (436/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5460592Z Receiving objects: 100% (440/440)
+deploy	Checkout repository	2026-02-12T01:31:15.5463795Z Receiving objects: 100% (440/440), 1.13 MiB | 4.26 MiB/s, done.
+deploy	Checkout repository	2026-02-12T01:31:15.5466861Z Resolving deltas:   0% (0/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5468099Z Resolving deltas:   6% (1/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5469490Z Resolving deltas:  12% (2/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5470931Z Resolving deltas:  18% (3/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5473422Z Resolving deltas:  25% (4/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5474715Z Resolving deltas:  31% (5/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5478317Z Resolving deltas:  37% (6/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5479667Z Resolving deltas:  43% (7/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5480810Z Resolving deltas:  50% (8/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5481934Z Resolving deltas:  56% (9/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5483242Z Resolving deltas:  62% (10/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5484575Z Resolving deltas:  68% (11/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5485726Z Resolving deltas:  75% (12/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5487102Z Resolving deltas:  81% (13/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5488251Z Resolving deltas:  87% (14/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5496883Z Resolving deltas:  93% (15/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5498905Z Resolving deltas: 100% (16/16)
+deploy	Checkout repository	2026-02-12T01:31:15.5500102Z Resolving deltas: 100% (16/16), done.
+deploy	Checkout repository	2026-02-12T01:31:15.5592628Z From https://github.com/agenciageraleads/sistema-de-contagem
+deploy	Checkout repository	2026-02-12T01:31:15.5594749Z  * [new ref]         3a91a4a7bf5caf4e6cca2a161f8d48f42a015182 -> origin/main
+deploy	Checkout repository	2026-02-12T01:31:15.5632649Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:15.5635241Z ##[group]Determining the checkout info
+deploy	Checkout repository	2026-02-12T01:31:15.5637004Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:15.5638037Z ##[group]Checking out the ref
+deploy	Checkout repository	2026-02-12T01:31:15.5640743Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+deploy	Checkout repository	2026-02-12T01:31:15.6031935Z Switched to a new branch 'main'
+deploy	Checkout repository	2026-02-12T01:31:15.6034821Z branch 'main' set up to track 'origin/main'.
+deploy	Checkout repository	2026-02-12T01:31:15.6042212Z ##[endgroup]
+deploy	Checkout repository	2026-02-12T01:31:15.6076689Z [command]/usr/bin/git log -1 --format='%H'
+deploy	Checkout repository	2026-02-12T01:31:15.6098557Z '3a91a4a7bf5caf4e6cca2a161f8d48f42a015182'
+deploy	Copy docker-compose.prod.yml to VPS	﻿2026-02-12T01:31:15.6473612Z ##[group]Run appleboy/scp-action@master
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6474510Z with:
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6475217Z   host: ***
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6475816Z   username: ***
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6476468Z   password: ***
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6477103Z   source: docker-compose.prod.yml
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6477816Z   target: ~/contagem-ciclica
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6478463Z   port: 22
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6479034Z   protocol: tcp
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6479625Z   timeout: 30s
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6480205Z   command_timeout: 10m
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6480821Z   tar_exec: tar
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6481410Z   proxy_port: 22
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6482009Z   proxy_timeout: 30s
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6482624Z   curl_insecure: false
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6483251Z   capture_stdout: false
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6483873Z env:
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6484544Z   REGISTRY: ghcr.io
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6485234Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6485947Z ##[endgroup]
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6576280Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6577240Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6614871Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6615668Z env:
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6616257Z   REGISTRY: ghcr.io
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6617144Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6618043Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/scp-action/master
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6618859Z ##[endgroup]
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6746495Z ##[group]Run entrypoint.sh
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6747191Z [36;1mentrypoint.sh[0m
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6779929Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6780705Z env:
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6781288Z   REGISTRY: ghcr.io
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6781978Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6782857Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/scp-action/master
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6783759Z   INPUT_HOST: ***
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6784565Z   INPUT_PORT: 22
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6785189Z   INPUT_PROTOCOL: tcp
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6785841Z   INPUT_USERNAME: ***
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6786524Z   INPUT_PASSWORD: ***
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6787145Z   INPUT_PASSPHRASE: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6787752Z   INPUT_KEY: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6788339Z   INPUT_KEY_PATH: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6788943Z   INPUT_FINGERPRINT: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6789566Z   INPUT_PROXY_HOST: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6790180Z   INPUT_PROXY_PORT: 22
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6790801Z   INPUT_PROXY_USERNAME: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6791438Z   INPUT_PROXY_PASSWORD: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6792085Z   INPUT_PROXY_PASSPHRASE: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6792715Z   INPUT_PROXY_KEY: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6793332Z   INPUT_PROXY_KEY_PATH: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6793978Z   INPUT_PROXY_FINGERPRINT: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6794838Z   INPUT_USE_INSECURE_CIPHER: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6795476Z   INPUT_CIPHER: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6796090Z   INPUT_PROXY_USE_INSECURE_CIPHER: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6796757Z   INPUT_PROXY_CIPHER: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6797369Z   INPUT_DEBUG: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6797958Z   INPUT_TIMEOUT: 30s
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6798587Z   INPUT_COMMAND_TIMEOUT: 10m
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6799259Z   INPUT_TARGET: ~/contagem-ciclica
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6799958Z   INPUT_SOURCE: docker-compose.prod.yml
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6800638Z   INPUT_RM: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6801244Z   INPUT_STRIP_COMPONENTS: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6801881Z   INPUT_OVERWRITE: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6802486Z   INPUT_TAR_DEREFERENCE: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6803122Z   INPUT_TAR_TMP_PATH: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6803739Z   INPUT_TAR_EXEC: tar
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6804564Z   INPUT_PROXY_TIMEOUT: 30s
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6805229Z   INPUT_CAPTURE_STDOUT: false
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6805885Z   INPUT_CURL_INSECURE: false
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6806529Z   DRONE_SCP_VERSION: 
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6807133Z ##[endgroup]
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:15.6916019Z Downloading drone-scp-1.8.0-linux-amd64 from https://github.com/appleboy/drone-scp/releases/download/v1.8.0
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:16.0107001Z ======= CLI Version Information =======
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:16.0126136Z Drone SCP version 1.8.0
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:16.0129624Z =======================================
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:16.0151736Z drone-scp version: 1.8.0
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:16.0152172Z tar all files into /tmp/QGBQTBxhTD.tar.gz
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:19.0406738Z remote server os type is unix
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:19.0407329Z scp file to server.
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:24.7988780Z create folder ~/contagem-ciclica
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:31.1647891Z untar file QGBQTBxhTD.tar.gz
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:33.0739319Z remove file QGBQTBxhTD.tar.gz
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:36.9269489Z ===================================================
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:36.9270194Z ✅ Successfully executed transfer data to all host
+deploy	Copy docker-compose.prod.yml to VPS	2026-02-12T01:31:36.9270543Z ===================================================
+deploy	SSH and Deploy	﻿2026-02-12T01:31:36.9532892Z ##[group]Run appleboy/ssh-action@master
+deploy	SSH and Deploy	2026-02-12T01:31:36.9533459Z with:
+deploy	SSH and Deploy	2026-02-12T01:31:36.9553853Z   host: ***
+deploy	SSH and Deploy	2026-02-12T01:31:36.9554402Z   username: ***
+deploy	SSH and Deploy	2026-02-12T01:31:36.9554837Z   password: ***
+deploy	SSH and Deploy	2026-02-12T01:31:36.9558360Z   script: mkdir -p ~/contagem-ciclica
+deploy	SSH and Deploy	cd ~/contagem-ciclica
+deploy	SSH and Deploy	# Puxar novas imagens
+deploy	SSH and Deploy	echo "***" | docker login ghcr.io -u agenciageraleads --password-stdin
+deploy	SSH and Deploy	docker compose -f docker-compose.prod.yml pull
+deploy	SSH and Deploy	
+deploy	SSH and Deploy	# Subir/Atualizar stack (Swarm ou Compose)
+deploy	SSH and Deploy	# Como o usuário usa Swarm nas stacks dele, o comando ideal seria 
+deploy	SSH and Deploy	# docker stack deploy -c docker-compose.prod.yml contagem
+deploy	SSH and Deploy	# Mas vamos usar docker compose por enquanto se for compatível.
+deploy	SSH and Deploy	docker compose -f docker-compose.prod.yml up -d
+deploy	SSH and Deploy	
+deploy	SSH and Deploy	2026-02-12T01:31:36.9561883Z   port: 22
+deploy	SSH and Deploy	2026-02-12T01:31:36.9562225Z   protocol: tcp
+deploy	SSH and Deploy	2026-02-12T01:31:36.9562556Z   timeout: 30s
+deploy	SSH and Deploy	2026-02-12T01:31:36.9562895Z   command_timeout: 10m
+deploy	SSH and Deploy	2026-02-12T01:31:36.9563267Z   proxy_port: 22
+deploy	SSH and Deploy	2026-02-12T01:31:36.9563607Z   proxy_protocol: tcp
+deploy	SSH and Deploy	2026-02-12T01:31:36.9563975Z   proxy_timeout: 30s
+deploy	SSH and Deploy	2026-02-12T01:31:36.9564589Z   curl_insecure: false
+deploy	SSH and Deploy	2026-02-12T01:31:36.9564959Z   capture_stdout: false
+deploy	SSH and Deploy	2026-02-12T01:31:36.9565411Z env:
+deploy	SSH and Deploy	2026-02-12T01:31:36.9565744Z   REGISTRY: ghcr.io
+deploy	SSH and Deploy	2026-02-12T01:31:36.9566209Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	SSH and Deploy	2026-02-12T01:31:36.9566719Z ##[endgroup]
+deploy	SSH and Deploy	2026-02-12T01:31:36.9585468Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+deploy	SSH and Deploy	2026-02-12T01:31:36.9585861Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+deploy	SSH and Deploy	2026-02-12T01:31:36.9617455Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+deploy	SSH and Deploy	2026-02-12T01:31:36.9617811Z env:
+deploy	SSH and Deploy	2026-02-12T01:31:36.9617993Z   REGISTRY: ghcr.io
+deploy	SSH and Deploy	2026-02-12T01:31:36.9618245Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	SSH and Deploy	2026-02-12T01:31:36.9618670Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/ssh-action/master
+deploy	SSH and Deploy	2026-02-12T01:31:36.9619065Z ##[endgroup]
+deploy	SSH and Deploy	2026-02-12T01:31:36.9700484Z ##[group]Run entrypoint.sh
+deploy	SSH and Deploy	2026-02-12T01:31:36.9700740Z [36;1mentrypoint.sh[0m
+deploy	SSH and Deploy	2026-02-12T01:31:36.9728800Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+deploy	SSH and Deploy	2026-02-12T01:31:36.9729139Z env:
+deploy	SSH and Deploy	2026-02-12T01:31:36.9729313Z   REGISTRY: ghcr.io
+deploy	SSH and Deploy	2026-02-12T01:31:36.9729570Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+deploy	SSH and Deploy	2026-02-12T01:31:36.9729971Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/appleboy/ssh-action/master
+deploy	SSH and Deploy	2026-02-12T01:31:36.9730417Z   INPUT_HOST: ***
+deploy	SSH and Deploy	2026-02-12T01:31:36.9730606Z   INPUT_PORT: 22
+deploy	SSH and Deploy	2026-02-12T01:31:36.9730806Z   INPUT_PROTOCOL: tcp
+deploy	SSH and Deploy	2026-02-12T01:31:36.9731029Z   INPUT_USERNAME: ***
+deploy	SSH and Deploy	2026-02-12T01:31:36.9731256Z   INPUT_PASSWORD: ***
+deploy	SSH and Deploy	2026-02-12T01:31:36.9731462Z   INPUT_PASSPHRASE: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9731653Z   INPUT_KEY: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9731839Z   INPUT_KEY_PATH: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9732032Z   INPUT_FINGERPRINT: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9732232Z   INPUT_PROXY_HOST: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9732426Z   INPUT_PROXY_PORT: 22
+deploy	SSH and Deploy	2026-02-12T01:31:36.9732635Z   INPUT_PROXY_USERNAME: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9732847Z   INPUT_PROXY_PASSWORD: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9733062Z   INPUT_PROXY_PASSPHRASE: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9733275Z   INPUT_PROXY_KEY: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9733468Z   INPUT_PROXY_KEY_PATH: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9733684Z   INPUT_PROXY_FINGERPRINT: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9733902Z   INPUT_TIMEOUT: 30s
+deploy	SSH and Deploy	2026-02-12T01:31:36.9734101Z   INPUT_PROXY_TIMEOUT: 30s
+deploy	SSH and Deploy	2026-02-12T01:31:36.9734461Z   INPUT_COMMAND_TIMEOUT: 10m
+deploy	SSH and Deploy	2026-02-12T01:31:36.9736381Z   INPUT_SCRIPT: mkdir -p ~/contagem-ciclica
+deploy	SSH and Deploy	cd ~/contagem-ciclica
+deploy	SSH and Deploy	# Puxar novas imagens
+deploy	SSH and Deploy	echo "***" | docker login ghcr.io -u agenciageraleads --password-stdin
+deploy	SSH and Deploy	docker compose -f docker-compose.prod.yml pull
+deploy	SSH and Deploy	
+deploy	SSH and Deploy	# Subir/Atualizar stack (Swarm ou Compose)
+deploy	SSH and Deploy	# Como o usuário usa Swarm nas stacks dele, o comando ideal seria 
+deploy	SSH and Deploy	# docker stack deploy -c docker-compose.prod.yml contagem
+deploy	SSH and Deploy	# Mas vamos usar docker compose por enquanto se for compatível.
+deploy	SSH and Deploy	docker compose -f docker-compose.prod.yml up -d
+deploy	SSH and Deploy	
+deploy	SSH and Deploy	2026-02-12T01:31:36.9738151Z   INPUT_SCRIPT_FILE: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9738350Z   INPUT_ENVS: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9738536Z   INPUT_ENVS_FORMAT: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9738942Z   INPUT_DEBUG: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9739131Z   INPUT_ALL_ENVS: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9739317Z   INPUT_REQUEST_PTY: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9739523Z   INPUT_USE_INSECURE_CIPHER: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9739746Z   INPUT_CIPHER: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9739946Z   INPUT_PROXY_USE_INSECURE_CIPHER: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9740186Z   INPUT_PROXY_CIPHER: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9740384Z   INPUT_SYNC: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9740580Z   INPUT_CAPTURE_STDOUT: false
+deploy	SSH and Deploy	2026-02-12T01:31:36.9740941Z   INPUT_CURL_INSECURE: false
+deploy	SSH and Deploy	2026-02-12T01:31:36.9741157Z   DRONE_SSH_VERSION: 
+deploy	SSH and Deploy	2026-02-12T01:31:36.9741353Z ##[endgroup]
+deploy	SSH and Deploy	2026-02-12T01:31:36.9840526Z Downloading drone-ssh-1.8.2-linux-amd64 from https://github.com/appleboy/drone-ssh/releases/download/v1.8.2
+deploy	SSH and Deploy	2026-02-12T01:31:37.3394780Z ======= CLI Version Information =======
+deploy	SSH and Deploy	2026-02-12T01:31:37.3417568Z Drone SSH version 1.8.2
+deploy	SSH and Deploy	2026-02-12T01:31:37.3421969Z =======================================
+deploy	SSH and Deploy	2026-02-12T01:31:39.9977056Z WARNING! Your credentials are stored unencrypted in '/***/.docker/config.json'.
+deploy	SSH and Deploy	2026-02-12T01:31:39.9978335Z Configure a credential helper to remove this warning. See
+deploy	SSH and Deploy	2026-02-12T01:31:39.9979126Z https://docs.docker.com/go/credential-store/
+deploy	SSH and Deploy	2026-02-12T01:31:39.9979689Z Login Succeeded
+deploy	SSH and Deploy	2026-02-12T01:31:40.3490094Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3491339Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"GITHUB_REPOSITORY\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3494050Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"JWT_SECRET\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3497109Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_USER\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3498554Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3499838Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_NAME\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3523442Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"GITHUB_REPOSITORY\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.3907186Z time="2026-02-11T22:31:40-03:00" level=warning msg="/***/contagem-ciclica/docker-compose.prod.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+deploy	SSH and Deploy	2026-02-12T01:31:40.4159799Z  Image ghcr.io//frontend:latest Pulling 
+deploy	SSH and Deploy	2026-02-12T01:31:40.4160517Z  Image ghcr.io//backend:latest Pulling 
+deploy	SSH and Deploy	2026-02-12T01:31:40.4161141Z  Image postgres:15-alpine Pulling 
+deploy	SSH and Deploy	2026-02-12T01:31:40.4175400Z  Image postgres:15-alpine Interrupted 
+deploy	SSH and Deploy	2026-02-12T01:31:40.4182150Z invalid reference format
+deploy	SSH and Deploy	2026-02-12T01:31:40.6720339Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.6721519Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"GITHUB_REPOSITORY\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.6722636Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"JWT_SECRET\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.6723616Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_USER\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.6724898Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.6725885Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"DB_NAME\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.6726891Z time="2026-02-11T22:31:40-03:00" level=warning msg="The \"GITHUB_REPOSITORY\" variable is not set. Defaulting to a blank string."
+deploy	SSH and Deploy	2026-02-12T01:31:40.7052346Z time="2026-02-11T22:31:40-03:00" level=warning msg="/***/contagem-ciclica/docker-compose.prod.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+deploy	SSH and Deploy	2026-02-12T01:31:40.7123728Z  Image ghcr.io//backend:latest Pulling 
+deploy	SSH and Deploy	2026-02-12T01:31:40.7124546Z  Image ghcr.io//frontend:latest Pulling 
+deploy	SSH and Deploy	2026-02-12T01:31:40.7130321Z  Image postgres:15-alpine Pulling 
+deploy	SSH and Deploy	2026-02-12T01:31:40.7130759Z  Image postgres:15-alpine Interrupted 
+deploy	SSH and Deploy	2026-02-12T01:31:40.7131101Z invalid reference format
+deploy	SSH and Deploy	2026-02-12T01:31:40.7171266Z 2026/02/12 01:31:40 Process exited with status 1
+deploy	SSH and Deploy	2026-02-12T01:31:40.7191433Z ##[error]Process completed with exit code 1.
+deploy	Post Checkout repository	﻿2026-02-12T01:31:40.7268558Z Post job cleanup.
+deploy	Post Checkout repository	2026-02-12T01:31:40.7980637Z [command]/usr/bin/git version
+deploy	Post Checkout repository	2026-02-12T01:31:40.8014918Z git version 2.52.0
+deploy	Post Checkout repository	2026-02-12T01:31:40.8058495Z Temporarily overriding HOME='/home/runner/work/_temp/c89ac223-2d5f-4c68-a8c4-390ea2dcbd5b' before making global git config changes
+deploy	Post Checkout repository	2026-02-12T01:31:40.8059845Z Adding repository directory to the temporary git global config as a safe directory
+deploy	Post Checkout repository	2026-02-12T01:31:40.8063481Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sistema-de-contagem/sistema-de-contagem
+deploy	Post Checkout repository	2026-02-12T01:31:40.8094797Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy	Post Checkout repository	2026-02-12T01:31:40.8123674Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy	Post Checkout repository	2026-02-12T01:31:40.8349663Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy	Post Checkout repository	2026-02-12T01:31:40.8372220Z http.https://github.com/.extraheader
+deploy	Post Checkout repository	2026-02-12T01:31:40.8384674Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+deploy	Post Checkout repository	2026-02-12T01:31:40.8412998Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy	Complete job	﻿2026-02-12T01:31:40.8727996Z Cleaning up orphan processes
