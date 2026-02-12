@@ -65,12 +65,16 @@ jobs:
           script: |
             mkdir -p ~/contagem-ciclica
             cd ~/contagem-ciclica
+            
+            # Liberar portas se houver processos rodando fora do Docker (opcional/segurança)
+            # lsof -t -i:3000 | xargs kill -9 || true
+            # lsof -t -i:3001 | xargs kill -9 || true
+            
             # Puxar novas imagens
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker compose -f docker-compose.prod.yml pull
             
-            # Subir/Atualizar stack (Swarm ou Compose)
-            # Como o usuário usa Swarm nas stacks dele, o comando ideal seria 
-            # docker stack deploy -c docker-compose.prod.yml contagem
-            # Mas vamos usar docker compose por enquanto se for compatível.
+            # Subir/Atualizar stack
+            # Forçar a parada se necessário para garantir o bind
+            docker compose -f docker-compose.prod.yml down --remove-orphans || true
             docker compose -f docker-compose.prod.yml up -d
