@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: contagem-db-prod
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:-contagem_ciclica}
+      POSTGRES_USER: ${DB_USER:-contagem_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    networks:
+      - portaleletricos
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+  backend:
+    image: ghcr.io/${GITHUB_REPOSITORY}/backend:latest
+    container_name: contagem-backend-prod
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: "7d"
+      PORT: 3001
+      NODE_ENV: production
+    depends_on:
+      - db
+    networks:
+      - portaleletricos
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - traefik.enable=1
+        - traefik.http.routers.contagem-api.rule=Host(`contagem.vps.portaleletricos.com.br`) && PathPrefix(`/api`)
+        - traefik.http.routers.contagem-api.entrypoints=websecure
+        - traefik.http.routers.contagem-api.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.contagem-api.priority=2
+        - traefik.http.services.contagem-api.loadbalancer.server.port=3001
+
+  frontend:
+    image: ghcr.io/${GITHUB_REPOSITORY}/frontend:latest
+    container_name: contagem-frontend-prod
+    restart: always
+    environment:
+      API_URL: https://contagem.vps.portaleletricos.com.br/api
+      NEXT_PUBLIC_API_URL: https://contagem.vps.portaleletricos.com.br/api
+    networks:
+      - portaleletricos
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - traefik.enable=1
+        - traefik.http.routers.contagem-web.rule=Host(`contagem.vps.portaleletricos.com.br`)
+        - traefik.http.routers.contagem-web.entrypoints=websecure
+        - traefik.http.routers.contagem-web.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.contagem-web.priority=1
+        - traefik.http.services.contagem-web.loadbalancer.server.port=3000
+
+networks:
+  portaleletricos:
+    external: true
+    name: portaleletricos
+
+volumes:
+  pgdata_prod:
+    driver: local

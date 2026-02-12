@@ -1,0 +1,18 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+  console.log
+    ✅ NUNOTA GERAL: 198552
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:125:17)
+
+PASS test/sankhya-note-sim.e2e-spec.ts (9.874 s)
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✓ Deve tentar criar nota real usando o módulo MGECOM (3434 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        10.527 s, estimated 12 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

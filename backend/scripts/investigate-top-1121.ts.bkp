@@ -1,0 +1,91 @@
+import { SankhyaClient } from '../src/sankhya/sankhya.client';
+import { ConfigService } from '@nestjs/config';
+import { Logger } from '@nestjs/common';
+
+/**
+ * Script para investigar configuração do TOP 1121
+ * Uso: npx ts-node scripts/investigate-top-1121.ts
+ */
+
+async function main() {
+    const logger = new Logger('InvestigateTOP');
+
+    // Configurar cliente Sankhya
+    const configService = new ConfigService();
+    const sankhyaClient = new SankhyaClient(configService, logger);
+
+    try {
+        logger.log('🔍 Investigando configuração do TOP 1121...\n');
+
+        // 1. Buscar configuração completa do TOP 1121
+        logger.log('1️⃣ Configuração do TOP 1121:');
+        const top1121 = await sankhyaClient.executeQuery(`
+            SELECT *
+            FROM TGFTOP
+            WHERE CODTIPOPER = 1121
+        `);
+        console.log(JSON.stringify(top1121, null, 2));
+        console.log('\n');
+
+        // 2. Comparar com TOP 221 (que funciona)
+        logger.log('2️⃣ Comparação TOP 221 vs 1121:');
+        const comparison = await sankhyaClient.executeQuery(`
+            SELECT 
+                CODTIPOPER,
+                DESCROPER,
+                TIPMOV,
+                USAPRECOBASE,
+                VALIDAPRECO,
+                BLOQPRECOZERADO
+            FROM TGFTOP
+            WHERE CODTIPOPER IN (221, 1121)
+            ORDER BY CODTIPOPER
+        `);
+        console.table(comparison);
+        console.log('\n');
+
+        // 3. Buscar TOPs alternativos de saída sem validação
+        logger.log('3️⃣ TOPs de Saída sem validação de preço:');
+        const alternatives = await sankhyaClient.executeQuery(`
+            SELECT 
+                CODTIPOPER,
+                DESCROPER,
+                TIPMOV
+            FROM TGFTOP
+            WHERE TIPMOV = 'V'
+              AND ATIVO = 'S'
+              AND ROWNUM <= 10
+            ORDER BY CODTIPOPER
+        `);
+        console.table(alternatives);
+        console.log('\n');
+
+        // 4. Verificar estrutura da tabela TGFTOP
+        logger.log('4️⃣ Colunas da tabela TGFTOP:');
+        const columns = await sankhyaClient.executeQuery(`
+            SELECT COLUMN_NAME, DATA_TYPE, NULLABLE
+            FROM USER_TAB_COLUMNS
+            WHERE TABLE_NAME = 'TGFTOP'
+              AND COLUMN_NAME LIKE '%PRECO%'
+            ORDER BY COLUMN_ID
+        `);
+        console.table(columns);
+
+        logger.log('\n✅ Investigação concluída!');
+        logger.log('\n📋 Próximos passos:');
+        logger.log('1. Analise as diferenças entre TOP 221 e 1121');
+        logger.log('2. Identifique campos relacionados a validação de preço');
+        logger.log('3. Ajuste via interface Sankhya ou SQL (veja docs/tasks/ajustar_top_1121.md)');
+
+    } catch (error) {
+        logger.error('❌ Erro na investigação:', error);
+        throw error;
+    }
+}
+
+main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });

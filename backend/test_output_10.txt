@@ -1,0 +1,83 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+  console.log
+    ✅ NUNOTA ENTRADA CONFIRMADA: 198562
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:104:17)
+
+  console.error
+    🔍 INFO TOP 1221: []
+
+      109 |         try {
+      110 |             const tops = await sankhyaClient.executeQuery("SELECT CODTIPOPER, TIPMOV, DESCROPER FROM TGFTOP WHERE CODTIPOPER = 1221");
+    > 111 |             console.error('🔍 INFO TOP 1221:', JSON.stringify(tops, null, 2));
+          |                     ^
+      112 |             const uso1221 = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) as QTD FROM TGFCAB WHERE CODTIPOPER = 1221 GROUP BY TIPMOV");
+      113 |             console.error('🔍 USO REAL 1221:', JSON.stringify(uso1221, null, 2));
+      114 |         } catch (e) {
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:111:21)
+
+  console.error
+    🔍 USO REAL 1221: []
+
+      111 |             console.error('🔍 INFO TOP 1221:', JSON.stringify(tops, null, 2));
+      112 |             const uso1221 = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) as QTD FROM TGFCAB WHERE CODTIPOPER = 1221 GROUP BY TIPMOV");
+    > 113 |             console.error('🔍 USO REAL 1221:', JSON.stringify(uso1221, null, 2));
+          |                     ^
+      114 |         } catch (e) {
+      115 |             console.error('Falha debug 1221:', e);
+      116 |         }
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:113:21)
+
+[31m[Nest] 71199  - [39m02/10/2026, 10:46:28 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya Adjustment Error: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+[31m[Nest] 71199  - [39m02/10/2026, 10:46:28 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha no fluxo de saída: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+  console.error
+    ❌ Erro SAÍDA: Erro Sync: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)
+
+      156 |
+      157 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 158 |             console.error('❌ Erro SAÍDA:', divFinal.observacoes);
+          |                     ^
+      159 |         }
+      160 |
+      161 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:158:21)
+
+  console.log
+    ✅ NUNOTA GERAL: 198564
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:236:17)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✓ Deve criar nota real de ENTRADA (MGECOM 221) e CONFIRMAR (2183 ms)
+    ✕ Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR (352 ms)
+    ✓ Deve tentar criar nota real usando o módulo MGECOM (1452 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      159 |         }
+      160 |
+    > 161 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      162 |         console.log(`✅ NUNOTA SAÍDA CONFIRMADA: ${divFinal?.adjustNoteId}`);
+      163 |     });
+      164 |
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:161:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        4.88 s, estimated 7 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

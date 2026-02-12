@@ -1,0 +1,118 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+[31m[Nest] 65138  - [39m02/10/2026, 10:31:04 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya SQL Error: Erro SQL Sankhya Gateway: ORA-00904: "CODTIPOPER": identificador inválido[39m
+  console.error
+    Falha ao consultar TOPs: Error: Erro SQL Sankhya Gateway: ORA-00904: "CODTIPOPER": identificador inválido
+        at SankhyaClient.executeQuery (/Users/Lucas-Lenovo/Sistema de Contagem/backend/src/sankhya/sankhya.client.ts:110:23)
+        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+        at Object.<anonymous> (/Users/Lucas-Lenovo/Sistema de Contagem/backend/test/sankhya-note-sim.e2e-spec.ts:30:26)
+
+      31 |             console.log('🔍 INFO DOS TOPS:', JSON.stringify(tops, null, 2));
+      32 |         } catch (e) {
+    > 33 |             console.error('Falha ao consultar TOPs:', e);
+         |                     ^
+      34 |         }
+      35 |
+      36 |         const login = 'admin_sync_' + Date.now();
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:33:21)
+
+  console.error
+    🔍 COLUNAS TGFTPV: [
+      'CODTIPVENDA',       'DHALTER',           'DESCRTIPVENDA',
+      'SUBTIPOVENDA',      'CODTAB',            'ATIVO',
+      'VENDAMIN',          'VENDAMAX',          'TAXAJURO',
+      'TIPTAXA',           'TIPJURO',           'GRUPOAUTOR',
+      'VALPRAZOCLIENTE',   'BASEPRAZO',         'COMISSAO',
+      'FIXAVENC',          'EMITEBOLETA',       'EMITEDUPL',
+      'APRESTRANSP',       'CODCTACTB_1',       'CODCTACTB_2',
+      'NUNOTA',            'DESCMAX',           'EXPTES',
+      'EXPGRS',            'PRAZOMEDMAX',       'PRAZOMAX',
+      'SOMAPRAZOCLIENTE',  'PODECONSUMIDOR',    'CODOBSPADRAO',
+      'CODUSU',            'CODFORMDESCMAX',    'BAIXA',
+      'LUCROMIN',          'DESCPROM',          'PERCMINENTRADA',
+      'NROPARCELAS',       'PRAZOMAXPRIPARC',   'CODFORMDESCMAXITENS',
+      'CODTCF',            'FLEX',              'MARGEMMIN',
+      'MODELOPGTO',        'TAXAJURSIM',        'TIPOJURSIM',
+      'PERCDESAGFLEX',     'COMPRAMAX',         'PRAZOMIN',
+      'EDITASIMULACAO',    'TXPARCADM',         'INTEGRAECONECT',
+      'FORMARECBTOSOCIN',  'FASTUSA',           'VENCPREFIXPED',
+      'ARREDPRIMEIRAPARC', 'TRUNCPARCELA',      'TIMQTDPARC',
+      'AD_NUMPARCELAS',    'AD_COMPVENDTIPNEG', 'EXVENDAMAIS'
+    ]
+
+      64 |             // Tentativa 1: Ver colunas de TGFTPV (pode ser problema de nome)
+      65 |             const tpvCols = await sankhyaClient.executeQuery("SELECT * FROM TGFTPV WHERE ROWNUM <= 1");
+    > 66 |             console.error('🔍 COLUNAS TGFTPV:', Object.keys(tpvCols[0] || {}));
+         |                     ^
+      67 |
+      68 |             // Tentativa 2: Ver o que já existe no banco com esse TOP
+      69 |             const cabExemplo = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) FROM TGFCAB WHERE CODTIPOPER = 221 GROUP BY TIPMOV");
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:66:21)
+
+  console.error
+    🔍 USO REAL DO TOP 221: [
+      {
+        "TIPMOV": "C",
+        "COUNT(*)": 1743
+      },
+      {
+        "TIPMOV": "Z",
+        "COUNT(*)": 1
+      }
+    ]
+
+      68 |             // Tentativa 2: Ver o que já existe no banco com esse TOP
+      69 |             const cabExemplo = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) FROM TGFCAB WHERE CODTIPOPER = 221 GROUP BY TIPMOV");
+    > 70 |             console.error('🔍 USO REAL DO TOP 221:', JSON.stringify(cabExemplo, null, 2));
+         |                     ^
+      71 |         } catch (e) {
+      72 |             console.error('Falha ao consultar DEBUG:', e);
+      73 |         }
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:70:21)
+
+[31m[Nest] 65138  - [39m02/10/2026, 10:31:05 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya Adjustment Error: Erro Sankhya CACSP.incluirNota: Tipo de Movimento inválido nesta opção.[39m
+[31m[Nest] 65138  - [39m02/10/2026, 10:31:05 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha ao gerar nota de entrada: Erro Sankhya CACSP.incluirNota: Tipo de Movimento inválido nesta opção.[39m
+  console.error
+    ❌ Erro na Sincronização: Erro Sync: Erro Sankhya CACSP.incluirNota: Tipo de Movimento inválido nesta opção.
+
+      136 |
+      137 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 138 |             console.error('❌ Erro na Sincronização:', divFinal.observacoes);
+          |                     ^
+      139 |         }
+      140 |
+      141 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:138:21)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✕ Deve tentar criar nota real usando o módulo MGECOM (686 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve tentar criar nota real usando o módulo MGECOM
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      139 |         }
+      140 |
+    > 141 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      142 |         expect(divFinal?.adjustNoteId).toBeDefined();
+      143 |         console.log(`✅ NUNOTA GERAL: ${divFinal?.adjustNoteId}`);
+      144 |     });
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:141:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.404 s, estimated 5 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

@@ -1,0 +1,232 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    Int            @id @default(autoincrement())
+  nome                  String
+  login                 String         @unique
+  senhaHash             String         @map("senha_hash")
+  role                  UserRole       @default(OPERADOR)
+  ativo                 Boolean        @default(true)
+  createdAt             DateTime       @default(now()) @map("created_at")
+  updatedAt             DateTime       @updatedAt @map("updated_at")
+  contagens             Contagem[]
+  divergenciasAprovadas Divergencia[]  @relation("aprovador")
+  filaLocked            FilaContagem[] @relation("locker")
+  filaPriorizada        FilaContagem[] @relation("priorizador")
+  metas                 MetaUser[]
+
+  @@map("users")
+}
+
+model MetaUser {
+  id             Int       @id @default(autoincrement())
+  userId         Int       @map("user_id")
+  metaDiaria     Int       @default(30) @map("meta_diaria")
+  metaMensal     Int       @default(1000) @map("meta_mensal")
+  vigenciaInicio DateTime  @map("vigencia_inicio")
+  vigenciaFim    DateTime? @map("vigencia_fim")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  user           User      @relation(fields: [userId], references: [id])
+
+  @@map("metas_user")
+}
+
+model SnapshotEstoque {
+  id           Int        @id @default(autoincrement())
+  dataRef      DateTime   @map("data_ref") @db.Date
+  codemp       Int
+  codlocal     Int
+  codprod      Int
+  descprod     String
+  marca        String?
+  controle     String?
+  codgrupoprod Int?
+  saldoEspelho Decimal    @map("saldo_espelho") @db.Decimal(15, 4)
+  custoEspelho Decimal    @map("custo_espelho") @db.Decimal(15, 4)
+  valorEstoque Decimal    @map("valor_estoque") @db.Decimal(15, 2)
+  createdAt    DateTime   @default(now()) @map("created_at")
+  unidade      String?
+  contagens    Contagem[]
+
+  @@unique([dataRef, codemp, codlocal, codprod])
+  @@index([dataRef])
+  @@index([codprod])
+  @@map("snapshot_estoque")
+}
+
+model FilaContagem {
+  id                Int        @id @default(autoincrement())
+  codprod           Int
+  codlocal          Int
+  codemp            Int
+  descprod          String
+  marca             String?
+  controle          String?
+  prioridadeBase    Int        @default(0) @map("prioridade_base")
+  prioridadeManual  Int        @default(0) @map("prioridade_manual")
+  motivoPriorizacao String?    @map("motivo_priorizacao")
+  priorizadoPor     Int?       @map("priorizado_por")
+  status            FilaStatus @default(PENDENTE)
+  ultimoEvento      DateTime?  @map("ultimo_evento")
+  contagensOk       Int        @default(0) @map("contagens_ok")
+  naoAchouCount     Int        @default(0) @map("nao_achou_count")
+  recontagens       Int        @default(0)
+  ultimaContagemEm  DateTime?  @map("ultima_contagem_em")
+  ultimoNaoAchouPor Int?       @map("ultimo_nao_achou_por")
+  lockedBy          Int?       @map("locked_by")
+  lockedAt          DateTime?  @map("locked_at")
+  createdAt         DateTime   @default(now()) @map("created_at")
+  updatedAt         DateTime   @updatedAt @map("updated_at")
+  unidade           String?
+  contagens         Contagem[]
+  locker            User?      @relation("locker", fields: [lockedBy], references: [id])
+  priorizador       User?      @relation("priorizador", fields: [priorizadoPor], references: [id])
+
+  @@unique([codprod, codlocal, codemp])
+  @@index([status, prioridadeManual, prioridadeBase])
+  @@map("fila_contagem")
+}
+
+model Contagem {
+  id                 Int              @id @default(autoincrement())
+  codprod            Int
+  codlocal           Int
+  codemp             Int
+  userId             Int              @map("user_id")
+  filaId             Int              @map("fila_id")
+  tipo               ContagemTipo
+  qtdContada         Decimal?         @map("qtd_contada") @db.Decimal(15, 4)
+  tsInicio           DateTime         @map("ts_inicio")
+  tsFim              DateTime?        @map("ts_fim")
+  snapshotId         Int?             @map("snapshot_id")
+  esperadoNoMomento  Decimal?         @map("esperado_no_momento") @db.Decimal(15, 4)
+  divergencia        Decimal?         @db.Decimal(15, 4)
+  divergenciaPercent Decimal?         @map("divergencia_percent") @db.Decimal(8, 4)
+  statusAnalise      StatusAnalise    @default(DIVERGENCIA_PENDENTE) @map("status_analise")
+  notas              String?
+  createdAt          DateTime         @default(now()) @map("created_at")
+  fila               FilaContagem     @relation(fields: [filaId], references: [id])
+  snapshot           SnapshotEstoque? @relation(fields: [snapshotId], references: [id])
+  user               User             @relation(fields: [userId], references: [id])
+  divergenciaReg     Divergencia?
+
+  @@index([userId])
+  @@index([codprod])
+  @@index([statusAnalise])
+  @@index([createdAt])
+  @@map("contagens")
+}
+
+model Divergencia {
+  id           Int               @id @default(autoincrement())
+  contagemId   Int               @unique @map("contagem_id")
+  severidade   Severidade        @default(BAIXA)
+  decisao      Decisao?
+  aprovadoPor  Int?              @map("aprovado_por")
+  aprovadoEm   DateTime?         @map("aprovado_em")
+  ajusteTipo   AjusteTipo?       @map("ajuste_tipo")
+  ajusteQtd    Decimal?          @map("ajuste_qtd") @db.Decimal(15, 4)
+  sankhyaDocId String?           @map("sankhya_doc_id")
+  status       DivergenciaStatus @default(PENDENTE)
+  observacoes    String?
+  movimentacoes  Json?             @map("movimentacoes")
+  saldoAjustado  Decimal?          @map("saldo_ajustado") @db.Decimal(15, 4)
+  createdAt      DateTime          @default(now()) @map("created_at")
+  updatedAt      DateTime          @updatedAt @map("updated_at")
+  adjustDate     DateTime?         @map("adjust_date")
+  adjustNoteId   Int?              @map("adjust_note_id")
+  adjustStatus   String?           @map("adjust_status")
+  aprovador    User?             @relation("aprovador", fields: [aprovadoPor], references: [id])
+  contagem     Contagem          @relation(fields: [contagemId], references: [id])
+
+  @@index([status])
+  @@index([severidade])
+  @@index([adjustStatus])
+  @@map("divergencias")
+}
+
+model JobLog {
+  id                  Int      @id @default(autoincrement())
+  tipo                String
+  dataExecucao        DateTime @default(now()) @map("data_execucao")
+  status              String
+  produtosProcessados Int?     @map("produtos_processados")
+  duracaoSegundos     Int?     @map("duracao_segundos")
+  detalhe             String?
+  erro                String?
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  @@index([tipo, dataExecucao])
+  @@map("job_logs")
+}
+
+model Configuracao {
+  id        Int      @id @default(autoincrement())
+  chave     String   @unique
+  valor     String
+  descricao String?
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("configuracoes")
+}
+
+enum UserRole {
+  OPERADOR
+  SUPERVISOR
+  ADMIN
+}
+
+enum FilaStatus {
+  PENDENTE
+  EM_CONTAGEM
+  BLOQUEADO_AUDITORIA
+  REPORTADO
+  CONCLUIDO
+}
+
+enum ContagemTipo {
+  CONTAGEM
+  RECONTAGEM
+  NAO_ACHOU
+  PROBLEMA
+}
+
+enum StatusAnalise {
+  OK_AUTOMATICO
+  DIVERGENCIA_PENDENTE
+  RESOLVIDO
+}
+
+enum Severidade {
+  BAIXA
+  MEDIA
+  ALTA
+}
+
+enum Decisao {
+  AJUSTAR
+  RECONTAR
+  VOLTAR_FILA
+  IGNORAR
+  FINALIZAR_ANALISE
+}
+
+enum AjusteTipo {
+  ENTRADA
+  SAIDA
+}
+
+enum DivergenciaStatus {
+  PENDENTE
+  ACEITO
+  EM_PROCESSAMENTO
+  CONCLUIDO
+  ERRO
+}

@@ -1,0 +1,314 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+  console.error
+    🔍 INFO DOS TOPS (TGFTOP): [
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      },
+      {
+        "CODTIPOPER": 221,
+        "TIPMOV": "C",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - ENTRADA"
+      }
+    ]
+
+      30 |             // TGFTOP é a tabela de Tipos de Operação (não TGFTPV)
+      31 |             const tops = await sankhyaClient.executeQuery("SELECT CODTIPOPER, TIPMOV, DESCROPER FROM TGFTOP WHERE CODTIPOPER IN (221, 1221)");
+    > 32 |             console.error('🔍 INFO DOS TOPS (TGFTOP):', JSON.stringify(tops, null, 2));
+         |                     ^
+      33 |
+      34 |             // Ver uso real
+      35 |             const uso221 = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) as QTD FROM TGFCAB WHERE CODTIPOPER = 221 GROUP BY TIPMOV");
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:32:21)
+
+  console.error
+    🔍 USO TOP 221: [
+      {
+        "TIPMOV": "C",
+        "QTD": 1743
+      },
+      {
+        "TIPMOV": "Z",
+        "QTD": 1
+      }
+    ]
+
+      34 |             // Ver uso real
+      35 |             const uso221 = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) as QTD FROM TGFCAB WHERE CODTIPOPER = 221 GROUP BY TIPMOV");
+    > 36 |             console.error('🔍 USO TOP 221:', JSON.stringify(uso221, null, 2));
+         |                     ^
+      37 |
+      38 |             const uso1221 = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) as QTD FROM TGFCAB WHERE CODTIPOPER = 1221 GROUP BY TIPMOV");
+      39 |             console.error('🔍 USO TOP 1221:', JSON.stringify(uso1221, null, 2));
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:36:21)
+
+  console.error
+    🔍 USO TOP 1221: []
+
+      37 |
+      38 |             const uso1221 = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) as QTD FROM TGFCAB WHERE CODTIPOPER = 1221 GROUP BY TIPMOV");
+    > 39 |             console.error('🔍 USO TOP 1221:', JSON.stringify(uso1221, null, 2));
+         |                     ^
+      40 |         } catch (e) {
+      41 |             console.error('Falha ao consultar DEBUG:', e);
+      42 |         }
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:39:21)
+
+  console.error
+    🔍 COLUNAS TGFTPV: [
+      'CODTIPVENDA',       'DHALTER',           'DESCRTIPVENDA',
+      'SUBTIPOVENDA',      'CODTAB',            'ATIVO',
+      'VENDAMIN',          'VENDAMAX',          'TAXAJURO',
+      'TIPTAXA',           'TIPJURO',           'GRUPOAUTOR',
+      'VALPRAZOCLIENTE',   'BASEPRAZO',         'COMISSAO',
+      'FIXAVENC',          'EMITEBOLETA',       'EMITEDUPL',
+      'APRESTRANSP',       'CODCTACTB_1',       'CODCTACTB_2',
+      'NUNOTA',            'DESCMAX',           'EXPTES',
+      'EXPGRS',            'PRAZOMEDMAX',       'PRAZOMAX',
+      'SOMAPRAZOCLIENTE',  'PODECONSUMIDOR',    'CODOBSPADRAO',
+      'CODUSU',            'CODFORMDESCMAX',    'BAIXA',
+      'LUCROMIN',          'DESCPROM',          'PERCMINENTRADA',
+      'NROPARCELAS',       'PRAZOMAXPRIPARC',   'CODFORMDESCMAXITENS',
+      'CODTCF',            'FLEX',              'MARGEMMIN',
+      'MODELOPGTO',        'TAXAJURSIM',        'TIPOJURSIM',
+      'PERCDESAGFLEX',     'COMPRAMAX',         'PRAZOMIN',
+      'EDITASIMULACAO',    'TXPARCADM',         'INTEGRAECONECT',
+      'FORMARECBTOSOCIN',  'FASTUSA',           'VENCPREFIXPED',
+      'ARREDPRIMEIRAPARC', 'TRUNCPARCELA',      'TIMQTDPARC',
+      'AD_NUMPARCELAS',    'AD_COMPVENDTIPNEG', 'EXVENDAMAIS'
+    ]
+
+      72 |             // Tentativa 1: Ver colunas de TGFTPV (pode ser problema de nome)
+      73 |             const tpvCols = await sankhyaClient.executeQuery("SELECT * FROM TGFTPV WHERE ROWNUM <= 1");
+    > 74 |             console.error('🔍 COLUNAS TGFTPV:', Object.keys(tpvCols[0] || {}));
+         |                     ^
+      75 |
+      76 |             // Tentativa 2: Ver o que já existe no banco com esse TOP
+      77 |             const cabExemplo = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) FROM TGFCAB WHERE CODTIPOPER = 221 GROUP BY TIPMOV");
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:74:21)
+
+  console.error
+    🔍 USO REAL DO TOP 221: [
+      {
+        "TIPMOV": "C",
+        "COUNT(*)": 1743
+      },
+      {
+        "TIPMOV": "Z",
+        "COUNT(*)": 1
+      }
+    ]
+
+      76 |             // Tentativa 2: Ver o que já existe no banco com esse TOP
+      77 |             const cabExemplo = await sankhyaClient.executeQuery("SELECT TIPMOV, COUNT(*) FROM TGFCAB WHERE CODTIPOPER = 221 GROUP BY TIPMOV");
+    > 78 |             console.error('🔍 USO REAL DO TOP 221:', JSON.stringify(cabExemplo, null, 2));
+         |                     ^
+      79 |         } catch (e) {
+      80 |             console.error('Falha ao consultar DEBUG:', e);
+      81 |         }
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:78:21)
+
+  console.log
+    prisma:error 
+    Invalid `this.prisma.divergencia.updateMany()` invocation in
+    /Users/Lucas-Lenovo/Sistema de Contagem/backend/src/sankhya/sankhya.service.ts:436:47
+    
+      433 const nunota = await this.sankhyaClient.createAdjustmentNote(codemp, hoje, 221, itemsEntrada);
+      434 
+      435 // Atualizar status das divergências
+    → 436 await this.prisma.divergencia.updateMany({
+            where: {
+              id: {
+                in: [
+                  26
+                ]
+              }
+            },
+            data: {
+              adjustStatus: "SYNCED",
+              adjustDate: new Date("2026-02-11T01:33:35.818Z"),
+              adjustNoteId: {
+                $: "198551",
+                ~
+          ?     set?: Int | Null,
+          ?     increment?: Int,
+          ?     decrement?: Int,
+          ?     multiply?: Int,
+          ?     divide?: Int
+              }
+            }
+          })
+    
+    Unknown argument `$`. Did you mean `set`? Available options are marked with ?.
+
+      at Object.mc (../node_modules/@prisma/client/runtime/library.js:21:432)
+
+[31m[Nest] 66296  - [39m02/10/2026, 10:33:35 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha ao gerar nota de entrada: 
+Invalid `this.prisma.divergencia.updateMany()` invocation in
+/Users/Lucas-Lenovo/Sistema de Contagem/backend/src/sankhya/sankhya.service.ts:436:47
+
+  433 const nunota = await this.sankhyaClient.createAdjustmentNote(codemp, hoje, 221, itemsEntrada);
+  434 
+  435 // Atualizar status das divergências
+→ 436 await this.prisma.divergencia.updateMany({
+        where: {
+          id: {
+            in: [
+              26
+            ]
+          }
+        },
+        data: {
+          adjustStatus: "SYNCED",
+          adjustDate: new Date("2026-02-11T01:33:35.818Z"),
+          adjustNoteId: {
+            $: "198551",
+            ~
+      ?     set?: Int | Null,
+      ?     increment?: Int,
+      ?     decrement?: Int,
+      ?     multiply?: Int,
+      ?     divide?: Int
+          }
+        }
+      })
+
+Unknown argument `$`. Did you mean `set`? Available options are marked with ?.[39m
+  console.error
+    ❌ Erro na Sincronização: Erro Sync: 
+    Invalid `this.prisma.divergencia.updateMany()` invocation in
+    /Users/Lucas-Lenovo/Sistema de Contagem/backend/src/sankhya/sankhya.service.ts:436:47
+    
+      433 const nunota = await this.sankhyaClient.createAdjustmentNote(codemp, hoje, 221, itemsEntrada);
+      434 
+      435 // Atualizar status das divergências
+    → 436 await this.prisma.divergencia.updateMany({
+            where: {
+              id: {
+                in: [
+                  26
+                ]
+              }
+            },
+            data: {
+              adjustStatus: "SYNCED",
+              adjustDate: new Date("2026-02-11T01:33:35.818Z"),
+              adjustNoteId: {
+                $: "198551",
+                ~
+          ?     set?: Int | Null,
+          ?     increment?: Int,
+          ?     decrement?: Int,
+          ?     multiply?: Int,
+          ?     divide?: Int
+              }
+            }
+          })
+    
+    Unknown argument `$`. Did you mean `set`? Available options are marked with ?.
+
+      144 |
+      145 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 146 |             console.error('❌ Erro na Sincronização:', divFinal.observacoes);
+          |                     ^
+      147 |         }
+      148 |
+      149 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:146:21)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts (11.803 s)
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✕ Deve tentar criar nota real usando o módulo MGECOM (2460 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve tentar criar nota real usando o módulo MGECOM
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      147 |         }
+      148 |
+    > 149 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      150 |         expect(divFinal?.adjustNoteId).toBeDefined();
+      151 |         console.log(`✅ NUNOTA GERAL: ${divFinal?.adjustNoteId}`);
+      152 |     });
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:149:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        12.269 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

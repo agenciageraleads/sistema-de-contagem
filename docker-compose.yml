@@ -1,0 +1,47 @@
+# Docker Compose - Desenvolvimento Local
+# Sistema de Contagem Cíclica Cega
+
+services:
+  # ============================================
+  # Banco de Dados PostgreSQL
+  # ============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: contagem-postgres
+    restart: unless-stopped
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: contagem_ciclica
+      POSTGRES_USER: contagem_user
+      POSTGRES_PASSWORD: contagem_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U contagem_user -d contagem_ciclica" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # Redis (cache, locks, filas)
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: contagem-redis
+    restart: unless-stopped
+    ports:
+      - "6381:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

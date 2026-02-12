@@ -1,0 +1,121 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+  console.log
+    ✅ NUNOTA ENTRADA CONFIRMADA: 198565
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:104:17)
+
+  console.error
+    🔍 POSSÍVEIS TOPS SAÍDA: [
+      {
+        "CODTIPOPER": 1116,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1116,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      },
+      {
+        "CODTIPOPER": 1121,
+        "TIPMOV": "V",
+        "DESCROPER": "AJUSTE DE ESTOQUE MANUAL - SAÍDA"
+      }
+    ]
+
+      109 |         try {
+      110 |             const tops = await sankhyaClient.executeQuery("SELECT CODTIPOPER, TIPMOV, DESCROPER FROM TGFTOP WHERE DESCROPER LIKE '%AJUSTE%' AND TIPMOV = 'V'");
+    > 111 |             console.error('🔍 POSSÍVEIS TOPS SAÍDA:', JSON.stringify(tops, null, 2));
+          |                     ^
+      112 |         } catch (e) {
+      113 |             console.error('Falha debug busca TOPs:', e);
+      114 |         }
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:111:21)
+
+[31m[Nest] 73374  - [39m02/10/2026, 10:47:09 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya Adjustment Error: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+[31m[Nest] 73374  - [39m02/10/2026, 10:47:09 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha no fluxo de saída: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+  console.error
+    ❌ Erro SAÍDA: Erro Sync: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)
+
+      154 |
+      155 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 156 |             console.error('❌ Erro SAÍDA:', divFinal.observacoes);
+          |                     ^
+      157 |         }
+      158 |
+      159 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:156:21)
+
+  console.log
+    ✅ NUNOTA GERAL: 198567
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:234:17)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✓ Deve criar nota real de ENTRADA (MGECOM 221) e CONFIRMAR (2037 ms)
+    ✕ Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR (232 ms)
+    ✓ Deve tentar criar nota real usando o módulo MGECOM (1164 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      157 |         }
+      158 |
+    > 159 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      160 |         console.log(`✅ NUNOTA SAÍDA CONFIRMADA: ${divFinal?.adjustNoteId}`);
+      161 |     });
+      162 |
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:159:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        4.379 s, estimated 5 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

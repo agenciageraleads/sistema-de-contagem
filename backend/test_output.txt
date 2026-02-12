@@ -1,0 +1,79 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+[31m[Nest] 64947  - [39m02/10/2026, 10:30:25 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya SQL Error: Erro SQL Sankhya Gateway: ORA-00904: "CODTIPOPER": identificador inválido[39m
+  console.error
+    Falha ao consultar TOPs: Error: Erro SQL Sankhya Gateway: ORA-00904: "CODTIPOPER": identificador inválido
+        at SankhyaClient.executeQuery (/Users/Lucas-Lenovo/Sistema de Contagem/backend/src/sankhya/sankhya.client.ts:110:23)
+        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+        at Object.<anonymous> (/Users/Lucas-Lenovo/Sistema de Contagem/backend/test/sankhya-note-sim.e2e-spec.ts:30:26)
+
+      31 |             console.log('🔍 INFO DOS TOPS:', JSON.stringify(tops, null, 2));
+      32 |         } catch (e) {
+    > 33 |             console.error('Falha ao consultar TOPs:', e);
+         |                     ^
+      34 |         }
+      35 |
+      36 |         const login = 'admin_sync_' + Date.now();
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:33:21)
+
+[31m[Nest] 64947  - [39m02/10/2026, 10:30:26 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya SQL Error: Erro SQL Sankhya Gateway: ORA-00904: "CODTIPOPER": identificador inválido[39m
+  console.error
+    Falha ao consultar TOPs: Error: Erro SQL Sankhya Gateway: ORA-00904: "CODTIPOPER": identificador inválido
+        at SankhyaClient.executeQuery (/Users/Lucas-Lenovo/Sistema de Contagem/backend/src/sankhya/sankhya.client.ts:110:23)
+        at processTicksAndRejections (node:internal/process/task_queues:105:5)
+        at Object.<anonymous> (/Users/Lucas-Lenovo/Sistema de Contagem/backend/test/sankhya-note-sim.e2e-spec.ts:64:26)
+
+      65 |             console.error('🔍 INFO DOS TOPS:', JSON.stringify(tops, null, 2));
+      66 |         } catch (e) {
+    > 67 |             console.error('Falha ao consultar TOPs:', e);
+         |                     ^
+      68 |         }
+      69 |
+      70 |         const codprod = 2; // Produto X
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:67:21)
+
+[31m[Nest] 64947  - [39m02/10/2026, 10:30:26 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya Adjustment Error: Erro Sankhya CACSP.incluirNota: Tipo de Movimento inválido nesta opção.[39m
+[31m[Nest] 64947  - [39m02/10/2026, 10:30:26 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha ao gerar nota de entrada: Erro Sankhya CACSP.incluirNota: Tipo de Movimento inválido nesta opção.[39m
+  console.error
+    ❌ Erro na Sincronização: Erro Sync: Erro Sankhya CACSP.incluirNota: Tipo de Movimento inválido nesta opção.
+
+      131 |
+      132 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 133 |             console.error('❌ Erro na Sincronização:', divFinal.observacoes);
+          |                     ^
+      134 |         }
+      135 |
+      136 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:133:21)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✕ Deve tentar criar nota real usando o módulo MGECOM (301 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve tentar criar nota real usando o módulo MGECOM
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      134 |         }
+      135 |
+    > 136 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      137 |         expect(divFinal?.adjustNoteId).toBeDefined();
+      138 |         console.log(`✅ NUNOTA GERAL: ${divFinal?.adjustNoteId}`);
+      139 |     });
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:136:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        5.052 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

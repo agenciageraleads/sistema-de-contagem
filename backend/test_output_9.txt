@@ -1,0 +1,57 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+  console.log
+    ✅ NUNOTA ENTRADA CONFIRMADA: 198559
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:104:17)
+
+[31m[Nest] 70824  - [39m02/10/2026, 10:45:52 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya Adjustment Error: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+[31m[Nest] 70824  - [39m02/10/2026, 10:45:52 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha no fluxo de saída: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+  console.error
+    ❌ Erro SAÍDA: Erro Sync: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)
+
+      146 |
+      147 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 148 |             console.error('❌ Erro SAÍDA:', divFinal.observacoes);
+          |                     ^
+      149 |         }
+      150 |
+      151 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:148:21)
+
+  console.log
+    ✅ NUNOTA GERAL: 198561
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:226:17)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts (6.656 s)
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✓ Deve criar nota real de ENTRADA (MGECOM 221) e CONFIRMAR (1984 ms)
+    ✕ Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR (190 ms)
+    ✓ Deve tentar criar nota real usando o módulo MGECOM (3626 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      149 |         }
+      150 |
+    > 151 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      152 |         console.log(`✅ NUNOTA SAÍDA CONFIRMADA: ${divFinal?.adjustNoteId}`);
+      153 |     });
+      154 |
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:151:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        6.788 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.

@@ -1,0 +1,68 @@
+
+> contagem-ciclica-backend@1.0.0 test:e2e
+> jest --config ./test/jest-e2e.json sankhya-note-sim.e2e-spec.ts
+
+[31m[Nest] 69977  - [39m02/10/2026, 10:44:49 PM [31m  ERROR[39m [38;5;3m[SankhyaClient] [39m[31mSankhya Adjustment Error: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+[31m[Nest] 69977  - [39m02/10/2026, 10:44:49 PM [31m  ERROR[39m [38;5;3m[SankhyaService] [39m[31m❌ Falha no fluxo de saída: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)[39m
+  console.error
+    ❌ Erro SAÍDA: Erro Sync: Erro Sankhya CACSP.incluirNota: Erro interno (NPE)
+
+      146 |
+      147 |         if (divFinal?.adjustStatus === 'ERROR') {
+    > 148 |             console.error('❌ Erro SAÍDA:', divFinal.observacoes);
+          |                     ^
+      149 |         }
+      150 |
+      151 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:148:21)
+
+  console.log
+    ✅ NUNOTA GERAL: 198555
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:226:17)
+
+FAIL test/sankhya-note-sim.e2e-spec.ts (7.966 s)
+  Simulação de Nota de Ajuste Real (MGECOM)
+    ✕ Deve criar nota real de ENTRADA (MGECOM 221) e CONFIRMAR (5003 ms)
+    ✕ Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR (350 ms)
+    ✓ Deve tentar criar nota real usando o módulo MGECOM (1489 ms)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve criar nota real de ENTRADA (MGECOM 221) e CONFIRMAR
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      52 |     });
+      53 |
+    > 54 |     it('Deve criar nota real de ENTRADA (MGECOM 221) e CONFIRMAR', async () => {
+         |     ^
+      55 |         const codprod = 2; // Produto X
+      56 |         const codlocal = 10010000;
+      57 |         const codemp = 1;
+
+      at sankhya-note-sim.e2e-spec.ts:54:5
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:11:1)
+
+  ● Simulação de Nota de Ajuste Real (MGECOM) › Deve criar nota real de SAÍDA (MGECOM 1221) e CONFIRMAR
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SYNCED"
+    Received: "ERROR"
+
+      149 |         }
+      150 |
+    > 151 |         expect(divFinal?.adjustStatus).toBe('SYNCED');
+          |                                        ^
+      152 |         console.log(`✅ NUNOTA SAÍDA CONFIRMADA: ${divFinal?.adjustNoteId}`);
+      153 |     });
+      154 |
+
+      at Object.<anonymous> (sankhya-note-sim.e2e-spec.ts:151:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        8.121 s, estimated 10 s
+Ran all test suites matching sankhya-note-sim.e2e-spec.ts.
