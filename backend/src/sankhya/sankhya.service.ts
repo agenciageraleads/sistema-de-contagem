@@ -241,21 +241,23 @@ export class SankhyaService {
                 const bonusAtraso = Math.min(diasSemContar / 30, 2.0); // Até 2x de bônus se 2 meses sem contar
 
                 // 3. Penalidade para Cabos (Metro) - Solicitado pelo usuário para ficar no final
-                // 3. Penalidade para Cabos (Metro) - Solicitado pelo usuário para ficar no final
+                // 3. Penalidade para Cabos (Metro) 
+                // Solicitado pelo usuário: Cabos em ROLO (RL) ou UNIDADE (UN) são fáceis de contar.
+                // Apenas cabos vendidos por METRO (M, MET) devem ir para o final.
+
                 const unidade = String(p.UNIDADE || 'UN').toUpperCase();
                 const descricao = String(p.DESCRPROD || '').toUpperCase();
 
-                // Se for unidade de medida linear ou descrição de cabo/fio
-                if (
-                    unidade.startsWith('M') ||
-                    unidade === 'MET' ||
-                    unidade === 'RL' ||
+                const isLinearUnit = unidade === 'M' || unidade === 'MET' || unidade.startsWith('MT');
+                const isCaboOuSimilar =
                     descricao.includes('CABO') ||
                     descricao.includes('FIO ') ||
                     descricao.includes('CORDA') ||
-                    descricao.includes('MANGUEIRA')
-                ) {
-                    score = 0.1; // Força prioridade baixíssima para itens de metro/cabos
+                    descricao.includes('MANGUEIRA');
+
+                // Só penaliza se for unidade linear OU (é cabo E NÃO É unidade fechada 'RL'/'UN'/'PC')
+                if (isLinearUnit || (isCaboOuSimilar && !['RL', 'UN', 'PC', 'CX'].includes(unidade))) {
+                    score = 0.1; // Força prioridade baixíssima apenas para o que é difícil (metro)
                 }
 
                 const prioridadeFinal = Math.floor(score * (1 + bonusAtraso));
