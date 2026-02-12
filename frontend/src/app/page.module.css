@@ -526,13 +526,38 @@
 .tableRow {
     display: grid;
     grid-template-columns: 80px 2.5fr 1fr 1fr 1fr 1fr 110px;
-    padding: 20px 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--border);
     align-items: center;
     transition: all 0.2s;
 }
 
 .tableRow:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* FILA SPECIFIC */
+.filaHeader {
+    display: grid;
+    grid-template-columns: 4fr 1fr 180px;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.filaRow {
+    display: grid;
+    grid-template-columns: 4fr 1fr 180px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.filaRow:hover {
     background: rgba(255, 255, 255, 0.02);
 }
 
@@ -1054,6 +1079,7 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
 /* BOTÕES FALTANTES */
 .smallLogout {
     background: rgba(239, 68, 68, 0.1);
@@ -1088,7 +1114,8 @@
 }
 
 .confirmBtnSmall:hover {
-    background: #0ea5e9; /* Lighter primary */
+    background: #0ea5e9;
+    /* Lighter primary */
     transform: translateY(-2px);
     box-shadow: 0 4px 12px var(--primary-glow);
 }

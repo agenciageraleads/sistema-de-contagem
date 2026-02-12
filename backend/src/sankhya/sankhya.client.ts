@@ -216,19 +216,19 @@ export class SankhyaClient {
     }
 
     /**
-     * Busca uma nota de ajuste existente para o dia atual com a flag do App
+     * Busca uma nota de ajuste existente para o dia atual com a flag do App e padrão de observação
      */
-    async findDailyAdjustmentNote(codemp: number, dtneg: string, top: number): Promise<number | null> {
+    async findDailyAdjustmentNote(codemp: number, dtneg: string, top: number, observacaoPattern: string = '%App de Contagem%'): Promise<number | null> {
         await this.authenticate();
         try {
-            // Busca nota confirmada ou pendente do dia, com o TOP específico e a observação do App
+            // Busca nota confirmada ou pendente do dia, com o TOP específico e a observação que bate com o padrão
             const sql = `
                 SELECT NUNOTA 
                 FROM TGFCAB 
                 WHERE CODEMP = ${codemp} 
                   AND DTNEG = TO_DATE('${dtneg}', 'DD/MM/YYYY') 
                   AND CODTIPOPER = ${top}
-                  AND OBSERVACAO LIKE '%App de Contagem%'
+                  AND OBSERVACAO LIKE '${observacaoPattern}'
                   AND ROWNUM = 1
             `;
             const result = await this.executeQuery<{ NUNOTA: number }>(sql);

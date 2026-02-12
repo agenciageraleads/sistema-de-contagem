@@ -659,8 +659,13 @@ export default function Home() {
           <div className={styles.divPanel}>
             <h3 className={styles.panelTitle}>Fila de Contagem ({filaItems.length})</h3>
             <div className={styles.divTable}>
+              <div className={styles.filaHeader}>
+                <span>Produto</span>
+                <span>Local</span>
+                <span>Status</span>
+              </div>
               {filaItems.map(f => (
-                <div key={f.id} className={styles.tableRow}>
+                <div key={f.id} className={styles.filaRow}>
                   <div className={styles.prodCol}>
                     <span className={styles.prodName}>{f.descprod}</span>
                     <span className={styles.userName}>Cód: {f.codprod}</span>

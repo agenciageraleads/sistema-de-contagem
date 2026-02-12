@@ -396,7 +396,8 @@ export class SankhyaService {
             include: {
                 contagem: {
                     include: {
-                        snapshot: true
+                        snapshot: true,
+                        user: { select: { id: true, nome: true } }
                     }
                 }
             }
@@ -407,157 +408,149 @@ export class SankhyaService {
             return { processed: 0 };
         }
 
-        this.logger.log(`Found ${pendentes.length} pending adjustments.`);
+        this.logger.log(`Found ${pendentes.length} pending adjustments. Grouping by operator...`);
 
         const codemp = Number(this.configService.get('CODEMP') || 1);
         const hoje = new Date().toLocaleDateString('pt-BR'); // dd/mm/yyyy
-
-        // 2. Agrupar itens por Operação (Entrada/Saída)
-        const itemsEntrada: any[] = [];
-        const itemsSaida: any[] = [];
-        const divergenciasEntrada: number[] = [];
-        const divergenciasSaida: number[] = [];
-
-        for (const div of pendentes) {
-            const diff = Number(div.contagem.divergencia);
-            if (diff === 0) continue;
-
-            // Usa dados do snapshot para consistência de Custo e Unidade
-            const snapshot = div.contagem.snapshot;
-            const vlrunit = snapshot ? Number(snapshot.custoEspelho) : 0;
-            const codvol = snapshot ? snapshot.unidade || 'UN' : 'UN';
-
-            const itemSankhya = {
-                codprod: div.contagem.codprod,
-                qtdneg: Math.abs(diff),
-                codlocal: div.contagem.codlocal,
-                vlrunit: vlrunit,
-                codvol: codvol
-            };
-
-            if (diff > 0) {
-                // Sobra = Entrada (TOP 221)
-                itemsEntrada.push(itemSankhya);
-                divergenciasEntrada.push(div.id);
-            } else {
-                // Falta = Saída (TOP 1221)
-                itemsSaida.push(itemSankhya);
-                divergenciasSaida.push(div.id);
-            }
-        }
-
         let notasGeradas = 0;
 
-        // 3. Processar Entradas (TOP 221)
-        if (itemsEntrada.length > 0) {
-            try {
-                let nunota: number | null = await this.sankhyaClient.findDailyAdjustmentNote(codemp, hoje, 221);
+        // 2. Agrupar por Operador (User ID)
+        const divergenciasPorOperador = new Map<number, typeof pendentes>();
 
-                if (nunota) {
-                    this.logger.log(`Nota diária encontrada (TOP 221): ${nunota}. Adicionando itens...`);
-                    await this.sankhyaClient.addItemsToNote(nunota, itemsEntrada);
-                } else {
-                    this.logger.log(`Nenhuma nota diária encontrada. Criando nova nota (TOP 221)...`);
-                    nunota = await this.sankhyaClient.createAdjustmentNote(
-                        codemp,
-                        hoje,
-                        221,
-                        itemsEntrada,
-                        'Ajuste de Estoque - App Contagem (Entrada)'
-                    );
-                }
-
-                if (nunota) {
-                    // Confirmar nota para garantir atualização de estoque
-                    try {
-                        await this.sankhyaClient.confirmNote(nunota);
-                    } catch (confirmError: any) {
-                        this.logger.warn(`Nota ${nunota} processada mas erro na confirmação: ${confirmError.message}`);
-                    }
-
-                    // Atualizar status das divergências
-                    await this.prisma.divergencia.updateMany({
-                        where: { id: { in: divergenciasEntrada } },
-                        data: {
-                            adjustStatus: 'SYNCED',
-                            adjustDate: new Date(),
-                            adjustNoteId: nunota
-                        }
-                    });
-                    notasGeradas++;
-                    this.logger.log(`✅ Fluxo de Entrada (221) concluído: ${nunota} com ${itemsEntrada.length} itens.`);
-                }
-            } catch (error: any) {
-                this.logger.error(`❌ Falha no fluxo de entrada: ${error.message}`);
-                await this.prisma.divergencia.updateMany({
-                    where: { id: { in: divergenciasEntrada } },
-                    data: {
-                        adjustStatus: 'ERROR',
-                        observacoes: `Erro Sync: ${error.message}`
-                    }
-                });
+        for (const div of pendentes) {
+            const userId = div.contagem.userId;
+            if (!divergenciasPorOperador.has(userId)) {
+                divergenciasPorOperador.set(userId, []);
             }
+            divergenciasPorOperador.get(userId)?.push(div);
         }
 
-        // 4. Processar Saídas (TOP 1121)
-        if (itemsSaida.length > 0) {
-            // Enriquecer itens com Custo de Reposição (CUSREP) da TGFCUS
-            for (const item of itemsSaida) {
-                try {
-                    const custo = await this.sankhyaClient.getReplacementCost(item.codprod, codemp, item.codlocal);
-                    if (custo) {
-                        item.vlrunit = custo;
-                    }
-                } catch (e) {
-                    this.logger.warn(`Falha ao buscar custo para produto ${item.codprod}: ${e}`);
+        // 3. Processar cada Operador separadamente
+        for (const [userId, userDivergencias] of divergenciasPorOperador.entries()) {
+            const userName = userDivergencias[0].contagem.user.nome.split(' ')[0]; // Primeiro nome
+            this.logger.log(`>> Processando ajustes do Operador: ${userName} (ID: ${userId})...`);
+
+            const itemsEntrada: any[] = [];
+            const itemsSaida: any[] = [];
+            const idsEntrada: number[] = [];
+            const idsSaida: number[] = [];
+
+            for (const div of userDivergencias) {
+                const diff = Number(div.contagem.divergencia);
+                if (diff === 0) continue;
+
+                // Usa dados do snapshot para consistência de Custo e Unidade
+                const snapshot = div.contagem.snapshot;
+                const vlrunit = snapshot ? Number(snapshot.custoEspelho) : 0;
+                const codvol = snapshot ? snapshot.unidade || 'UN' : 'UN';
+
+                const itemSankhya = {
+                    codprod: div.contagem.codprod,
+                    qtdneg: Math.abs(diff),
+                    codlocal: div.contagem.codlocal,
+                    vlrunit: vlrunit,
+                    codvol: codvol
+                };
+
+                if (diff > 0) {
+                    // Sobra = Entrada (TOP 221)
+                    itemsEntrada.push(itemSankhya);
+                    idsEntrada.push(div.id);
+                } else {
+                    // Falta = Saída (TOP 1221)
+                    itemsSaida.push(itemSankhya);
+                    idsSaida.push(div.id);
                 }
             }
 
-            try {
-                let nunota: number | null = await this.sankhyaClient.findDailyAdjustmentNote(codemp, hoje, 1121);
+            // A) Processar Entradas (TOP 221) para este Operador
+            if (itemsEntrada.length > 0) {
+                try {
+                    const obsPattern = `%App Contagem - ${userName}%`;
+                    const obsExact = `Ajuste de Estoque - App Contagem - ${userName} (Entrada)`;
 
-                if (nunota) {
-                    this.logger.log(`Nota diária encontrada (TOP 1121): ${nunota}. Adicionando itens com custo...`);
-                    await this.sankhyaClient.addItemsToNote(nunota, itemsSaida);
-                } else {
-                    this.logger.log(`Nenhuma nota diária encontrada. Criando nova nota (TOP 1121) com custo...`);
-                    nunota = await this.sankhyaClient.createAdjustmentNote(
-                        codemp,
-                        hoje,
-                        1121,
-                        itemsSaida,
-                        'Ajuste de Estoque - App Contagem (Saída/Perda)'
-                    );
-                }
+                    let nunota: number | null = await this.sankhyaClient.findDailyAdjustmentNote(codemp, hoje, 221, obsPattern);
 
-                if (nunota) {
-                    try {
-                        await this.sankhyaClient.confirmNote(nunota);
-                    } catch (confirmError: any) {
-                        this.logger.warn(`Nota ${nunota} processada mas erro na confirmação: ${confirmError.message}`);
+                    if (nunota) {
+                        this.logger.log(`Nota diária encontrada (TOP 221, User: ${userName}): ${nunota}. Adicionando itens...`);
+                        await this.sankhyaClient.addItemsToNote(nunota, itemsEntrada);
+                    } else {
+                        this.logger.log(`Criando nova nota (TOP 221, User: ${userName})...`);
+                        nunota = await this.sankhyaClient.createAdjustmentNote(
+                            codemp,
+                            hoje,
+                            221,
+                            itemsEntrada,
+                            obsExact
+                        );
                     }
 
-                    // Atualizar status
+                    if (nunota) {
+                        try { await this.sankhyaClient.confirmNote(nunota); }
+                        catch (e: any) { this.logger.warn(`Erro confirmação nota ${nunota}: ${e.message}`); }
+
+                        await this.prisma.divergencia.updateMany({
+                            where: { id: { in: idsEntrada } },
+                            data: { adjustStatus: 'SYNCED', adjustDate: new Date(), adjustNoteId: nunota }
+                        });
+                        notasGeradas++;
+                    }
+                } catch (error: any) {
+                    this.logger.error(`❌ Falha entrada User ${userName}: ${error.message}`);
                     await this.prisma.divergencia.updateMany({
-                        where: { id: { in: divergenciasSaida } },
-                        data: {
-                            adjustStatus: 'SYNCED',
-                            adjustDate: new Date(),
-                            adjustNoteId: nunota
-                        }
+                        where: { id: { in: idsEntrada } },
+                        data: { adjustStatus: 'ERROR', observacoes: `Erro Sync: ${error.message}` }
                     });
-                    notasGeradas++;
-                    this.logger.log(`✅ Fluxo de Saída (1121) concluído: ${nunota} com ${itemsSaida.length} itens.`);
                 }
-            } catch (error: any) {
-                this.logger.error(`❌ Falha no fluxo de saída: ${error.message}`);
-                await this.prisma.divergencia.updateMany({
-                    where: { id: { in: divergenciasSaida } },
-                    data: {
-                        adjustStatus: 'ERROR',
-                        observacoes: `Erro Sync: ${error.message}`
+            }
+
+            // B) Processar Saídas (TOP 1121) para este Operador
+            if (itemsSaida.length > 0) {
+                // Enriquecer com Custo de Reposição
+                for (const item of itemsSaida) {
+                    try {
+                        const custo = await this.sankhyaClient.getReplacementCost(item.codprod, codemp, item.codlocal);
+                        if (custo) item.vlrunit = custo;
+                    } catch (e) { }
+                }
+
+                try {
+                    const obsPattern = `%App Contagem - ${userName}%`;
+                    const obsExact = `Ajuste de Estoque - App Contagem - ${userName} (Saída/Perda)`;
+
+                    let nunota: number | null = await this.sankhyaClient.findDailyAdjustmentNote(codemp, hoje, 1121, obsPattern);
+
+                    if (nunota) {
+                        this.logger.log(`Nota diária encontrada (TOP 1121, User: ${userName}): ${nunota}. Adicionando itens...`);
+                        await this.sankhyaClient.addItemsToNote(nunota, itemsSaida);
+                    } else {
+                        this.logger.log(`Criando nova nota (TOP 1121, User: ${userName})...`);
+                        nunota = await this.sankhyaClient.createAdjustmentNote(
+                            codemp,
+                            hoje,
+                            1121,
+                            itemsSaida,
+                            obsExact
+                        );
                     }
-                });
+
+                    if (nunota) {
+                        try { await this.sankhyaClient.confirmNote(nunota); }
+                        catch (e: any) { this.logger.warn(`Erro confirmação nota ${nunota}: ${e.message}`); }
+
+                        await this.prisma.divergencia.updateMany({
+                            where: { id: { in: idsSaida } },
+                            data: { adjustStatus: 'SYNCED', adjustDate: new Date(), adjustNoteId: nunota }
+                        });
+                        notasGeradas++;
+                    }
+                } catch (error: any) {
+                    this.logger.error(`❌ Falha saída User ${userName}: ${error.message}`);
+                    await this.prisma.divergencia.updateMany({
+                        where: { id: { in: idsSaida } },
+                        data: { adjustStatus: 'ERROR', observacoes: `Erro Sync: ${error.message}` }
+                    });
+                }
             }
         }
 
