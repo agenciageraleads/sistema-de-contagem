@@ -88,10 +88,7 @@ export default function Home() {
   const [divergencias, setDivergencias] = useState<Divergencia[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [filaItems, setFilaItems] = useState<any[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [itensReportados, setItensReportados] = useState<any[]>([]);
   const [metaGlobalEdit, setMetaGlobalEdit] = useState<number>(100);
-  const [lastSync, setLastSync] = useState<string>("");
 
   // Estados Admin (Usuários)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -338,6 +335,7 @@ export default function Home() {
     } catch { setError("Erro de rede"); } finally { setLoading(false); }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInativarUsuario = async (u: any) => {
     if (!u.id) return;
     if (!window.confirm(`Deseja ${u.ativo ? 'inativar' : 'ativar'} o usuário ${u.nome}?`)) return;

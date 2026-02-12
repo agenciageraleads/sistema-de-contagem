@@ -1,0 +1,1061 @@
+build-and-push	Set up job	﻿2026-02-12T01:23:05.6440026Z Current runner version: '2.331.0'
+build-and-push	Set up job	2026-02-12T01:23:05.6463413Z ##[group]Runner Image Provisioner
+build-and-push	Set up job	2026-02-12T01:23:05.6464195Z Hosted Compute Agent
+build-and-push	Set up job	2026-02-12T01:23:05.6464676Z Version: 20260123.484
+build-and-push	Set up job	2026-02-12T01:23:05.6465401Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+build-and-push	Set up job	2026-02-12T01:23:05.6465997Z Build Date: 2026-01-23T19:41:17Z
+build-and-push	Set up job	2026-02-12T01:23:05.6466584Z Worker ID: {1a1dc292-403c-4119-8980-f3233b1ab3f7}
+build-and-push	Set up job	2026-02-12T01:23:05.6467239Z Azure Region: westus3
+build-and-push	Set up job	2026-02-12T01:23:05.6467697Z ##[endgroup]
+build-and-push	Set up job	2026-02-12T01:23:05.6468972Z ##[group]Operating System
+build-and-push	Set up job	2026-02-12T01:23:05.6469500Z Ubuntu
+build-and-push	Set up job	2026-02-12T01:23:05.6469927Z 24.04.3
+build-and-push	Set up job	2026-02-12T01:23:05.6470307Z LTS
+build-and-push	Set up job	2026-02-12T01:23:05.6470745Z ##[endgroup]
+build-and-push	Set up job	2026-02-12T01:23:05.6471158Z ##[group]Runner Image
+build-and-push	Set up job	2026-02-12T01:23:05.6471623Z Image: ubuntu-24.04
+build-and-push	Set up job	2026-02-12T01:23:05.6472085Z Version: 20260201.15.1
+build-and-push	Set up job	2026-02-12T01:23:05.6472934Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+build-and-push	Set up job	2026-02-12T01:23:05.6474384Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+build-and-push	Set up job	2026-02-12T01:23:05.6475295Z ##[endgroup]
+build-and-push	Set up job	2026-02-12T01:23:05.6476227Z ##[group]GITHUB_TOKEN Permissions
+build-and-push	Set up job	2026-02-12T01:23:05.6478012Z Contents: read
+build-and-push	Set up job	2026-02-12T01:23:05.6478450Z Metadata: read
+build-and-push	Set up job	2026-02-12T01:23:05.6478915Z Packages: write
+build-and-push	Set up job	2026-02-12T01:23:05.6479391Z ##[endgroup]
+build-and-push	Set up job	2026-02-12T01:23:05.6481380Z Secret source: Actions
+build-and-push	Set up job	2026-02-12T01:23:05.6481963Z Prepare workflow directory
+build-and-push	Set up job	2026-02-12T01:23:05.7004442Z Prepare all required actions
+build-and-push	Set up job	2026-02-12T01:23:05.7041290Z Getting action download info
+build-and-push	Set up job	2026-02-12T01:23:06.1106572Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+build-and-push	Set up job	2026-02-12T01:23:06.2020489Z Download action repository 'docker/login-action@v2' (SHA:465a07811f14bebb1938fbed4728c6a1ff8901fc)
+build-and-push	Set up job	2026-02-12T01:23:07.0286999Z Download action repository 'docker/build-push-action@v4' (SHA:0a97817b6ade9f46837855d676c4cca3a2471fc9)
+build-and-push	Set up job	2026-02-12T01:23:08.0290085Z Complete job name: build-and-push
+build-and-push	Checkout repository	﻿2026-02-12T01:23:08.0989109Z ##[group]Run actions/checkout@v3
+build-and-push	Checkout repository	2026-02-12T01:23:08.0990426Z with:
+build-and-push	Checkout repository	2026-02-12T01:23:08.0991461Z   repository: agenciageraleads/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.0992904Z   token: ***
+build-and-push	Checkout repository	2026-02-12T01:23:08.0993657Z   ssh-strict: true
+build-and-push	Checkout repository	2026-02-12T01:23:08.0994554Z   persist-credentials: true
+build-and-push	Checkout repository	2026-02-12T01:23:08.0995608Z   clean: true
+build-and-push	Checkout repository	2026-02-12T01:23:08.0996396Z   sparse-checkout-cone-mode: true
+build-and-push	Checkout repository	2026-02-12T01:23:08.0997386Z   fetch-depth: 1
+build-and-push	Checkout repository	2026-02-12T01:23:08.0998180Z   fetch-tags: false
+build-and-push	Checkout repository	2026-02-12T01:23:08.0998922Z   lfs: false
+build-and-push	Checkout repository	2026-02-12T01:23:08.0999751Z   submodules: false
+build-and-push	Checkout repository	2026-02-12T01:23:08.1000537Z   set-safe-directory: true
+build-and-push	Checkout repository	2026-02-12T01:23:08.1001688Z env:
+build-and-push	Checkout repository	2026-02-12T01:23:08.1002404Z   REGISTRY: ghcr.io
+build-and-push	Checkout repository	2026-02-12T01:23:08.1003338Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.1004391Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.1934222Z Syncing repository: agenciageraleads/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.1937272Z ##[group]Getting Git version info
+build-and-push	Checkout repository	2026-02-12T01:23:08.1938782Z Working directory is '/home/runner/work/sistema-de-contagem/sistema-de-contagem'
+build-and-push	Checkout repository	2026-02-12T01:23:08.1940688Z [command]/usr/bin/git version
+build-and-push	Checkout repository	2026-02-12T01:23:08.1979421Z git version 2.52.0
+build-and-push	Checkout repository	2026-02-12T01:23:08.2004942Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.2020787Z Temporarily overriding HOME='/home/runner/work/_temp/071e131e-ed86-404b-8729-9216c282c7d4' before making global git config changes
+build-and-push	Checkout repository	2026-02-12T01:23:08.2025252Z Adding repository directory to the temporary git global config as a safe directory
+build-and-push	Checkout repository	2026-02-12T01:23:08.2028887Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sistema-de-contagem/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.2059889Z Deleting the contents of '/home/runner/work/sistema-de-contagem/sistema-de-contagem'
+build-and-push	Checkout repository	2026-02-12T01:23:08.2063339Z ##[group]Initializing the repository
+build-and-push	Checkout repository	2026-02-12T01:23:08.2067675Z [command]/usr/bin/git init /home/runner/work/sistema-de-contagem/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.2142465Z hint: Using 'master' as the name for the initial branch. This default branch name
+build-and-push	Checkout repository	2026-02-12T01:23:08.2145503Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build-and-push	Checkout repository	2026-02-12T01:23:08.2147175Z hint: to use in all of your new repositories, which will suppress this warning,
+build-and-push	Checkout repository	2026-02-12T01:23:08.2148430Z hint: call:
+build-and-push	Checkout repository	2026-02-12T01:23:08.2149094Z hint:
+build-and-push	Checkout repository	2026-02-12T01:23:08.2150240Z hint: 	git config --global init.defaultBranch <name>
+build-and-push	Checkout repository	2026-02-12T01:23:08.2151266Z hint:
+build-and-push	Checkout repository	2026-02-12T01:23:08.2152230Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build-and-push	Checkout repository	2026-02-12T01:23:08.2154123Z hint: 'development'. The just-created branch can be renamed via this command:
+build-and-push	Checkout repository	2026-02-12T01:23:08.2155572Z hint:
+build-and-push	Checkout repository	2026-02-12T01:23:08.2156258Z hint: 	git branch -m <name>
+build-and-push	Checkout repository	2026-02-12T01:23:08.2157069Z hint:
+build-and-push	Checkout repository	2026-02-12T01:23:08.2158165Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build-and-push	Checkout repository	2026-02-12T01:23:08.2160072Z Initialized empty Git repository in /home/runner/work/sistema-de-contagem/sistema-de-contagem/.git/
+build-and-push	Checkout repository	2026-02-12T01:23:08.2163292Z [command]/usr/bin/git remote add origin https://github.com/agenciageraleads/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.2185492Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.2187613Z ##[group]Disabling automatic garbage collection
+build-and-push	Checkout repository	2026-02-12T01:23:08.2189507Z [command]/usr/bin/git config --local gc.auto 0
+build-and-push	Checkout repository	2026-02-12T01:23:08.2211618Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.2213565Z ##[group]Setting up auth
+build-and-push	Checkout repository	2026-02-12T01:23:08.2217925Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-and-push	Checkout repository	2026-02-12T01:23:08.2242303Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-and-push	Checkout repository	2026-02-12T01:23:08.2514006Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-and-push	Checkout repository	2026-02-12T01:23:08.2537432Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-and-push	Checkout repository	2026-02-12T01:23:08.2706339Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build-and-push	Checkout repository	2026-02-12T01:23:08.2732619Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.2734002Z ##[group]Fetching the repository
+build-and-push	Checkout repository	2026-02-12T01:23:08.2741377Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +d91c84cf60b4c9fee0fd1ec160a2282a3ce42c28:refs/remotes/origin/main
+build-and-push	Checkout repository	2026-02-12T01:23:08.6210249Z remote: Enumerating objects: 439, done.        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6212160Z remote: Counting objects:   0% (1/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6213791Z remote: Counting objects:   1% (5/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6215615Z remote: Counting objects:   2% (9/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6217245Z remote: Counting objects:   3% (14/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6218964Z remote: Counting objects:   4% (18/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6220686Z remote: Counting objects:   5% (22/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6222084Z remote: Counting objects:   6% (27/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6223734Z remote: Counting objects:   7% (31/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6225657Z remote: Counting objects:   8% (36/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6227032Z remote: Counting objects:   9% (40/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6228412Z remote: Counting objects:  10% (44/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6229857Z remote: Counting objects:  11% (49/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6231332Z remote: Counting objects:  12% (53/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6232907Z remote: Counting objects:  13% (58/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6234250Z remote: Counting objects:  14% (62/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6235878Z remote: Counting objects:  15% (66/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6237348Z remote: Counting objects:  16% (71/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6238842Z remote: Counting objects:  17% (75/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6240609Z remote: Counting objects:  18% (80/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6242061Z remote: Counting objects:  19% (84/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6243365Z remote: Counting objects:  20% (88/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6244965Z remote: Counting objects:  21% (93/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6246601Z remote: Counting objects:  22% (97/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6248190Z remote: Counting objects:  23% (101/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6249842Z remote: Counting objects:  24% (106/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6251413Z remote: Counting objects:  25% (110/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6253082Z remote: Counting objects:  26% (115/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6254968Z remote: Counting objects:  27% (119/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6256684Z remote: Counting objects:  28% (123/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6258342Z remote: Counting objects:  29% (128/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6260030Z remote: Counting objects:  30% (132/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6261666Z remote: Counting objects:  31% (137/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6263319Z remote: Counting objects:  32% (141/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6265161Z remote: Counting objects:  33% (145/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6266835Z remote: Counting objects:  34% (150/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6268508Z remote: Counting objects:  35% (154/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6270172Z remote: Counting objects:  36% (159/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6271851Z remote: Counting objects:  37% (163/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6273516Z remote: Counting objects:  38% (167/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6275131Z remote: Counting objects:  39% (172/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6276104Z remote: Counting objects:  40% (176/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6277090Z remote: Counting objects:  41% (180/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6278079Z remote: Counting objects:  42% (185/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6279055Z remote: Counting objects:  43% (189/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6280042Z remote: Counting objects:  44% (194/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6281311Z remote: Counting objects:  45% (198/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6282276Z remote: Counting objects:  46% (202/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6283244Z remote: Counting objects:  47% (207/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6284208Z remote: Counting objects:  48% (211/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6285332Z remote: Counting objects:  49% (216/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6286301Z remote: Counting objects:  50% (220/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6287255Z remote: Counting objects:  51% (224/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6288225Z remote: Counting objects:  52% (229/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6289193Z remote: Counting objects:  53% (233/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6290167Z remote: Counting objects:  54% (238/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6291119Z remote: Counting objects:  55% (242/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6292097Z remote: Counting objects:  56% (246/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6293072Z remote: Counting objects:  57% (251/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6294038Z remote: Counting objects:  58% (255/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6295197Z remote: Counting objects:  59% (260/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6296142Z remote: Counting objects:  60% (264/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6297104Z remote: Counting objects:  61% (268/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6298038Z remote: Counting objects:  62% (273/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6299009Z remote: Counting objects:  63% (277/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6299982Z remote: Counting objects:  64% (281/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6300934Z remote: Counting objects:  65% (286/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6301994Z remote: Counting objects:  66% (290/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6302961Z remote: Counting objects:  67% (295/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6303908Z remote: Counting objects:  68% (299/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6305023Z remote: Counting objects:  69% (303/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6306111Z remote: Counting objects:  70% (308/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6307080Z remote: Counting objects:  71% (312/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6308043Z remote: Counting objects:  72% (317/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6309000Z remote: Counting objects:  73% (321/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6309960Z remote: Counting objects:  74% (325/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6310915Z remote: Counting objects:  75% (330/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6311870Z remote: Counting objects:  76% (334/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6312816Z remote: Counting objects:  77% (339/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6313765Z remote: Counting objects:  78% (343/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6314714Z remote: Counting objects:  79% (347/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6315839Z remote: Counting objects:  80% (352/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6316805Z remote: Counting objects:  81% (356/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6317751Z remote: Counting objects:  82% (360/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6318719Z remote: Counting objects:  83% (365/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6319685Z remote: Counting objects:  84% (369/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6320645Z remote: Counting objects:  85% (374/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6321587Z remote: Counting objects:  86% (378/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6322541Z remote: Counting objects:  87% (382/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6323475Z remote: Counting objects:  88% (387/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6324434Z remote: Counting objects:  89% (391/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6325533Z remote: Counting objects:  90% (396/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6326494Z remote: Counting objects:  91% (400/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6327444Z remote: Counting objects:  92% (404/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6328386Z remote: Counting objects:  93% (409/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6329333Z remote: Counting objects:  94% (413/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6330279Z remote: Counting objects:  95% (418/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6331233Z remote: Counting objects:  96% (422/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6332183Z remote: Counting objects:  97% (426/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6333230Z remote: Counting objects:  98% (431/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6334173Z remote: Counting objects:  99% (435/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6335264Z remote: Counting objects: 100% (439/439)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6336266Z remote: Counting objects: 100% (439/439), done.        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6337284Z remote: Compressing objects:   0% (1/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6338255Z remote: Compressing objects:   1% (4/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6339213Z remote: Compressing objects:   2% (8/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6340185Z remote: Compressing objects:   3% (11/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6341164Z remote: Compressing objects:   4% (15/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6342136Z remote: Compressing objects:   5% (18/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6343115Z remote: Compressing objects:   6% (22/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6344085Z remote: Compressing objects:   7% (26/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6576431Z remote: Compressing objects:   8% (29/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6578227Z remote: Compressing objects:   9% (33/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6579535Z remote: Compressing objects:  10% (36/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6580727Z remote: Compressing objects:  11% (40/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6581935Z remote: Compressing objects:  12% (43/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6583131Z remote: Compressing objects:  13% (47/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6584318Z remote: Compressing objects:  14% (51/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6585688Z remote: Compressing objects:  15% (54/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6586875Z remote: Compressing objects:  16% (58/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6587944Z remote: Compressing objects:  17% (61/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6588934Z remote: Compressing objects:  18% (65/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6589924Z remote: Compressing objects:  19% (69/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6591213Z remote: Compressing objects:  20% (72/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6592207Z remote: Compressing objects:  21% (76/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6593189Z remote: Compressing objects:  22% (79/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6594149Z remote: Compressing objects:  23% (83/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6595201Z remote: Compressing objects:  24% (86/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6596178Z remote: Compressing objects:  25% (90/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6597161Z remote: Compressing objects:  26% (94/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6598136Z remote: Compressing objects:  27% (97/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6599127Z remote: Compressing objects:  28% (101/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6600229Z remote: Compressing objects:  29% (104/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6601214Z remote: Compressing objects:  30% (108/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6602203Z remote: Compressing objects:  31% (111/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6603476Z remote: Compressing objects:  32% (115/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6604488Z remote: Compressing objects:  33% (119/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6605582Z remote: Compressing objects:  34% (122/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6606560Z remote: Compressing objects:  35% (126/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6607550Z remote: Compressing objects:  36% (129/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6608526Z remote: Compressing objects:  37% (133/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6609527Z remote: Compressing objects:  38% (137/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6610507Z remote: Compressing objects:  39% (140/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6611472Z remote: Compressing objects:  40% (144/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6612451Z remote: Compressing objects:  41% (147/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6613423Z remote: Compressing objects:  42% (151/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6614395Z remote: Compressing objects:  43% (154/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6615438Z remote: Compressing objects:  44% (158/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6616427Z remote: Compressing objects:  45% (162/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6617416Z remote: Compressing objects:  46% (165/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6618568Z remote: Compressing objects:  47% (169/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6619545Z remote: Compressing objects:  48% (172/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6620532Z remote: Compressing objects:  49% (176/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6621515Z remote: Compressing objects:  50% (179/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6622495Z remote: Compressing objects:  51% (183/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6623529Z remote: Compressing objects:  52% (187/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6624538Z remote: Compressing objects:  53% (190/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6625587Z remote: Compressing objects:  54% (194/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6626572Z remote: Compressing objects:  55% (197/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6627539Z remote: Compressing objects:  56% (201/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6628517Z remote: Compressing objects:  57% (205/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6629498Z remote: Compressing objects:  58% (208/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6630484Z remote: Compressing objects:  59% (212/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6631454Z remote: Compressing objects:  60% (215/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6632433Z remote: Compressing objects:  61% (219/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6633415Z remote: Compressing objects:  62% (222/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6634384Z remote: Compressing objects:  63% (226/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6635433Z remote: Compressing objects:  64% (230/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6636406Z remote: Compressing objects:  65% (233/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6637384Z remote: Compressing objects:  66% (237/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6638349Z remote: Compressing objects:  67% (240/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6639324Z remote: Compressing objects:  68% (244/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6640300Z remote: Compressing objects:  69% (248/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6641281Z remote: Compressing objects:  70% (251/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6642349Z remote: Compressing objects:  71% (255/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6643338Z remote: Compressing objects:  72% (258/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6644328Z remote: Compressing objects:  73% (262/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6645379Z remote: Compressing objects:  74% (265/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6646356Z remote: Compressing objects:  75% (269/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6647333Z remote: Compressing objects:  76% (273/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6648318Z remote: Compressing objects:  77% (276/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6649300Z remote: Compressing objects:  78% (280/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6650274Z remote: Compressing objects:  79% (283/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6651243Z remote: Compressing objects:  80% (287/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6652218Z remote: Compressing objects:  81% (290/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6653189Z remote: Compressing objects:  82% (294/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6654152Z remote: Compressing objects:  83% (298/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6655206Z remote: Compressing objects:  84% (301/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6656194Z remote: Compressing objects:  85% (305/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6657163Z remote: Compressing objects:  86% (308/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6658136Z remote: Compressing objects:  87% (312/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6659094Z remote: Compressing objects:  88% (316/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6660057Z remote: Compressing objects:  89% (319/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6661049Z remote: Compressing objects:  90% (323/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6662067Z remote: Compressing objects:  91% (326/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6663047Z remote: Compressing objects:  92% (330/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6664011Z remote: Compressing objects:  93% (333/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6665038Z remote: Compressing objects:  94% (337/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6666013Z remote: Compressing objects:  95% (341/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6666978Z remote: Compressing objects:  96% (344/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6668023Z remote: Compressing objects:  97% (348/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6668984Z remote: Compressing objects:  98% (351/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6669969Z remote: Compressing objects:  99% (355/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6670931Z remote: Compressing objects: 100% (358/358)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6671981Z remote: Compressing objects: 100% (358/358), done.        
+build-and-push	Checkout repository	2026-02-12T01:23:08.6778735Z Receiving objects:   0% (1/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.6781386Z Receiving objects:   1% (5/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7107476Z Receiving objects:   2% (9/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7136437Z Receiving objects:   3% (14/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7283209Z Receiving objects:   4% (18/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7292189Z Receiving objects:   5% (22/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7635401Z Receiving objects:   6% (27/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7672311Z Receiving objects:   7% (31/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7801714Z Receiving objects:   8% (36/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7806795Z Receiving objects:   9% (40/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7813288Z Receiving objects:  10% (44/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7817319Z Receiving objects:  11% (49/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7820937Z Receiving objects:  12% (53/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7822149Z Receiving objects:  13% (58/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7824005Z Receiving objects:  14% (62/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7826860Z Receiving objects:  15% (66/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7828101Z Receiving objects:  16% (71/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7829282Z Receiving objects:  17% (75/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7830595Z Receiving objects:  18% (80/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7831741Z Receiving objects:  19% (84/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7833132Z Receiving objects:  20% (88/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7834343Z Receiving objects:  21% (93/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7835575Z Receiving objects:  22% (97/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7837010Z Receiving objects:  23% (101/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7837955Z Receiving objects:  24% (106/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7839432Z Receiving objects:  25% (110/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7840458Z Receiving objects:  26% (115/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.7841419Z Receiving objects:  27% (119/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8164387Z Receiving objects:  28% (123/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8166206Z Receiving objects:  29% (128/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8167994Z Receiving objects:  30% (132/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8169523Z Receiving objects:  31% (137/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8170857Z Receiving objects:  32% (141/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8172428Z Receiving objects:  33% (145/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8195837Z Receiving objects:  34% (150/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8199408Z Receiving objects:  35% (154/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8207928Z Receiving objects:  36% (159/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8209263Z Receiving objects:  37% (163/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8210781Z Receiving objects:  38% (167/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8327155Z Receiving objects:  39% (172/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8328811Z Receiving objects:  40% (176/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8330512Z Receiving objects:  41% (180/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8332225Z Receiving objects:  42% (185/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8333826Z Receiving objects:  43% (189/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8335958Z Receiving objects:  44% (194/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8338044Z Receiving objects:  45% (198/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8342346Z Receiving objects:  46% (202/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8347621Z Receiving objects:  47% (207/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8355508Z Receiving objects:  48% (211/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8361749Z Receiving objects:  49% (216/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8364495Z Receiving objects:  50% (220/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8369819Z Receiving objects:  51% (224/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8372850Z Receiving objects:  52% (229/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8374911Z Receiving objects:  53% (233/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8376000Z Receiving objects:  54% (238/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8377407Z Receiving objects:  55% (242/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8380581Z Receiving objects:  56% (246/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8381850Z Receiving objects:  57% (251/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8383047Z Receiving objects:  58% (255/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8384506Z Receiving objects:  59% (260/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8385814Z Receiving objects:  60% (264/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8388132Z Receiving objects:  61% (268/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8389411Z Receiving objects:  62% (273/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8390631Z Receiving objects:  63% (277/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8392602Z Receiving objects:  64% (281/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8394489Z Receiving objects:  65% (286/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8395948Z Receiving objects:  66% (290/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8397444Z Receiving objects:  67% (295/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8398431Z Receiving objects:  68% (299/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8745263Z Receiving objects:  69% (303/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8746636Z Receiving objects:  70% (308/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8747662Z Receiving objects:  71% (312/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8748884Z Receiving objects:  72% (317/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8749820Z Receiving objects:  73% (321/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8750959Z Receiving objects:  74% (325/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8752248Z Receiving objects:  75% (330/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8753452Z Receiving objects:  76% (334/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8754534Z Receiving objects:  77% (339/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8755678Z Receiving objects:  78% (343/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8756609Z Receiving objects:  79% (347/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8757481Z Receiving objects:  80% (352/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8759092Z Receiving objects:  81% (356/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8760196Z Receiving objects:  82% (360/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8762525Z Receiving objects:  83% (365/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8765432Z Receiving objects:  84% (369/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8767655Z Receiving objects:  85% (374/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8770023Z Receiving objects:  86% (378/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8771348Z Receiving objects:  87% (382/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8772510Z Receiving objects:  88% (387/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8773663Z Receiving objects:  89% (391/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8775115Z Receiving objects:  90% (396/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8776176Z Receiving objects:  91% (400/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8777383Z Receiving objects:  92% (404/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8778359Z Receiving objects:  93% (409/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8782203Z Receiving objects:  94% (413/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8899554Z Receiving objects:  95% (418/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8901554Z Receiving objects:  96% (422/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8913795Z Receiving objects:  97% (426/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8915491Z remote: Total 439 (delta 16), reused 432 (delta 15), pack-reused 0 (from 0)        
+build-and-push	Checkout repository	2026-02-12T01:23:08.8925770Z Receiving objects:  98% (431/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8927181Z Receiving objects:  99% (435/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8928447Z Receiving objects: 100% (439/439)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8930110Z Receiving objects: 100% (439/439), 1.11 MiB | 5.16 MiB/s, done.
+build-and-push	Checkout repository	2026-02-12T01:23:08.8935701Z Resolving deltas:   0% (0/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8937091Z Resolving deltas:   6% (1/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8938279Z Resolving deltas:  12% (2/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8939167Z Resolving deltas:  18% (3/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8939929Z Resolving deltas:  25% (4/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8940674Z Resolving deltas:  31% (5/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8941443Z Resolving deltas:  37% (6/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8942194Z Resolving deltas:  43% (7/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8942963Z Resolving deltas:  50% (8/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8943706Z Resolving deltas:  56% (9/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8944475Z Resolving deltas:  62% (10/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8945506Z Resolving deltas:  68% (11/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8946326Z Resolving deltas:  75% (12/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8947119Z Resolving deltas:  81% (13/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8947906Z Resolving deltas:  87% (14/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8962035Z Resolving deltas:  93% (15/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8963131Z Resolving deltas: 100% (16/16)
+build-and-push	Checkout repository	2026-02-12T01:23:08.8964075Z Resolving deltas: 100% (16/16), done.
+build-and-push	Checkout repository	2026-02-12T01:23:08.9031890Z From https://github.com/agenciageraleads/sistema-de-contagem
+build-and-push	Checkout repository	2026-02-12T01:23:08.9033348Z  * [new ref]         d91c84cf60b4c9fee0fd1ec160a2282a3ce42c28 -> origin/main
+build-and-push	Checkout repository	2026-02-12T01:23:08.9059697Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.9061182Z ##[group]Determining the checkout info
+build-and-push	Checkout repository	2026-02-12T01:23:08.9062645Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.9063955Z ##[group]Checking out the ref
+build-and-push	Checkout repository	2026-02-12T01:23:08.9065729Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build-and-push	Checkout repository	2026-02-12T01:23:08.9323107Z Switched to a new branch 'main'
+build-and-push	Checkout repository	2026-02-12T01:23:08.9324347Z branch 'main' set up to track 'origin/main'.
+build-and-push	Checkout repository	2026-02-12T01:23:08.9327833Z ##[endgroup]
+build-and-push	Checkout repository	2026-02-12T01:23:08.9356135Z [command]/usr/bin/git log -1 --format='%H'
+build-and-push	Checkout repository	2026-02-12T01:23:08.9373514Z 'd91c84cf60b4c9fee0fd1ec160a2282a3ce42c28'
+build-and-push	Log in to the Container registry	﻿2026-02-12T01:23:08.9565419Z ##[group]Run docker/login-action@v2
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9566233Z with:
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9566767Z   registry: ghcr.io
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9567425Z   username: agenciageraleads
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9568416Z   password: ***
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9568997Z   ecr: auto
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9569557Z   logout: true
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9570117Z env:
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9570653Z   REGISTRY: ghcr.io
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9571373Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+build-and-push	Log in to the Container registry	2026-02-12T01:23:08.9572252Z ##[endgroup]
+build-and-push	Log in to the Container registry	2026-02-12T01:23:09.0415963Z Logging into ghcr.io...
+build-and-push	Log in to the Container registry	2026-02-12T01:23:09.7546208Z Login Succeeded!
+build-and-push	Build and push Backend	﻿2026-02-12T01:23:09.7695858Z ##[group]Run docker/build-push-action@v4
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7696178Z with:
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7696355Z   context: ./backend
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7696531Z   push: true
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7696810Z   tags: ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7697142Z   load: false
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7697316Z   no-cache: false
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7697499Z   pull: false
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7697824Z   github-token: ***
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7698013Z env:
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7698169Z   REGISTRY: ghcr.io
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7698403Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+build-and-push	Build and push Backend	2026-02-12T01:23:09.7698822Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:09.8986061Z ##[group]GitHub Actions runtime token ACs
+build-and-push	Build and push Backend	2026-02-12T01:23:09.8998488Z refs/heads/main: read/write
+build-and-push	Build and push Backend	2026-02-12T01:23:09.8999742Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9006149Z ##[group]Docker info
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9048796Z [command]/usr/bin/docker version
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9222178Z Client: Docker Engine - Community
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9224674Z  Version:           28.0.4
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9225607Z  API version:       1.48
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9225974Z  Go version:        go1.23.7
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9226369Z  Git commit:        b8034c0
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9226794Z  Built:             Tue Mar 25 15:07:16 2025
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9227291Z  OS/Arch:           linux/amd64
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9227666Z  Context:           default
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9227878Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9228023Z Server: Docker Engine - Community
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9228355Z  Engine:
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9228612Z   Version:          28.0.4
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9229013Z   API version:      1.48 (minimum version 1.24)
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9229465Z   Go version:       go1.23.7
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9229805Z   Git commit:       6430e49
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9230060Z   Built:            Tue Mar 25 15:07:16 2025
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9230309Z   OS/Arch:          linux/amd64
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9230539Z   Experimental:     false
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9230739Z  containerd:
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9230931Z   Version:          v2.2.1
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9231205Z   GitCommit:        dea7da592f5d1d2b7755e3a161be07f43fad8f75
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9231491Z  runc:
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9231655Z   Version:          1.3.4
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9231877Z   GitCommit:        v1.3.4-0-gd6d73eb8
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9232111Z  docker-init:
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9232283Z   Version:          0.19.0
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9232489Z   GitCommit:        de40ad0
+build-and-push	Build and push Backend	2026-02-12T01:23:09.9260499Z [command]/usr/bin/docker info
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2456260Z Client: Docker Engine - Community
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2456960Z  Version:    28.0.4
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2457349Z  Context:    default
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2457688Z  Debug Mode: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2457983Z  Plugins:
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2458306Z   buildx: Docker Buildx (Docker Inc.)
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2458726Z     Version:  v0.31.1
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2459202Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2459752Z   compose: Docker Compose (Docker Inc.)
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2460198Z     Version:  v2.38.2
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2460647Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2460992Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2461094Z Server:
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2461362Z  Containers: 0
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2461628Z   Running: 0
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2461903Z   Paused: 0
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2462190Z   Stopped: 0
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2462489Z  Images: 1
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2462791Z  Server Version: 28.0.4
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2463153Z  Storage Driver: overlay2
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2463535Z   Backing Filesystem: extfs
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2463904Z   Supports d_type: true
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2464212Z   Using metacopy: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2464519Z   Native Overlay Diff: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2465038Z   userxattr: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2465326Z  Logging Driver: json-file
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2465603Z  Cgroup Driver: systemd
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2465798Z  Cgroup Version: 2
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2465999Z  Plugins:
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2466274Z   Volume: local
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2467004Z   Network: bridge host ipvlan macvlan null overlay
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2467458Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2467797Z  Swarm: inactive
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2468005Z  Runtimes: io.containerd.runc.v2 runc
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2468264Z  Default Runtime: runc
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2468462Z  Init Binary: docker-init
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2468849Z  containerd version: dea7da592f5d1d2b7755e3a161be07f43fad8f75
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2469434Z  runc version: v1.3.4-0-gd6d73eb8
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2469821Z  init version: de40ad0
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2470380Z  Security Options:
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2470678Z   apparmor
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2470944Z   seccomp
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2471224Z    Profile: builtin
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2471415Z   cgroupns
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2471592Z  Kernel Version: 6.11.0-1018-azure
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2471846Z  Operating System: Ubuntu 24.04.3 LTS
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2472070Z  OSType: linux
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2472262Z  Architecture: x86_64
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2472486Z  CPUs: 4
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2472749Z  Total Memory: 15.62GiB
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2473075Z  Name: runnervmwffz4
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2473417Z  ID: 073c65d4-c458-42c9-935a-939d0489da0a
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2473679Z  Docker Root Dir: /var/lib/docker
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2473895Z  Debug Mode: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2474086Z  Username: githubactions
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2474286Z  Experimental: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2474484Z  Insecure Registries:
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2479259Z   ::1/128
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2479530Z   127.0.0.0/8
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2479734Z  Live Restore Enabled: false
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2479923Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2480421Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2480778Z ##[group]Proxy configuration
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2481052Z No proxy configuration found
+build-and-push	Build and push Backend	2026-02-12T01:23:10.2481384Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:10.3773576Z ##[group]Buildx version
+build-and-push	Build and push Backend	2026-02-12T01:23:10.3797169Z [command]/usr/bin/docker buildx version
+build-and-push	Build and push Backend	2026-02-12T01:23:10.4739139Z github.com/docker/buildx v0.31.1 a2675950d46b2cb171b23c2015ca44fb88607531
+build-and-push	Build and push Backend	2026-02-12T01:23:10.4763592Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:10.7290234Z [command]/usr/bin/docker buildx build --iidfile /tmp/docker-actions-toolkit-Hmv4H7/iidfile --tag ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest --metadata-file /tmp/docker-actions-toolkit-Hmv4H7/metadata-file --push ./backend
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0149413Z #0 building with "default" instance using docker driver
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0149925Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0150082Z #1 [internal] load build definition from Dockerfile
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0150424Z #1 transferring dockerfile: 636B done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0150725Z #1 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0150857Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.0151040Z #2 [internal] load metadata for docker.io/library/node:18-alpine
+build-and-push	Build and push Backend	2026-02-12T01:23:11.2062644Z #2 ...
+build-and-push	Build and push Backend	2026-02-12T01:23:11.2063030Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.2063355Z #3 [auth] library/node:pull token for registry-1.docker.io
+build-and-push	Build and push Backend	2026-02-12T01:23:11.2063771Z #3 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.3553060Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.3554032Z #2 [internal] load metadata for docker.io/library/node:18-alpine
+build-and-push	Build and push Backend	2026-02-12T01:23:11.7596824Z #2 DONE 0.9s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8830113Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8830644Z #4 [internal] load .dockerignore
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8831234Z #4 transferring context: 2B done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8831641Z #4 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8831819Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8831964Z #5 [internal] load build context
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8832319Z #5 transferring context: 662.69kB 0.0s done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8832593Z #5 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8832721Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8833150Z #6 [builder 1/8] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8834051Z #6 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8835048Z #6 sha256:929b04d7c782f04f615cf785488fed452b6569f87c73ff666ad553a7554f0006 1.72kB / 1.72kB done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8836198Z #6 sha256:ee77c6cd7c1886ecc802ad6cedef3a8ec1ea27d1fb96162bf03dd3710839b8da 6.18kB / 6.18kB done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8836849Z #6 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0B / 3.64MB 0.1s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8837539Z #6 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 0B / 40.01MB 0.1s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8838136Z #6 sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 0B / 1.26MB 0.1s
+build-and-push	Build and push Backend	2026-02-12T01:23:11.8838663Z #6 sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 7.67kB / 7.67kB done
+build-and-push	Build and push Backend	2026-02-12T01:23:11.9833702Z #6 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 4.19MB / 40.01MB 0.2s
+build-and-push	Build and push Backend	2026-02-12T01:23:12.1290829Z #6 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 27.33MB / 40.01MB 0.3s
+build-and-push	Build and push Backend	2026-02-12T01:23:12.1291807Z #6 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870
+build-and-push	Build and push Backend	2026-02-12T01:23:12.2822323Z #6 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.64MB / 3.64MB 0.3s done
+build-and-push	Build and push Backend	2026-02-12T01:23:12.2824620Z #6 sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 40.01MB / 40.01MB 0.4s done
+build-and-push	Build and push Backend	2026-02-12T01:23:12.2827555Z #6 sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 1.26MB / 1.26MB 0.3s done
+build-and-push	Build and push Backend	2026-02-12T01:23:12.2828666Z #6 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0.1s done
+build-and-push	Build and push Backend	2026-02-12T01:23:12.2829770Z #6 sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 446B / 446B 0.4s done
+build-and-push	Build and push Backend	2026-02-12T01:23:12.2830738Z #6 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e
+build-and-push	Build and push Backend	2026-02-12T01:23:13.0273286Z #6 extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 0.8s done
+build-and-push	Build and push Backend	2026-02-12T01:23:13.1433210Z #6 extracting sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3793704Z #6 extracting sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 0.0s done
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3795162Z #6 extracting sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 done
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3795833Z #6 DONE 1.4s
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3796011Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3796143Z #7 [builder 2/8] WORKDIR /app
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3796455Z #7 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3796596Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3796748Z #8 [builder 3/8] COPY package*.json ./
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3797125Z #8 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3797294Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3797435Z #9 [builder 4/8] COPY prisma ./prisma/
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3797792Z #9 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3797951Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:13.3798075Z #10 [builder 5/8] RUN npm install
+build-and-push	Build and push Backend	2026-02-12T01:23:14.1715778Z #10 0.942 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.1716656Z #10 0.942 npm warn EBADENGINE   package: '@isaacs/balanced-match@4.0.1',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.1717113Z #10 0.942 npm warn EBADENGINE   required: { node: '20 || >=22' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.1717594Z #10 0.942 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.1717976Z #10 0.942 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3291166Z #10 0.943 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3292244Z #10 0.943 npm warn EBADENGINE   package: '@isaacs/brace-expansion@5.0.1',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3292861Z #10 0.943 npm warn EBADENGINE   required: { node: '20 || >=22' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3293742Z #10 0.943 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3294296Z #10 0.943 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3294553Z #10 0.944 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3295120Z #10 0.944 npm warn EBADENGINE   package: '@nestjs/cli@11.0.16',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3295534Z #10 0.944 npm warn EBADENGINE   required: { node: '>= 20.11' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3295893Z #10 0.944 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3296198Z #10 0.944 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3296777Z #10 0.945 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3297079Z #10 0.945 npm warn EBADENGINE   package: '@nestjs/core@11.1.13',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3297473Z #10 0.945 npm warn EBADENGINE   required: { node: '>= 20' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3297830Z #10 0.945 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3298132Z #10 0.945 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3298388Z #10 0.947 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3298733Z #10 0.947 npm warn EBADENGINE   package: 'file-type@21.3.0',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3299047Z #10 0.947 npm warn EBADENGINE   required: { node: '>=20' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3299505Z #10 0.947 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3299868Z #10 0.947 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3300098Z #10 0.947 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3300377Z #10 0.947 npm warn EBADENGINE   package: 'glob@13.0.0',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3300762Z #10 0.947 npm warn EBADENGINE   required: { node: '20 || >=22' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3301137Z #10 0.947 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3301444Z #10 0.947 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3301669Z #10 0.947 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3302032Z #10 0.947 npm warn EBADENGINE   package: 'minimatch@10.1.2',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3302342Z #10 0.947 npm warn EBADENGINE   required: { node: '20 || >=22' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3302754Z #10 0.947 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3303061Z #10 0.947 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3303288Z #10 0.950 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3303583Z #10 0.950 npm warn EBADENGINE   package: 'path-scurry@2.0.1',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3303977Z #10 0.950 npm warn EBADENGINE   required: { node: '20 || >=22' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3304328Z #10 0.950 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3304622Z #10 0.950 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3304975Z #10 0.950 npm warn EBADENGINE Unsupported engine {
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3305339Z #10 0.950 npm warn EBADENGINE   package: 'lru-cache@11.2.5',
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3305657Z #10 0.950 npm warn EBADENGINE   required: { node: '20 || >=22' },
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3306000Z #10 0.950 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+build-and-push	Build and push Backend	2026-02-12T01:23:14.3306366Z #10 0.950 npm warn EBADENGINE }
+build-and-push	Build and push Backend	2026-02-12T01:23:16.7195857Z #10 3.491 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+build-and-push	Build and push Backend	2026-02-12T01:23:18.4638899Z #10 5.235 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+build-and-push	Build and push Backend	2026-02-12T01:23:19.2070806Z #10 5.978 npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+build-and-push	Build and push Backend	2026-02-12T01:23:19.3921885Z #10 5.981 npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+build-and-push	Build and push Backend	2026-02-12T01:23:19.3925066Z #10 6.013 npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+build-and-push	Build and push Backend	2026-02-12T01:23:24.6178464Z #10 11.39 
+build-and-push	Build and push Backend	2026-02-12T01:23:24.6178965Z #10 11.39 added 761 packages, and audited 762 packages in 11s
+build-and-push	Build and push Backend	2026-02-12T01:23:24.6179422Z #10 11.39 
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7708075Z #10 11.39 151 packages are looking for funding
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7708606Z #10 11.39   run `npm fund` for details
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7708905Z #10 11.39 
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7709159Z #10 11.39 found 0 vulnerabilities
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7709453Z #10 11.39 npm notice
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7709870Z #10 11.39 npm notice New major version of npm available! 10.8.2 -> 11.10.0
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7710544Z #10 11.39 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.10.0
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7711589Z #10 11.39 npm notice To update run: npm install -g npm@11.10.0
+build-and-push	Build and push Backend	2026-02-12T01:23:24.7712063Z #10 11.39 npm notice
+build-and-push	Build and push Backend	2026-02-12T01:23:25.0408319Z #10 DONE 11.8s
+build-and-push	Build and push Backend	2026-02-12T01:23:25.2133738Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:25.2134317Z #11 [builder 6/8] COPY . .
+build-and-push	Build and push Backend	2026-02-12T01:23:25.2134904Z #11 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:25.2135166Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:25.2135285Z #12 [builder 7/8] RUN npx prisma generate
+build-and-push	Build and push Backend	2026-02-12T01:23:26.0302149Z #12 0.967 prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+build-and-push	Build and push Backend	2026-02-12T01:23:26.0303315Z #12 0.967 Please manually install OpenSSL and try installing Prisma again.
+build-and-push	Build and push Backend	2026-02-12T01:23:26.1406275Z #12 1.078 Prisma schema loaded from prisma/schema.prisma
+build-and-push	Build and push Backend	2026-02-12T01:23:26.3080147Z #12 1.095 prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+build-and-push	Build and push Backend	2026-02-12T01:23:26.3081236Z #12 1.095 Please manually install OpenSSL and try installing Prisma again.
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6296483Z #12 1.567 
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6297388Z #12 1.567 ✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 173ms
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6297840Z #12 1.567 
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6298247Z #12 1.567 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6298985Z #12 1.567 
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6299731Z #12 1.567 Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+build-and-push	Build and push Backend	2026-02-12T01:23:26.6300572Z #12 1.567 
+build-and-push	Build and push Backend	2026-02-12T01:23:26.8476003Z #12 DONE 1.8s
+build-and-push	Build and push Backend	2026-02-12T01:23:26.9987858Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:26.9988694Z #13 [builder 8/8] RUN npm run build
+build-and-push	Build and push Backend	2026-02-12T01:23:27.0950066Z #13 0.247 
+build-and-push	Build and push Backend	2026-02-12T01:23:27.0950534Z #13 0.247 > contagem-ciclica-backend@1.0.0 build
+build-and-push	Build and push Backend	2026-02-12T01:23:27.0950987Z #13 0.247 > nest build
+build-and-push	Build and push Backend	2026-02-12T01:23:27.0951291Z #13 0.247 
+build-and-push	Build and push Backend	2026-02-12T01:23:31.9303184Z #13 DONE 5.1s
+build-and-push	Build and push Backend	2026-02-12T01:23:34.0049048Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:34.0049738Z #14 [runner 3/6] COPY --from=builder /app/package*.json ./
+build-and-push	Build and push Backend	2026-02-12T01:23:34.2744923Z #14 DONE 0.3s
+build-and-push	Build and push Backend	2026-02-12T01:23:34.4258407Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:34.4271448Z #15 [runner 4/6] COPY --from=builder /app/node_modules ./node_modules
+build-and-push	Build and push Backend	2026-02-12T01:23:36.8125917Z #15 DONE 2.5s
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0008646Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0009160Z #16 [runner 5/6] COPY --from=builder /app/dist ./dist
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0009696Z #16 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0009873Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0010099Z #17 [runner 6/6] COPY --from=builder /app/prisma ./prisma
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0010581Z #17 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0010752Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0010892Z #18 exporting to image
+build-and-push	Build and push Backend	2026-02-12T01:23:37.0011220Z #18 exporting layers
+build-and-push	Build and push Backend	2026-02-12T01:23:40.1768451Z #18 exporting layers 3.3s done
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3478830Z #18 writing image sha256:fced3abb97389946a1fbcd385b87e71dc1f16410da50145727b6021cd64586b3 done
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3480061Z #18 naming to ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest done
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3480765Z #18 DONE 3.3s
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3480890Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3481006Z #19 resolving provenance for metadata file
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3481283Z #19 DONE 0.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3481391Z 
+build-and-push	Build and push Backend	2026-02-12T01:23:40.3481635Z #20 pushing ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest with docker
+build-and-push	Build and push Backend	2026-02-12T01:23:40.4053204Z #20 pushing layer 0cf7cf756e8b
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5558107Z #20 pushing layer 2faa27e2903c
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5558469Z #20 pushing layer 1d41f99fcb78
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5558735Z #20 pushing layer 80c13decc259
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5558971Z #20 pushing layer c33e7a04ea25
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5559219Z #20 pushing layer 82140d9a70a7
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5559454Z #20 pushing layer f3b40b0cdb1c
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5559684Z #20 pushing layer 0b1f26057bd0
+build-and-push	Build and push Backend	2026-02-12T01:23:40.5559921Z #20 pushing layer 08000c18d16d
+build-and-push	Build and push Backend	2026-02-12T01:23:40.9254401Z #20 pushing layer 80c13decc259 33.79kB / 387.93kB 0.5s
+build-and-push	Build and push Backend	2026-02-12T01:23:41.0540014Z #20 pushing layer 0cf7cf756e8b 37.89kB / 27.63kB 0.6s
+build-and-push	Build and push Backend	2026-02-12T01:23:41.0541666Z #20 pushing layer 80c13decc259 197.63kB / 387.93kB 0.6s
+build-and-push	Build and push Backend	2026-02-12T01:23:41.2165304Z #20 pushing layer 2faa27e2903c 633.34kB / 517.69kB 0.7s
+build-and-push	Build and push Backend	2026-02-12T01:23:41.2165761Z #20 pushing layer 80c13decc259 391.17kB / 387.93kB 0.7s
+build-and-push	Build and push Backend	2026-02-12T01:23:41.9204473Z #20 pushing layer 1d41f99fcb78 16.12MB / 270.42MB 1.5s
+build-and-push	Build and push Backend	2026-02-12T01:23:42.4780972Z #20 pushing layer 0cf7cf756e8b 2.0s done
+build-and-push	Build and push Backend	2026-02-12T01:23:42.4781447Z #20 pushing layer 1d41f99fcb78 29.99MB / 270.42MB 2.1s
+build-and-push	Build and push Backend	2026-02-12T01:23:42.4781927Z #20 pushing layer 80c13decc259 2.0s done
+build-and-push	Build and push Backend	2026-02-12T01:23:42.4782331Z #20 pushing layer c33e7a04ea25 2.1s done
+build-and-push	Build and push Backend	2026-02-12T01:23:42.5828350Z #20 pushing layer 2faa27e2903c 2.1s done
+build-and-push	Build and push Backend	2026-02-12T01:23:43.0318176Z #20 pushing layer 1d41f99fcb78 46.00MB / 270.42MB 2.6s
+build-and-push	Build and push Backend	2026-02-12T01:23:43.5901593Z #20 pushing layer 1d41f99fcb78 61.46MB / 270.42MB 3.2s
+build-and-push	Build and push Backend	2026-02-12T01:23:44.1368842Z #20 pushing layer 1d41f99fcb78 75.33MB / 270.42MB 3.7s
+build-and-push	Build and push Backend	2026-02-12T01:23:44.7950501Z #20 pushing layer 1d41f99fcb78 89.71MB / 270.42MB 4.4s
+build-and-push	Build and push Backend	2026-02-12T01:23:45.4368712Z #20 pushing layer 1d41f99fcb78 104.73MB / 270.42MB 5.0s
+build-and-push	Build and push Backend	2026-02-12T01:23:45.9888712Z #20 pushing layer 1d41f99fcb78 120.10MB / 270.42MB 5.6s
+build-and-push	Build and push Backend	2026-02-12T01:23:46.5623514Z #20 pushing layer 1d41f99fcb78 136.84MB / 270.42MB 6.2s
+build-and-push	Build and push Backend	2026-02-12T01:23:47.1061084Z #20 pushing layer 1d41f99fcb78 150.70MB / 270.42MB 6.7s
+build-and-push	Build and push Backend	2026-02-12T01:23:47.6788160Z #20 pushing layer 1d41f99fcb78 167.19MB / 270.42MB 7.3s
+build-and-push	Build and push Backend	2026-02-12T01:23:48.2364385Z #20 pushing layer 1d41f99fcb78 182.78MB / 270.42MB 7.8s
+build-and-push	Build and push Backend	2026-02-12T01:23:48.7845340Z #20 pushing layer 1d41f99fcb78 196.76MB / 270.42MB 8.4s
+build-and-push	Build and push Backend	2026-02-12T01:23:49.3198838Z #20 pushing layer 1d41f99fcb78 211.32MB / 270.42MB 8.9s
+build-and-push	Build and push Backend	2026-02-12T01:23:49.8774313Z #20 pushing layer 1d41f99fcb78 226.68MB / 270.42MB 9.5s
+build-and-push	Build and push Backend	2026-02-12T01:23:50.5360783Z #20 pushing layer 1d41f99fcb78 242.17MB / 270.42MB 10.1s
+build-and-push	Build and push Backend	2026-02-12T01:23:51.0849036Z #20 pushing layer 1d41f99fcb78 256.55MB / 270.42MB 10.7s
+build-and-push	Build and push Backend	2026-02-12T01:23:51.6362125Z #20 pushing layer 1d41f99fcb78 273.95MB / 270.42MB 11.2s
+build-and-push	Build and push Backend	2026-02-12T01:23:52.1955913Z #20 pushing layer 1d41f99fcb78 290.36MB / 270.42MB 11.8s
+build-and-push	Build and push Backend	2026-02-12T01:23:54.4204043Z #20 pushing layer 1d41f99fcb78 14.0s done
+build-and-push	Build and push Backend	2026-02-12T01:23:56.7659002Z #20 pushing layer 0b1f26057bd0 16.4s done
+build-and-push	Build and push Backend	2026-02-12T01:23:56.9164948Z #20 pushing layer 82140d9a70a7 16.4s done
+build-and-push	Build and push Backend	2026-02-12T01:23:56.9165366Z #20 pushing layer f3b40b0cdb1c 16.4s done
+build-and-push	Build and push Backend	2026-02-12T01:23:56.9165608Z #20 pushing layer 08000c18d16d 16.4s done
+build-and-push	Build and push Backend	2026-02-12T01:23:56.9165828Z #20 DONE 16.6s
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9535306Z ##[group]ImageID
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9535864Z sha256:fced3abb97389946a1fbcd385b87e71dc1f16410da50145727b6021cd64586b3
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9536610Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9537066Z ##[group]Digest
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9539103Z sha256:508dc604e2b375e117402041028f5f97dbe8226e82b630903c355ddb74d8087a
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9539947Z ##[endgroup]
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9540419Z ##[group]Metadata
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9541626Z {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9541907Z   "buildx.build.provenance": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9542289Z     "builder": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9542568Z       "id": ""
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9542825Z     },
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9543206Z     "buildType": "https://mobyproject.org/buildkit@v1",
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9543663Z     "materials": [
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9543872Z       {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9544275Z         "uri": "pkg:docker/node@18-alpine?platform=linux%2Famd64",
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9544554Z         "digest": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9545033Z           "sha256": "8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e"
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9545374Z         }
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9545517Z       }
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9545668Z     ],
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9545816Z     "invocation": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9545984Z       "configSource": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9546188Z         "entryPoint": "Dockerfile"
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9546381Z       },
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9546531Z       "parameters": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9546840Z         "frontend": "dockerfile.v0",
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9547053Z         "locals": [
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9547206Z           {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9547375Z             "name": "context"
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9615842Z           },
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9616207Z           {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9616474Z             "name": "dockerfile"
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9616792Z           }
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9617006Z         ]
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9617216Z       },
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9617437Z       "environment": {
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9617716Z         "platform": "linux/amd64"
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9618052Z       }
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9618280Z     }
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9618536Z   },
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9618941Z   "buildx.build.ref": "default/default/e5nnbsy4jpn95dg25ufl0j382",
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9619719Z   "containerimage.config.digest": "sha256:fced3abb97389946a1fbcd385b87e71dc1f16410da50145727b6021cd64586b3",
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9620711Z   "containerimage.digest": "sha256:508dc604e2b375e117402041028f5f97dbe8226e82b630903c355ddb74d8087a",
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9621603Z   "image.name": "ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest"
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9622106Z }
+build-and-push	Build and push Backend	2026-02-12T01:23:57.9623213Z ##[endgroup]
+build-and-push	Build and push Frontend	﻿2026-02-12T01:23:57.9711735Z ##[group]Run docker/build-push-action@v4
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9711992Z with:
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9712145Z   context: ./frontend
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9712331Z   push: true
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9712588Z   tags: ghcr.io/agenciageraleads/sistema-de-contagem/frontend:latest
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9712906Z   load: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9713057Z   no-cache: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9713230Z   pull: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9713565Z   github-token: ***
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9713727Z env:
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9713880Z   REGISTRY: ghcr.io
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9714090Z   IMAGE_NAME: agenciageraleads/sistema-de-contagem
+build-and-push	Build and push Frontend	2026-02-12T01:23:57.9714344Z ##[endgroup]
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1034143Z ##[group]GitHub Actions runtime token ACs
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1053779Z refs/heads/main: read/write
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1055549Z ##[endgroup]
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1056082Z ##[group]Docker info
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1111365Z [command]/usr/bin/docker version
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1291440Z Client: Docker Engine - Community
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1291866Z  Version:           28.0.4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1292074Z  API version:       1.48
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1294175Z  Go version:        go1.23.7
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1294548Z  Git commit:        b8034c0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1295020Z  Built:             Tue Mar 25 15:07:16 2025
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1295320Z  OS/Arch:           linux/amd64
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1295526Z  Context:           default
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1295645Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1295730Z Server: Docker Engine - Community
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1295940Z  Engine:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1296090Z   Version:          28.0.4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1296321Z   API version:      1.48 (minimum version 1.24)
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1296562Z   Go version:       go1.23.7
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1296759Z   Git commit:       6430e49
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1297039Z   Built:            Tue Mar 25 15:07:16 2025
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1297356Z   OS/Arch:          linux/amd64
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1297560Z   Experimental:     false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1297745Z  containerd:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1297911Z   Version:          v2.2.1
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1298150Z   GitCommit:        dea7da592f5d1d2b7755e3a161be07f43fad8f75
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1298413Z  runc:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1298564Z   Version:          1.3.4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1298759Z   GitCommit:        v1.3.4-0-gd6d73eb8
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1298971Z  docker-init:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1299132Z   Version:          0.19.0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1299311Z   GitCommit:        de40ad0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1327953Z [command]/usr/bin/docker info
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1803142Z Client: Docker Engine - Community
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1803658Z  Version:    28.0.4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1803968Z  Context:    default
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1804158Z  Debug Mode: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1804336Z  Plugins:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1804516Z   buildx: Docker Buildx (Docker Inc.)
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1805238Z     Version:  v0.31.1
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1805491Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1805779Z   compose: Docker Compose (Docker Inc.)
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806018Z     Version:  v2.38.2
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806249Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806462Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806526Z Server:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806674Z  Containers: 0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806841Z   Running: 0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1806991Z   Paused: 0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1807151Z   Stopped: 0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1807310Z  Images: 2
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1807462Z  Server Version: 28.0.4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1807657Z  Storage Driver: overlay2
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1807853Z   Backing Filesystem: extfs
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1808055Z   Supports d_type: true
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1808238Z   Using metacopy: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1808431Z   Native Overlay Diff: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1808623Z   userxattr: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1808805Z  Logging Driver: json-file
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1809092Z  Cgroup Driver: systemd
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1809349Z  Cgroup Version: 2
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1809601Z  Plugins:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1809844Z   Volume: local
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1810376Z   Network: bridge host ipvlan macvlan null overlay
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1810954Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1811502Z  Swarm: inactive
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1811814Z  Runtimes: io.containerd.runc.v2 runc
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1812174Z  Default Runtime: runc
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1812473Z  Init Binary: docker-init
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1812882Z  containerd version: dea7da592f5d1d2b7755e3a161be07f43fad8f75
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1813347Z  runc version: v1.3.4-0-gd6d73eb8
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1813661Z  init version: de40ad0
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1813945Z  Security Options:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1814212Z   apparmor
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1814424Z   seccomp
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1814626Z    Profile: builtin
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1815091Z   cgroupns
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1815316Z  Kernel Version: 6.11.0-1018-azure
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1815640Z  Operating System: Ubuntu 24.04.3 LTS
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1815996Z  OSType: linux
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1816268Z  Architecture: x86_64
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1816540Z  CPUs: 4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1816793Z  Total Memory: 15.62GiB
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1817077Z  Name: runnervmwffz4
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1817372Z  ID: 073c65d4-c458-42c9-935a-939d0489da0a
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1817738Z  Docker Root Dir: /var/lib/docker
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1818054Z  Debug Mode: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1818319Z  Username: githubactions
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1818620Z  Experimental: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1818918Z  Insecure Registries:
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1819247Z   ::1/128
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1819472Z   127.0.0.0/8
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1819735Z  Live Restore Enabled: false
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1819968Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1820505Z ##[endgroup]
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1821044Z ##[group]Proxy configuration
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1821417Z No proxy configuration found
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.1821907Z ##[endgroup]
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.2510625Z ##[group]Buildx version
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.2531399Z [command]/usr/bin/docker buildx version
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.3156202Z github.com/docker/buildx v0.31.1 a2675950d46b2cb171b23c2015ca44fb88607531
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.3183794Z ##[endgroup]
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.5131818Z [command]/usr/bin/docker buildx build --iidfile /tmp/docker-actions-toolkit-2P6qLE/iidfile --tag ghcr.io/agenciageraleads/sistema-de-contagem/frontend:latest --metadata-file /tmp/docker-actions-toolkit-2P6qLE/metadata-file --push ./frontend
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.5938236Z #0 building with "default" instance using docker driver
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.5938671Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.5938869Z #1 [internal] load build definition from Dockerfile
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.7513706Z #1 transferring dockerfile: 554B done
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.7514080Z #1 DONE 0.0s
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.7514204Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.7514384Z #2 [internal] load metadata for docker.io/library/node:18-alpine
+build-and-push	Build and push Frontend	2026-02-12T01:23:58.8319243Z #2 DONE 0.2s
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0150161Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0150624Z #3 [internal] load .dockerignore
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0151103Z #3 transferring context: 2B done
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0151482Z #3 DONE 0.0s
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0151636Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0151990Z #4 [builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0152466Z #4 DONE 0.0s
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0152558Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0152637Z #5 [builder 2/6] WORKDIR /app
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0152840Z #5 CACHED
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0152924Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153007Z #6 [internal] load build context
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153229Z #6 transferring context: 962.76kB done
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153455Z #6 DONE 0.0s
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153545Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153627Z #7 [builder 3/6] COPY package*.json ./
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153842Z #7 DONE 0.0s
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0153930Z 
+build-and-push	Build and push Frontend	2026-02-12T01:23:59.0154018Z #8 [builder 4/6] RUN npm install
+build-and-push	Build and push Frontend	2026-02-12T01:24:00.8333094Z #8 1.969 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+build-and-push	Build and push Frontend	2026-02-12T01:24:01.2882170Z #8 2.423 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+build-and-push	Build and push Frontend	2026-02-12T01:24:02.0176882Z #8 3.153 npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+build-and-push	Build and push Frontend	2026-02-12T01:24:02.2587701Z #8 3.164 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+build-and-push	Build and push Frontend	2026-02-12T01:24:02.2589916Z #8 3.244 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+build-and-push	Build and push Frontend	2026-02-12T01:24:02.4682219Z #8 3.604 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+build-and-push	Build and push Frontend	2026-02-12T01:24:03.3095202Z #8 4.445 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+build-and-push	Build and push Frontend	2026-02-12T01:24:14.9285557Z #8 16.06 
+build-and-push	Build and push Frontend	2026-02-12T01:24:14.9286146Z #8 16.06 added 381 packages, and audited 382 packages in 16s
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1737957Z #8 16.06 
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1738419Z #8 16.06 148 packages are looking for funding
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1738746Z #8 16.06   run `npm fund` for details
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1738993Z #8 16.16 
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1739205Z #8 16.16 4 high severity vulnerabilities
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1739468Z #8 16.16 
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1739724Z #8 16.16 To address all issues (including breaking changes), run:
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1740109Z #8 16.16   npm audit fix --force
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1740336Z #8 16.16 
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1740527Z #8 16.16 Run `npm audit` for details.
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1740772Z #8 16.16 npm notice
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1741089Z #8 16.16 npm notice New major version of npm available! 10.8.2 -> 11.10.0
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1741596Z #8 16.16 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.10.0
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1742063Z #8 16.16 npm notice To update run: npm install -g npm@11.10.0
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.1742384Z #8 16.16 npm notice
+build-and-push	Build and push Frontend	2026-02-12T01:24:15.9027412Z #8 DONE 17.0s
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.0883563Z 
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.0884678Z #9 [builder 5/6] COPY . .
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.0885195Z #9 DONE 0.0s
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.0885319Z 
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.0885422Z #10 [builder 6/6] RUN npm run build
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.1748759Z #10 0.237 
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.1749160Z #10 0.237 > frontend@0.1.0 build
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.1749534Z #10 0.237 > next build
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.1750439Z #10 0.237 
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.7660721Z #10 0.828 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8914633Z #10 0.828 This information is used to shape Next.js' roadmap and prioritize features.
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8916073Z #10 0.828 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8916981Z #10 0.828 https://nextjs.org/telemetry
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8917353Z #10 0.829 
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8917906Z #10 0.889   ▲ Next.js 14.2.35
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8918271Z #10 0.889 
+build-and-push	Build and push Frontend	2026-02-12T01:24:16.8918619Z #10 0.953    Creating an optimized production build ...
+build-and-push	Build and push Frontend	2026-02-12T01:24:26.1429726Z #10 10.21  ✓ Compiled successfully
+build-and-push	Build and push Frontend	2026-02-12T01:24:26.2943985Z #10 10.21    Linting and checking validity of types ...
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.6263321Z #10 12.69 
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.6265048Z #10 12.69 Failed to compile.
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7262064Z #10 12.69 
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7262554Z #10 12.69 ./src/app/page.tsx
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7263296Z #10 12.69 92:10  Error: 'itensReportados' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7264164Z #10 12.69 94:10  Error: 'lastSync' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7265437Z #10 12.69 102:104  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7266364Z #10 12.69 341:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7268691Z #10 12.69 477:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7270854Z #10 12.69 505:44  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7271948Z #10 12.69 747:120  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7272402Z #10 12.69 
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7272873Z #10 12.69 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7273564Z #10 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7273948Z ------
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7274147Z  > [builder 6/6] RUN npm run build:
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7274393Z 12.69 ./src/app/page.tsx
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7274989Z 12.69 92:10  Error: 'itensReportados' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7275704Z 12.69 94:10  Error: 'lastSync' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7276335Z 12.69 102:104  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7277014Z 12.69 341:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7278274Z 12.69 477:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7279550Z 12.69 505:44  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7280085Z 12.69 747:120  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7280441Z 12.69 
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7280858Z 12.69 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7281314Z ------
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7281458Z Dockerfile:12
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7281811Z --------------------
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7282045Z   10 |     # Next.js standalone mode is recommended for Docker
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7282336Z   11 |     ENV NEXT_OUTPUT_STANDALONE=true
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7282569Z   12 | >>> RUN npm run build
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7282772Z   13 |     
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7282933Z   14 |     # Production stage
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7283140Z --------------------
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7283531Z ERROR: failed to build: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+build-and-push	Build and push Frontend	2026-02-12T01:24:28.7348488Z ##[error]buildx failed with: ERROR: failed to build: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+build-and-push	Post Build and push Frontend	﻿2026-02-12T01:24:28.7437628Z Post job cleanup.
+build-and-push	Post Build and push Frontend	2026-02-12T01:24:28.8666264Z ##[group]Removing temp folder /tmp/docker-actions-toolkit-2P6qLE
+build-and-push	Post Build and push Frontend	2026-02-12T01:24:28.8675223Z ##[endgroup]
+build-and-push	Post Build and push Backend	﻿2026-02-12T01:24:28.8783343Z Post job cleanup.
+build-and-push	Post Build and push Backend	2026-02-12T01:24:29.0166102Z ##[group]Removing temp folder /tmp/docker-actions-toolkit-Hmv4H7
+build-and-push	Post Build and push Backend	2026-02-12T01:24:29.0178322Z ##[endgroup]
+build-and-push	Post Log in to the Container registry	﻿2026-02-12T01:24:29.0269082Z Post job cleanup.
+build-and-push	Post Log in to the Container registry	2026-02-12T01:24:29.1145397Z [command]/usr/bin/docker logout ghcr.io
+build-and-push	Post Log in to the Container registry	2026-02-12T01:24:29.1260512Z Removing login credentials for ghcr.io
+build-and-push	Post Checkout repository	﻿2026-02-12T01:24:29.1365595Z Post job cleanup.
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2051045Z [command]/usr/bin/git version
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2083603Z git version 2.52.0
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2125134Z Temporarily overriding HOME='/home/runner/work/_temp/d8333c87-b7e0-4755-9e42-ab1cf21877bf' before making global git config changes
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2126352Z Adding repository directory to the temporary git global config as a safe directory
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2130181Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sistema-de-contagem/sistema-de-contagem
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2161019Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2188855Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2377495Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2395241Z http.https://github.com/.extraheader
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2405614Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build-and-push	Post Checkout repository	2026-02-12T01:24:29.2430755Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-and-push	Complete job	﻿2026-02-12T01:24:29.2704499Z Cleaning up orphan processes
