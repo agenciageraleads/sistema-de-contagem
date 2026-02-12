@@ -33,10 +33,10 @@ export class AuthController {
         return this.authService.login(loginDto);
     }
 
-    // POST /api/auth/register - Criar usuário (apenas admin)
+    // POST /api/auth/register - Criar usuário 
     @Post('register')
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles(UserRole.ADMIN)
+    @Roles(UserRole.ADMIN, UserRole.SUPERVISOR)
     async register(@Body() createUserDto: CreateUserDto) {
         return this.authService.createUser(createUserDto);
     }
@@ -55,7 +55,7 @@ export class AuthController {
     // GET /api/auth/users - Listar todos os usuários
     @Get('users')
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles(UserRole.ADMIN)
+    @Roles(UserRole.ADMIN, UserRole.SUPERVISOR)
     async findAllUsers() {
         return this.authService.findAllUsers();
     }
@@ -63,7 +63,7 @@ export class AuthController {
     // PUT /api/auth/users/:id - Atualizar usuário
     @Put('users/:id') // Using Put from @nestjs/common which needs to be imported
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles(UserRole.ADMIN)
+    @Roles(UserRole.ADMIN, UserRole.SUPERVISOR)
     async updateUser(
         @Param('id', ParseIntPipe) id: number,
         @Body() updateUserDto: UpdateUserDto,
@@ -74,7 +74,7 @@ export class AuthController {
     // POST /api/auth/users/:id/reset-password - Resetar senha
     @Post('users/:id/reset-password')
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles(UserRole.ADMIN)
+    @Roles(UserRole.ADMIN, UserRole.SUPERVISOR)
     async resetPassword(
         @Param('id', ParseIntPipe) id: number,
         @Body() resetPasswordDto: ResetPasswordDto,

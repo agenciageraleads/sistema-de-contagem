@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import styles from "./page.module.css";
+import { Icons } from "@/components/Icons";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://contagem.vps.portaleletricos.com.br/api";
 
@@ -524,7 +525,9 @@ export default function Home() {
       <div className={styles.supContainer}>
         <div className={styles.supHeader}>
           <div className={styles.welcomeInfo}>
-            <span className={styles.roleIcon}>👔</span>
+            <div className="p-2 bg-primary/10 rounded-lg text-primary icon-lg">
+              <Icons.Home className="w-6 h-6" />
+            </div>
             <div>
               <h1 className={styles.welcomeTitle}>Controle de Logística</h1>
               <p className={styles.supSubtitle}>Monitoramento de Auditoria e Divergências</p>
@@ -532,18 +535,32 @@ export default function Home() {
           </div>
           <div className={styles.supNav}>
             <div className={styles.navTabs}>
-              <button onClick={() => setAbaAtiva("dashboard")} className={abaAtiva === "dashboard" ? styles.tabActive : styles.tab}>Dashboard</button>
-              <button onClick={() => setAbaAtiva("fila")} className={abaAtiva === "fila" ? styles.tabActive : styles.tab}>Fila</button>
-              <button onClick={() => setAbaAtiva("relatorios")} className={abaAtiva === "relatorios" ? styles.tabActive : styles.tab}>Relatórios</button>
-              {user.role === "ADMIN" && (
-                <button onClick={() => setAbaAtiva("usuarios")} className={abaAtiva === "usuarios" ? styles.tabActive : styles.tab}>Usuários</button>
+              <button onClick={() => setAbaAtiva("dashboard")} className={abaAtiva === "dashboard" ? styles.tabActive : styles.tab}>
+                <Icons.Home className="w-4 h-4 inline mr-2" /> Dashboard
+              </button>
+              <button onClick={() => setAbaAtiva("fila")} className={abaAtiva === "fila" ? styles.tabActive : styles.tab}>
+                <Icons.Queue className="w-4 h-4 inline mr-2" /> Fila
+              </button>
+              <button onClick={() => setAbaAtiva("relatorios")} className={abaAtiva === "relatorios" ? styles.tabActive : styles.tab}>
+                <Icons.Reports className="w-4 h-4 inline mr-2" /> Relatórios
+              </button>
+              {(user.role === "ADMIN" || user.role === "SUPERVISOR") && (
+                <button onClick={() => setAbaAtiva("usuarios")} className={abaAtiva === "usuarios" ? styles.tabActive : styles.tab}>
+                  <Icons.Users className="w-4 h-4 inline mr-2" /> Usuários
+                </button>
               )}
-              <button onClick={() => setAbaAtiva("config")} className={abaAtiva === "config" ? styles.tabActive : styles.tab}>⚙️</button>
+              <button onClick={() => setAbaAtiva("config")} className={abaAtiva === "config" ? styles.tabActive : styles.tab}>
+                <Icons.Config className="w-5 h-5" />
+              </button>
             </div>
-            <button onClick={() => carregarDadosSupervisor()} className={styles.syncBtn}>🔄 Sincronizar</button>
+            <button onClick={() => carregarDadosSupervisor()} className={styles.syncBtn}>
+              <Icons.Sync className="w-4 h-4 inline mr-2" /> Sincronizar
+            </button>
             <div className={styles.userProfile}>
               <span className={styles.userNameHeader}>{user.nome}</span>
-              <button onClick={handleLogout} className={styles.smallLogout}>Sair</button>
+              <button onClick={handleLogout} className={styles.smallLogout}>
+                <Icons.Logout className="w-4 h-4 text-slate-400 hover:text-white" />
+              </button>
             </div>
           </div>
         </div>
@@ -608,9 +625,14 @@ export default function Home() {
                         </span>
                         <span className={styles.percVal}>{Number(d.contagem.divergenciaPercent).toFixed(1)}%</span>
                       </div>
+                      {/* ... divergence map ... */}
                       <div className={styles.actions}>
-                        <button onClick={() => tratarDivergencia(d.id, "APROVAR")} className={styles.btnApprove}>✓</button>
-                        <button onClick={() => tratarDivergencia(d.id, "RECONTAR")} className={styles.btnRecount}>🔄</button>
+                        <button onClick={() => tratarDivergencia(d.id, "APROVAR")} className={styles.btnApprove} title="Aprovar">
+                          <Icons.Check className="w-5 h-5" />
+                        </button>
+                        <button onClick={() => tratarDivergencia(d.id, "RECONTAR")} className={styles.btnRecount} title="Solicitar Recontagem">
+                          <Icons.Sync className="w-5 h-5" />
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -670,9 +692,15 @@ export default function Home() {
                   <span className={styles.roleBadge} data-role={u.role}>{u.role}</span>
                   <span style={{ color: u.ativo ? '#10b981' : '#ef4444' }}>{u.ativo ? 'Ativo' : 'Inativo'}</span>
                   <div className={styles.actions}>
-                    <button onClick={() => handleResetSenha(u.id)} title="Reset Senha">🔑</button>
-                    <button onClick={() => { setUsuarioEdit(u); setFormUsuario({ nome: u.nome, login: u.login, senha: "", role: u.role }); setShowModalUsuario(true); }} title="Editar">✏️</button>
-                    <button onClick={() => handleInativarUsuario(u)} title={u.ativo ? 'Inativar' : 'Ativar'}>{u.ativo ? '🚫' : '✅'}</button>
+                    <button onClick={() => handleResetSenha(u.id)} title="Reset Senha" className="p-2 hover:bg-slate-800 rounded-md text-slate-400 hover:text-white transition-colors">
+                      <Icons.Key className="w-4 h-4" />
+                    </button>
+                    <button onClick={() => { setUsuarioEdit(u); setFormUsuario({ nome: u.nome, login: u.login, senha: "", role: u.role }); setShowModalUsuario(true); }} title="Editar" className="p-2 hover:bg-slate-800 rounded-md text-blue-400 hover:text-blue-300 transition-colors">
+                      <Icons.Edit className="w-4 h-4" />
+                    </button>
+                    <button onClick={() => handleInativarUsuario(u)} title={u.ativo ? 'Inativar' : 'Ativar'} className={`p-2 hover:bg-slate-800 rounded-md transition-colors ${u.ativo ? 'text-red-400 hover:text-red-300' : 'text-green-400 hover:text-green-300'}`}>
+                      {u.ativo ? <Icons.Ban className="w-4 h-4" /> : <Icons.Check className="w-4 h-4" />}
+                    </button>
                   </div>
                 </div>
               ))}
@@ -683,12 +711,16 @@ export default function Home() {
             <h2 className={styles.panelTitle}>Central de Relatórios</h2>
             <div className={styles.kpiGrid}>
               <div className={styles.configCard} style={{ cursor: 'pointer' }} onClick={() => exportarRelatorio('divergencias')}>
-                <h3 className={styles.configTitle}>📦 Divergências</h3>
+                <h3 className={styles.configTitle}>
+                  <Icons.Reports className="w-6 h-6 inline mr-2 text-primary" /> Divergências
+                </h3>
                 <p className={styles.configSubtitle}>Exporta histórico de erros e resoluções.</p>
                 <button className={styles.confirmBtnSmall} style={{ marginTop: '16px', display: 'block', width: '100%' }}>Download CSV</button>
               </div>
               <div className={styles.configCard} style={{ cursor: 'pointer' }} onClick={() => exportarRelatorio('produtividade')}>
-                <h3 className={styles.configTitle}>👷 Produtividade</h3>
+                <h3 className={styles.configTitle}>
+                  <Icons.Users className="w-6 h-6 inline mr-2 text-success" /> Produtividade
+                </h3>
                 <p className={styles.configSubtitle}>Contagens realizadas e tempos por operador.</p>
                 <button className={styles.confirmBtnSmall} style={{ marginTop: '16px', display: 'block', width: '100%' }}>Download CSV</button>
               </div>
@@ -703,7 +735,9 @@ export default function Home() {
                 <input type="number" value={metaGlobalEdit} onChange={e => setMetaGlobalEdit(Number(e.target.value))} className={styles.input} />
                 <button onClick={salvarMetaGlobal} className={styles.confirmBtnSmall}>Salvar</button>
               </div>
-              <button onClick={handleResetCycle} className={styles.resetBtn} style={{ marginTop: '20px' }}>🗑️ Encerrar Ciclo Atual</button>
+              <button onClick={handleResetCycle} className={styles.resetBtn} style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                <Icons.Trash className="w-4 h-4" /> Encerrar Ciclo Atual
+              </button>
             </div>
           </div>
         )}
@@ -764,4 +798,3 @@ export default function Home() {
     </main>
   );
 }
-
