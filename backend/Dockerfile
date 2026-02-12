@@ -30,4 +30,4 @@ COPY --from=builder /app/prisma ./prisma
 EXPOSE 3001
 
 # Entrypoint to run migrations and then the app
-CMD ["sh", "-c", "npx prisma migrate deploy && (node dist/main.js || node dist/src/main.js)"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main.js"]
