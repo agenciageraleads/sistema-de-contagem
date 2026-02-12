@@ -791,4 +791,55 @@ export class ContagemService {
 
         return resultado;
     }
+
+    // EXPORTAR DIVERGÊNCIAS (Dados brutos para CSV)
+    async getDivergenciasExport() {
+        const divs = await this.prisma.divergencia.findMany({
+            include: {
+                contagem: {
+                    include: {
+                        user: { select: { nome: true } },
+                        snapshot: true,
+                    }
+                }
+            },
+            orderBy: { createdAt: 'desc' }
+        });
+
+        return divs.map(d => ({
+            ID: d.id,
+            Data: d.createdAt.toISOString(),
+            CodProd: d.contagem.codprod,
+            Produto: d.contagem.snapshot?.descprod || 'N/A',
+            Marca: d.contagem.snapshot?.marca || 'N/A',
+            Operador: d.contagem.user.nome,
+            QtdContada: d.contagem.qtdContada,
+            Esperado: d.contagem.esperadoNoMomento,
+            Divergencia: d.contagem.divergencia,
+            Percent: d.contagem.divergenciaPercent,
+            Status: d.status,
+            Severidade: d.severidade,
+            SaldoAjustadoSankhya: d.saldoAjustado || 'N/A'
+        }));
+    }
+
+    // EXPORTAR PRODUTIVIDADE (Dados pdr operador/hora)
+    async getProdutividadeExport() {
+        const contagens = await this.prisma.contagem.findMany({
+            include: {
+                user: { select: { nome: true } }
+            },
+            orderBy: { tsFim: 'desc' }
+        });
+
+        return contagens.map(c => ({
+            ID: c.id,
+            Data: c.tsFim.toISOString(),
+            Operador: c.user.nome,
+            CodProd: c.codprod,
+            QtdContada: c.qtdContada,
+            TempoSegundos: c.tsInicio ? Math.floor((c.tsFim.getTime() - c.tsInicio.getTime()) / 1000) : 0,
+            Status: c.statusAnalise
+        }));
+    }
 }
