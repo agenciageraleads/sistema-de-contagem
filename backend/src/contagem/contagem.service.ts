@@ -225,10 +225,7 @@ export class ContagemService {
         lockedBy: null,
         priorizadoPor: userId,
       },
-      orderBy: [
-        { prioridadeManual: 'desc' },
-        { updatedAt: 'asc' },
-      ],
+      orderBy: [{ prioridadeManual: 'desc' }, { updatedAt: 'asc' }],
     });
 
     if (itemIndicado) {
@@ -425,10 +422,7 @@ export class ContagemService {
         priorizadoPor: userId,
         contagens: { none: { userId } },
       },
-      orderBy: [
-        { prioridadeManual: 'desc' },
-        { updatedAt: 'asc' },
-      ],
+      orderBy: [{ prioridadeManual: 'desc' }, { updatedAt: 'asc' }],
     });
 
     if (itemIndicado) return itemIndicado;
@@ -441,10 +435,7 @@ export class ContagemService {
         priorizadoPor: null,
         contagens: { none: { userId } },
       },
-      orderBy: [
-        { prioridadeManual: 'desc' },
-        { updatedAt: 'asc' },
-      ],
+      orderBy: [{ prioridadeManual: 'desc' }, { updatedAt: 'asc' }],
     });
   }
 
@@ -500,10 +491,7 @@ export class ContagemService {
         lockedBy: null,
         priorizadoPor: userId,
       },
-      orderBy: [
-        { prioridadeManual: 'desc' },
-        { updatedAt: 'asc' },
-      ],
+      orderBy: [{ prioridadeManual: 'desc' }, { updatedAt: 'asc' }],
     });
 
     if (itemIndicado) {
@@ -593,7 +581,9 @@ export class ContagemService {
         : null;
 
     const agrupadoresRecentesOperador = historicoOperador
-      .map((item) => getAgrupador(item.fila?.marca || null, item.fila?.controle || null))
+      .map((item) =>
+        getAgrupador(item.fila?.marca || null, item.fila?.controle || null),
+      )
       .filter((x): x is string => !!x);
 
     let candidatos: FilaContagem[] = [];
@@ -739,7 +729,9 @@ export class ContagemService {
   }
 
   private normalizarCodigoBarras(value: unknown): string {
-    return String(value || '').replace(/\D/g, '').trim();
+    return String(value || '')
+      .replace(/\D/g, '')
+      .trim();
   }
 
   private isGtinValido(codigo: string): boolean {
@@ -768,7 +760,10 @@ export class ContagemService {
     for (const tamanho of tamanhosPadrao) {
       if (codigo.length > tamanho && codigo.length % tamanho === 0) {
         const partes = codigo.match(new RegExp(`.{1,${tamanho}}`, 'g')) || [];
-        if (partes.length > 1 && partes.every((parte) => parte.length === tamanho)) {
+        if (
+          partes.length > 1 &&
+          partes.every((parte) => parte.length === tamanho)
+        ) {
           return Array.from(new Set(partes));
         }
       }
@@ -857,9 +852,7 @@ export class ContagemService {
     return Array.from(new Set(codigos));
   }
 
-  private async enriquecerItemFilaComCodigoBarras(
-    item: FilaContagem | null,
-  ) {
+  private async enriquecerItemFilaComCodigoBarras(item: FilaContagem | null) {
     if (!item) return null;
 
     const snapshot = await this.prisma.snapshotEstoque.findFirst({
@@ -967,7 +960,7 @@ export class ContagemService {
     }
 
     if (operacao.tipo === 'RETIRADA_RESSALVA') {
-      return `retira ${operacao.quantidade} do CODLOCAL ${operacao.codlocal}`;
+      return `TOP ${operacao.top} retira ${operacao.quantidade} do CODLOCAL ${operacao.codlocal}`;
     }
 
     if (operacao.tipo === 'ESTORNO_RESSALVA') {
@@ -1067,8 +1060,7 @@ export class ContagemService {
             codlocalOrigem:
               operacao.codlocalOrigem || INVENTARIO_LOCAIS.ESTOQUE_PORTAL,
             codlocalDestino:
-              operacao.codlocalDestino ||
-              INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
+              operacao.codlocalDestino || INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
             vlrunit,
             codvol,
             controle,
@@ -1202,8 +1194,7 @@ export class ContagemService {
             codprod: fila.codprod,
             qtdneg: operacao.quantidade,
             codlocalOrigem:
-              operacao.codlocalOrigem ||
-              INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
+              operacao.codlocalOrigem || INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
             codlocalDestino:
               operacao.codlocalDestino || INVENTARIO_LOCAIS.ESTOQUE_PORTAL,
             vlrunit,
@@ -1313,6 +1304,35 @@ export class ContagemService {
     return resultados;
   }
 
+  private filtrarOperacoesFinalizacaoPendentes(
+    operacoes: OperacaoRessalvaInventario[],
+    resultadosAnteriores?: any[] | null,
+  ) {
+    if (
+      !Array.isArray(resultadosAnteriores) ||
+      resultadosAnteriores.length === 0
+    ) {
+      return operacoes;
+    }
+
+    return operacoes.filter((operacao, index) => {
+      const resultadoAnterior = resultadosAnteriores[index];
+      return resultadoAnterior?.status !== 'SYNCED';
+    });
+  }
+
+  private normalizarOperacaoFinalizacaoRessalva(
+    operacao: OperacaoRessalvaInventario,
+  ): OperacaoRessalvaInventario {
+    if (operacao.tipo !== 'RETIRADA_RESSALVA') return operacao;
+
+    return {
+      ...operacao,
+      top: INVENTARIO_TOPS.SAIDA_RESSALVA,
+      codlocal: operacao.codlocal || INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
+    };
+  }
+
   private async buscarDivergenciaPendentePorFila(filaId: number) {
     return this.prisma.divergencia.findFirst({
       where: {
@@ -1358,11 +1378,12 @@ export class ContagemService {
         snapshot: params.snapshot,
         origem: params.origem,
       });
-    const sankhyaFinalizacao =
-      sankhyaFinalizacoes[sankhyaFinalizacoes.length - 1] || {
-        status: 'IGNORADO',
-        motivo: 'Sem operações de finalização em ressalva',
-      };
+    const sankhyaFinalizacao = sankhyaFinalizacoes[
+      sankhyaFinalizacoes.length - 1
+    ] || {
+      status: 'IGNORADO',
+      motivo: 'Sem operações de finalização em ressalva',
+    };
     const ultimaNota = [...sankhyaFinalizacoes]
       .reverse()
       .find((resultado) => resultado.status === 'SYNCED' && resultado.nunota);
@@ -1384,14 +1405,25 @@ export class ContagemService {
         : houveErro
           ? 'FINALIZACAO_ERROR'
           : 'LOCAL_FINALIZADO';
+    const statusDivergencia = houveErro
+      ? DivergenciaStatus.PENDENTE
+      : deveAjustar
+        ? DivergenciaStatus.ACEITO
+        : DivergenciaStatus.CONCLUIDO;
+    const decisaoDivergencia = houveErro
+      ? Decisao.RECONTAR
+      : deveAjustar
+        ? Decisao.AJUSTAR
+        : Decisao.FINALIZAR_ANALISE;
+    const observacaoFinalizacao =
+      params.observacao ||
+      `Ciclo finalizado por ${params.origem}. Contagem vencedora: ${params.contagemVencedora}. Operação em ressalva: ${descricaoFinalizacao}.`;
 
     await this.prisma.divergencia.update({
       where: { id: params.divergencia.id },
       data: {
-        status: deveAjustar
-          ? DivergenciaStatus.ACEITO
-          : DivergenciaStatus.CONCLUIDO,
-        decisao: deveAjustar ? Decisao.AJUSTAR : Decisao.FINALIZAR_ANALISE,
+        status: statusDivergencia,
+        decisao: decisaoDivergencia,
         ajusteTipo:
           params.diferencaFinal > 0
             ? AjusteTipo.ENTRADA
@@ -1401,46 +1433,63 @@ export class ContagemService {
         ajusteQtd,
         adjustStatus,
         adjustDate: new Date(),
-        adjustNoteId:
-          ultimaNota
-            ? Number(ultimaNota.nunota)
-            : params.divergencia.adjustNoteId,
-        observacoes:
-          params.observacao ||
-          `Ciclo finalizado por ${params.origem}. Contagem vencedora: ${params.contagemVencedora}. Operação em ressalva: ${descricaoFinalizacao}.`,
-        movimentacoes: this.historicoInventario(params.divergencia.movimentacoes, {
-          etapa: 'FINALIZADO',
-          origemFinalizacao: params.origem,
-          contagemVencedora: params.contagemVencedora,
-          diferencaFinal: params.diferencaFinal,
-          finalizacaoRessalva: operacaoFinal,
-          operacoesFinalizacaoRessalva: operacoesFinal,
-          sankhyaFinalizacaoRessalva: sankhyaFinalizacao,
-          sankhyaFinalizacoesRessalva: sankhyaFinalizacoes,
-          codlocalRessalva: INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
-        }) as any,
+        adjustNoteId: ultimaNota
+          ? Number(ultimaNota.nunota)
+          : params.divergencia.adjustNoteId,
+        observacoes: houveErro
+          ? `${observacaoFinalizacao} Falha na finalização Sankhya; pendente de reprocessamento pelo supervisor.`
+          : observacaoFinalizacao,
+        movimentacoes: this.historicoInventario(
+          params.divergencia.movimentacoes,
+          {
+            etapa: houveErro ? 'FINALIZACAO_RESSALVA_ERRO' : 'FINALIZADO',
+            origemFinalizacao: params.origem,
+            contagemVencedora: params.contagemVencedora,
+            diferencaFinal: params.diferencaFinal,
+            finalizacaoRessalva: operacaoFinal,
+            operacoesFinalizacaoRessalva: operacoesFinal,
+            sankhyaFinalizacaoRessalva: sankhyaFinalizacao,
+            sankhyaFinalizacoesRessalva: sankhyaFinalizacoes,
+            codlocalRessalva: INVENTARIO_LOCAIS.RESSALVA_INVENTARIO,
+          },
+        ) as any,
       },
     });
 
     await this.prisma.filaContagem.update({
       where: { id: params.filaId },
-      data: {
-        status: FilaStatus.CONCLUIDO,
-        lockedBy: null,
-        lockedAt: null,
-        contagensOk: { increment: 1 },
-        ultimaContagemEm: new Date(),
-        prioridadeBase: 0,
-        prioridadeManual: 0,
-        motivoPriorizacao: null,
-        priorizadoPor: null,
-        recontagens: 0,
-      },
+      data: houveErro
+        ? {
+            status: FilaStatus.BLOQUEADO_AUDITORIA,
+            lockedBy: null,
+            lockedAt: null,
+            ultimaContagemEm: new Date(),
+            prioridadeBase: 0,
+            prioridadeManual: PRIORIDADE_AUDITORIA_RECONTAGEM,
+            motivoPriorizacao: 'FINALIZACAO_RESSALVA_ERRO',
+            priorizadoPor: null,
+          }
+        : {
+            status: FilaStatus.CONCLUIDO,
+            lockedBy: null,
+            lockedAt: null,
+            contagensOk: { increment: 1 },
+            ultimaContagemEm: new Date(),
+            prioridadeBase: 0,
+            prioridadeManual: 0,
+            motivoPriorizacao: null,
+            priorizadoPor: null,
+            recontagens: 0,
+          },
     });
 
     return {
       acao: params.origem,
-      status: deveAjustar ? 'AJUSTAR' : 'CONCLUIDO',
+      status: houveErro
+        ? 'FINALIZACAO_RESSALVA_ERRO'
+        : deveAjustar
+          ? 'AJUSTAR'
+          : 'CONCLUIDO',
       contagemVencedora: params.contagemVencedora,
       divergencia: params.diferencaFinal,
       operacaoFinal,
@@ -1741,8 +1790,7 @@ export class ContagemService {
               : sankhyaRessalva.status === 'ERROR'
                 ? 'RESSALVA_ERROR'
                 : null,
-          adjustDate:
-            sankhyaRessalva.status === 'SYNCED' ? new Date() : null,
+          adjustDate: sankhyaRessalva.status === 'SYNCED' ? new Date() : null,
           adjustNoteId:
             sankhyaRessalva.status === 'SYNCED'
               ? Number(sankhyaRessalva.nunota)
@@ -1785,7 +1833,8 @@ export class ContagemService {
     }
 
     const primeiraContagem = Number(
-      contagensAnteriores[0]?.qtdContada ?? divergenciaAberta.contagem.qtdContada,
+      contagensAnteriores[0]?.qtdContada ??
+        divergenciaAberta.contagem.qtdContada,
     );
     const saldoEsperadoAtual =
       divergenciaAberta.saldoAjustado != null
@@ -1800,7 +1849,8 @@ export class ContagemService {
 
       if (
         !usuario ||
-        (usuario.role !== UserRole.SUPERVISOR && usuario.role !== UserRole.ADMIN)
+        (usuario.role !== UserRole.SUPERVISOR &&
+          usuario.role !== UserRole.ADMIN)
       ) {
         throw new BadRequestException(
           'A terceira contagem deve ser executada pelo supervisor do estoque',
@@ -2189,7 +2239,12 @@ export class ContagemService {
   // LISTAR DIVERGÊNCIAS (Para Supervisor)
   async getDivergencias() {
     return this.prisma.divergencia.findMany({
-      where: { status: DivergenciaStatus.PENDENTE },
+      where: {
+        OR: [
+          { status: DivergenciaStatus.PENDENTE },
+          { adjustStatus: 'FINALIZACAO_ERROR' },
+        ],
+      },
       include: {
         contagem: {
           include: {
@@ -2218,8 +2273,9 @@ export class ContagemService {
     if (!div) throw new NotFoundException('Divergência não encontrada');
 
     const fluxoInventario = (div.movimentacoes as any)?.fluxoInventario || {};
-    const segregacaoRessalva =
-      fluxoInventario.segregacaoRessalva as OperacaoRessalvaInventario | undefined;
+    const segregacaoRessalva = fluxoInventario.segregacaoRessalva as
+      | OperacaoRessalvaInventario
+      | undefined;
     const sankhyaAtual = fluxoInventario.sankhyaRessalva;
 
     if (!segregacaoRessalva) {
@@ -2278,6 +2334,162 @@ export class ContagemService {
     });
 
     return resultado;
+  }
+
+  async reprocessarFinalizacaoRessalvaDivergencia(id: number) {
+    const div = await this.prisma.divergencia.findUnique({
+      where: { id },
+      include: {
+        contagem: {
+          include: {
+            fila: true,
+            snapshot: true,
+          },
+        },
+      },
+    });
+
+    if (!div) throw new NotFoundException('Divergência não encontrada');
+
+    const fluxoInventario = (div.movimentacoes as any)?.fluxoInventario || {};
+    const operacoesOriginaisRaw = Array.isArray(
+      fluxoInventario.operacoesFinalizacaoRessalva,
+    )
+      ? (fluxoInventario.operacoesFinalizacaoRessalva as OperacaoRessalvaInventario[])
+      : fluxoInventario.finalizacaoRessalva
+        ? [fluxoInventario.finalizacaoRessalva as OperacaoRessalvaInventario]
+        : [];
+    const operacoesOriginais = operacoesOriginaisRaw.map((operacao) =>
+      this.normalizarOperacaoFinalizacaoRessalva(operacao),
+    );
+
+    if (operacoesOriginais.length === 0) {
+      throw new BadRequestException(
+        'Divergência sem operação de finalização em ressalva',
+      );
+    }
+
+    const resultadosAnteriores = Array.isArray(
+      fluxoInventario.sankhyaFinalizacoesRessalva,
+    )
+      ? fluxoInventario.sankhyaFinalizacoesRessalva
+      : fluxoInventario.sankhyaFinalizacaoRessalva
+        ? [fluxoInventario.sankhyaFinalizacaoRessalva]
+        : [];
+    const operacoesPendentes = this.filtrarOperacoesFinalizacaoPendentes(
+      operacoesOriginais,
+      resultadosAnteriores,
+    );
+
+    if (operacoesPendentes.length === 0) {
+      return {
+        status: 'JA_SINCRONIZADO',
+        motivo: 'Todas as operações de finalização já foram sincronizadas',
+      };
+    }
+
+    const filaBase =
+      div.contagem.fila ||
+      ({
+        codprod: div.contagem.codprod,
+        codemp: div.contagem.codemp,
+        codlocal: div.contagem.codlocal,
+        descprod: `Produto ${div.contagem.codprod}`,
+        controle: div.contagem.snapshot?.controle || ' ',
+        unidade: div.contagem.snapshot?.unidade || 'UN',
+      } as any);
+    const origem =
+      fluxoInventario.origemFinalizacao === 'TERCEIRA_CONTAGEM'
+        ? 'TERCEIRA_CONTAGEM'
+        : 'SEGUNDA_CONTAGEM';
+    const novosResultados =
+      await this.executarOperacoesFinalizacaoRessalvaSankhya({
+        operacoes: operacoesPendentes,
+        fila: filaBase,
+        snapshot: div.contagem.snapshot,
+        origem,
+      });
+    const resultadosAtualizados = [...resultadosAnteriores];
+    let indicePendente = 0;
+    operacoesOriginais.forEach((_, index) => {
+      if (resultadosAnteriores[index]?.status === 'SYNCED') return;
+      resultadosAtualizados[index] = novosResultados[indicePendente++];
+    });
+    const houveErro = resultadosAtualizados.some(
+      (resultado) => resultado?.status === 'ERROR',
+    );
+    const houveSync = resultadosAtualizados.some(
+      (resultado) => resultado?.status === 'SYNCED',
+    );
+    const ultimaNota = [...resultadosAtualizados]
+      .reverse()
+      .find((resultado) => resultado?.status === 'SYNCED' && resultado.nunota);
+    const diferencaFinal = Number(fluxoInventario.diferencaFinal || 0);
+    const deveAjustar = Math.abs(diferencaFinal) > 0;
+    const adjustStatus =
+      houveSync && !houveErro
+        ? 'FINALIZACAO_SYNCED'
+        : houveErro
+          ? 'FINALIZACAO_ERROR'
+          : 'LOCAL_FINALIZADO';
+
+    await this.prisma.divergencia.update({
+      where: { id },
+      data: {
+        status: houveErro
+          ? DivergenciaStatus.PENDENTE
+          : deveAjustar
+            ? DivergenciaStatus.ACEITO
+            : DivergenciaStatus.CONCLUIDO,
+        decisao: houveErro
+          ? Decisao.RECONTAR
+          : deveAjustar
+            ? Decisao.AJUSTAR
+            : Decisao.FINALIZAR_ANALISE,
+        adjustStatus,
+        adjustDate: new Date(),
+        adjustNoteId: ultimaNota ? Number(ultimaNota.nunota) : div.adjustNoteId,
+        observacoes: houveErro
+          ? `${div.observacoes || ''} Reprocessamento da finalização Sankhya falhou; permanece pendente.`.trim()
+          : `${div.observacoes || ''} Finalização em ressalva reprocessada no Sankhya.`.trim(),
+        movimentacoes: this.historicoInventario(div.movimentacoes, {
+          etapa: houveErro ? 'FINALIZACAO_RESSALVA_ERRO' : 'FINALIZADO',
+          sankhyaFinalizacaoRessalva:
+            resultadosAtualizados[resultadosAtualizados.length - 1],
+          sankhyaFinalizacoesRessalva: resultadosAtualizados,
+          reprocessamentoFinalizacaoRessalvaEm: new Date().toISOString(),
+        }) as any,
+      },
+    });
+
+    await this.prisma.filaContagem.update({
+      where: { id: div.contagem.filaId },
+      data: houveErro
+        ? {
+            status: FilaStatus.BLOQUEADO_AUDITORIA,
+            lockedBy: null,
+            lockedAt: null,
+            prioridadeManual: PRIORIDADE_AUDITORIA_RECONTAGEM,
+            motivoPriorizacao: 'FINALIZACAO_RESSALVA_ERRO',
+            priorizadoPor: null,
+          }
+        : {
+            status: FilaStatus.CONCLUIDO,
+            lockedBy: null,
+            lockedAt: null,
+            prioridadeBase: 0,
+            prioridadeManual: 0,
+            motivoPriorizacao: null,
+            priorizadoPor: null,
+            recontagens: 0,
+          },
+    });
+
+    return {
+      status: houveErro ? 'FINALIZACAO_ERROR' : 'FINALIZACAO_SYNCED',
+      operacoesReprocessadas: operacoesPendentes.length,
+      resultados: novosResultados,
+    };
   }
 
   // TRATAR DIVERGÊNCIA (Aprovar, Recontar ou Finalizar Análise)
@@ -2514,13 +2726,12 @@ export class ContagemService {
     );
   }
 
-  async direcionarContagem(
-    body: DirecionarContagemBody,
-    supervisorId: number,
-  ) {
+  async direcionarContagem(body: DirecionarContagemBody, supervisorId: number) {
     const operadorId = this.parsePositiveInt(body.operadorId, 0);
     if (!operadorId) {
-      throw new BadRequestException('Informe o operador da contagem direcionada');
+      throw new BadRequestException(
+        'Informe o operador da contagem direcionada',
+      );
     }
 
     const operador = await this.prisma.user.findUnique({
@@ -2528,11 +2739,7 @@ export class ContagemService {
       select: { id: true, nome: true, login: true, role: true, ativo: true },
     });
 
-    if (
-      !operador ||
-      !operador.ativo ||
-      operador.role !== UserRole.OPERADOR
-    ) {
+    if (!operador || !operador.ativo || operador.role !== UserRole.OPERADOR) {
       throw new BadRequestException('Operador inválido ou inativo');
     }
 
@@ -2561,7 +2768,10 @@ export class ContagemService {
       );
 
       if (!codprod) {
-        conflitos.push({ codprod: Number(item.codprod) || 0, motivo: 'Produto inválido' });
+        conflitos.push({
+          codprod: Number(item.codprod) || 0,
+          motivo: 'Produto inválido',
+        });
         continue;
       }
 
@@ -2604,7 +2814,9 @@ export class ContagemService {
             priorizadoPor: operadorId,
             codigoBarrasCadastro:
               this.obterCodigoBarrasCadastro(item.codigoBarrasCadastro) ||
-              this.obterCodigoBarrasCadastro((fila as any).codigoBarrasCadastro),
+              this.obterCodigoBarrasCadastro(
+                (fila as any).codigoBarrasCadastro,
+              ),
             lockedBy: null,
             lockedAt: null,
             ultimoEvento: new Date(),
@@ -2628,11 +2840,13 @@ export class ContagemService {
             String(item.descprod || snapshot?.descprod || '').trim() ||
             `Produto ${codprod}`,
           marca: String(item.marca || snapshot?.marca || '').trim(),
-          controle: String(item.controle || snapshot?.controle || ' ').trim() || ' ',
+          controle:
+            String(item.controle || snapshot?.controle || ' ').trim() || ' ',
           codigoBarrasCadastro:
             this.obterCodigoBarrasCadastro(item.codigoBarrasCadastro) ||
             this.obterCodigoBarrasCadastro(snapshot?.codigoBarrasCadastro),
-          unidade: String(item.codvol || snapshot?.unidade || 'UN').trim() || 'UN',
+          unidade:
+            String(item.codvol || snapshot?.unidade || 'UN').trim() || 'UN',
           prioridadeBase: 0,
           prioridadeManual: prioridade,
           motivoPriorizacao,
@@ -2707,12 +2921,16 @@ export class ContagemService {
           descprod: item.descprod,
           codemp: item.codemp,
           codlocal: item.codlocal,
-          descrlocal: item.codlocal === INVENTARIO_LOCAIS.ESTOQUE_PORTAL ? 'PORTAL' : null,
+          descrlocal:
+            item.codlocal === INVENTARIO_LOCAIS.ESTOQUE_PORTAL
+              ? 'PORTAL'
+              : null,
           controle: item.controle,
           codvol: item.unidade,
           codigoBarrasCadastro:
-            this.obterCodigoBarrasCadastro((item as any).codigoBarrasCadastro) ||
-            this.obterCodigoBarrasCadastro(snapshot?.codigoBarrasCadastro),
+            this.obterCodigoBarrasCadastro(
+              (item as any).codigoBarrasCadastro,
+            ) || this.obterCodigoBarrasCadastro(snapshot?.codigoBarrasCadastro),
           qtdCopiada: Number(snapshot?.saldoEspelho || 0),
           dataCopia: snapshot?.dataRef
             ? new Date(snapshot.dataRef).toISOString().slice(0, 10)
@@ -2750,7 +2968,10 @@ export class ContagemService {
         descprod: snapshot.descprod,
         codemp: snapshot.codemp,
         codlocal: snapshot.codlocal,
-        descrlocal: snapshot.codlocal === INVENTARIO_LOCAIS.ESTOQUE_PORTAL ? 'PORTAL' : null,
+        descrlocal:
+          snapshot.codlocal === INVENTARIO_LOCAIS.ESTOQUE_PORTAL
+            ? 'PORTAL'
+            : null,
         controle: snapshot.controle,
         codvol: snapshot.unidade,
         codigoBarrasCadastro: this.obterCodigoBarrasCadastro(
@@ -2813,7 +3034,8 @@ export class ContagemService {
   }
 
   private toNumber(value: unknown, fallback = 0): number {
-    if (typeof value === 'number') return Number.isFinite(value) ? value : fallback;
+    if (typeof value === 'number')
+      return Number.isFinite(value) ? value : fallback;
     if (typeof value === 'string') {
       const normalized = value.trim().replace(/\./g, '').replace(',', '.');
       const parsed = Number(normalized);
@@ -2835,9 +3057,10 @@ export class ContagemService {
 
     const termo = busca.toUpperCase().replace(/'/g, "''");
     const codprod = Number(busca);
-    const filtroCodigo = Number.isInteger(codprod) && codprod > 0
-      ? ` OR CTE.CODPROD = ${codprod}`
-      : '';
+    const filtroCodigo =
+      Number.isInteger(codprod) && codprod > 0
+        ? ` OR CTE.CODPROD = ${codprod}`
+        : '';
 
     return `AND (UPPER(PRO.DESCRPROD) LIKE '%${termo}%'${filtroCodigo})`;
   }
@@ -2907,10 +3130,7 @@ export class ContagemService {
     });
   }
 
-  private verificarMovimentacoesLocais(
-    codprod: number,
-    saldoSnapshot: number,
-  ) {
+  private verificarMovimentacoesLocais(codprod: number, saldoSnapshot: number) {
     const movimentacoesPorProduto: Record<number, any[]> = {
       900002: [
         {

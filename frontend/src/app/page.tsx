@@ -69,6 +69,8 @@ interface Divergencia {
   };
   severidade: string;
   status: string;
+  adjustStatus?: string | null;
+  adjustNoteId?: number | null;
   observacoes?: string;
   movimentacoes?: any;
   saldoAjustado?: number;
@@ -1098,6 +1100,27 @@ export default function Home() {
       });
       if (res.ok) carregarDadosSupervisor();
     } catch (e) { console.error(e); } finally { setLoading(false); }
+  };
+
+  const reprocessarFinalizacao = async (id: number) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/contagem/divergencias/${id}/reprocessar-finalizacao`, {
+        method: "POST",
+        headers: { "Authorization": `Bearer ${token}` },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data.message || "Falha ao reprocessar finalização da ressalva.");
+        return;
+      }
+      await carregarDadosSupervisor();
+    } catch (e) {
+      console.error(e);
+      setError("Falha ao reprocessar finalização da ressalva.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const buscarCopiaEstoque = async () => {
@@ -2280,44 +2303,66 @@ export default function Home() {
                   </div>
                   {divergencias.length === 0 ? (
                     <div className={styles.emptyTable}>Tudo limpo! ✅</div>
-                  ) : divergencias.map(d => (
-                    <div key={d.id} className={styles.tableRow}>
-                      <div className={styles.prodCol}>
-                        <span className={styles.prodName}>{d.contagem.snapshot?.descprod || `Cód: ${d.contagem.codprod}`}</span>
-                        <span className={styles.userName}>{d.contagem.user.nome}</span>
-                        {d.movimentacoes?.fluxoInventario?.segregacaoRessalva && (
-                          <span className={styles.auditMeta}>
-                            AUDITORIA · {d.movimentacoes.fluxoInventario.segregacaoRessalva.tipo} · Qtd {Number(d.movimentacoes.fluxoInventario.segregacaoRessalva.quantidade).toFixed(2)}
+                  ) : divergencias.map(d => {
+                    const finalizacaoErro = d.adjustStatus === "FINALIZACAO_ERROR";
+                    const erroFinalizacao = d.movimentacoes?.fluxoInventario?.sankhyaFinalizacaoRessalva?.error;
+                    return (
+                      <div key={d.id} className={styles.tableRow}>
+                        <div className={styles.prodCol}>
+                          <span className={styles.prodName}>{d.contagem.snapshot?.descprod || `Cód: ${d.contagem.codprod}`}</span>
+                          <span className={styles.userName}>{d.contagem.user.nome}</span>
+                          {d.movimentacoes?.fluxoInventario?.segregacaoRessalva && (
+                            <span className={styles.auditMeta}>
+                              AUDITORIA · {d.movimentacoes.fluxoInventario.segregacaoRessalva.tipo} · Qtd {Number(d.movimentacoes.fluxoInventario.segregacaoRessalva.quantidade).toFixed(2)}
+                            </span>
+                          )}
+                          {finalizacaoErro && (
+                            <span className={styles.auditErrorMeta} title={erroFinalizacao || "Falha ao finalizar ressalva no Sankhya"}>
+                              FINALIZAÇÃO SANKHYA PENDENTE
+                            </span>
+                          )}
+                        </div>
+                        <span className={styles.numCol}>{Number(d.contagem.esperadoNoMomento).toFixed(2)}</span>
+                        <span className={styles.numCol}>{Number(d.contagem.qtdContada).toFixed(2)}</span>
+                        <div className={styles.diffCol}>
+                          <span className={d.contagem.divergencia < 0 ? styles.textError : styles.textSuccess}>
+                            {d.contagem.divergencia > 0 ? '+' : ''}{Number(d.contagem.divergencia).toFixed(2)}
                           </span>
-                        )}
+                          <span className={styles.percVal}>{Number(d.contagem.divergenciaPercent).toFixed(1)}%</span>
+                        </div>
+                        {/* ... divergence map ... */}
+                        <div className={styles.actions}>
+                          {finalizacaoErro ? (
+                            <button
+                              onClick={() => reprocessarFinalizacao(d.id)}
+                              className={styles.btnRetryFinalize}
+                              title="Reprocessar finalização da ressalva"
+                              disabled={loading}
+                            >
+                              <Icons.Sync className="w-5 h-5" />
+                            </button>
+                          ) : (
+                            <>
+                              <select
+                                className={styles.recountSelect}
+                                value={operadorRecontagem[d.id] || ""}
+                                onChange={(e) => setOperadorRecontagem((prev) => ({ ...prev, [d.id]: e.target.value }))}
+                                title="Operador para segunda contagem"
+                              >
+                                <option value="">Aleatório</option>
+                                {operadoresContagem.map((op) => (
+                                  <option key={op.id} value={op.id}>{op.nome}</option>
+                                ))}
+                              </select>
+                              <button onClick={() => tratarDivergencia(d.id, "RECONTAR")} className={styles.btnRecount} title="Solicitar Recontagem">
+                                <Icons.Sync className="w-5 h-5" />
+                              </button>
+                            </>
+                          )}
+                        </div>
                       </div>
-                      <span className={styles.numCol}>{Number(d.contagem.esperadoNoMomento).toFixed(2)}</span>
-                      <span className={styles.numCol}>{Number(d.contagem.qtdContada).toFixed(2)}</span>
-                      <div className={styles.diffCol}>
-                        <span className={d.contagem.divergencia < 0 ? styles.textError : styles.textSuccess}>
-                          {d.contagem.divergencia > 0 ? '+' : ''}{Number(d.contagem.divergencia).toFixed(2)}
-                        </span>
-                        <span className={styles.percVal}>{Number(d.contagem.divergenciaPercent).toFixed(1)}%</span>
-                      </div>
-                      {/* ... divergence map ... */}
-                      <div className={styles.actions}>
-                        <select
-                          className={styles.recountSelect}
-                          value={operadorRecontagem[d.id] || ""}
-                          onChange={(e) => setOperadorRecontagem((prev) => ({ ...prev, [d.id]: e.target.value }))}
-                          title="Operador para segunda contagem"
-                        >
-                          <option value="">Aleatório</option>
-                          {operadoresContagem.map((op) => (
-                            <option key={op.id} value={op.id}>{op.nome}</option>
-                          ))}
-                        </select>
-                        <button onClick={() => tratarDivergencia(d.id, "RECONTAR")} className={styles.btnRecount} title="Solicitar Recontagem">
-                          <Icons.Sync className="w-5 h-5" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

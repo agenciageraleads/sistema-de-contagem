@@ -501,7 +501,7 @@ export class SankhyaService {
 
   /**
    * Processa Divergências aprovadas pelo Supervisor e gera notas no Sankhya
-   * Agrupa por TOP (221 = Entrada, 1221 = Saída)
+   * Agrupa por TOP (221 = Entrada, 1121 = Saída)
    */
   async syncPendingAdjustments() {
     this.logger.log('🔄 Verificando ajustes pendentes de sincronização...');
@@ -583,7 +583,7 @@ export class SankhyaService {
           itemsEntrada.push(itemSankhya);
           idsEntrada.push(div.id);
         } else {
-          // Falta = Saída (TOP 1221)
+          // Falta = Saída (TOP 1121)
           itemsSaida.push(itemSankhya);
           idsSaida.push(div.id);
         }

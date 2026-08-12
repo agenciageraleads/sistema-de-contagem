@@ -13,6 +13,9 @@ Levar para producao a versao validada localmente do modulo de Contagem, com foco
 - Permitir ao operador visualizar a fila direcionada e selecionar um produto especifico para contar primeiro.
 - Normalizar EANs retornados pelo Sankhya quando o campo vier duplicado ou concatenado.
 - Manter a fila local de validacao com produtos reais do Sankhya, sem movimentar estoque real no modo local.
+- Usar `TOP 1121` para baixa/ajuste de saida da Ressalva de Inventario.
+- Manter divergencias pendentes quando a finalizacao da Ressalva falhar no Sankhya.
+- Permitir reprocessar a finalizacao da Ressalva pela dashboard do supervisor, sem repetir etapas ja sincronizadas.
 
 ## Fora do escopo
 
@@ -40,12 +43,15 @@ Levar para producao a versao validada localmente do modulo de Contagem, com foco
 - Se o EAN vier duplicado ou concatenado pelo Sankhya, a aplicacao extrai o GTIN valido antes de comparar.
 - Contagem local usa fila real para simular operacao, mas nao deve criar movimentacoes no Sankhya.
 - Producao pode executar movimentacoes reais conforme flags de ambiente configuradas no servidor.
+- Falta confirmada deve baixar o saldo da Ressalva de Inventario por `TOP 1121`.
+- Se o Sankhya rejeitar uma operacao de finalizacao, a divergencia permanece visivel para reprocessamento e a fila nao e concluida.
 
 ## Configuracao esperada em producao
 
 - `INVENTARIO_LOCAL_VALIDATION` deve estar ausente ou `false`.
 - `INVENTARIO_SANKHYA_RESSALVA_ENABLED` deve ficar `true` para permitir movimentacoes reais de ressalva.
 - `INVENTARIO_DIRECIONADA_SANKHYA_ENABLED` deve ficar `true` para buscar copia de estoque real do Sankhya.
+- `TOP_SAIDA` deve ficar `1121`.
 - O arquivo de ambiente real deve continuar somente na VPS, fora do Git. Na VPS atual, o arquivo usado no deploy e `contagem-nova.env`.
 
 ## Validacao local executada
@@ -77,7 +83,8 @@ Levar para producao a versao validada localmente do modulo de Contagem, com foco
 7. Executar build e subida dos containers com `docker-compose.nova-vps.yml`.
 8. Confirmar que frontend e backend voltaram saudaveis.
 9. Validar login, inicio de contagem, validacao de EAN e bloqueio da quantidade com EAN incorreto.
-10. Validar no Sankhya que nenhuma compensacao indevida foi feita automaticamente para o saldo antigo de `10820000`.
+10. Confirmar que `contagem-nova.env` esta com `TOP_SAIDA=1121`.
+11. Validar no Sankhya que nenhuma compensacao indevida foi feita automaticamente para o saldo antigo de `10820000`.
 
 ## Rollback
 
@@ -95,3 +102,5 @@ Rollback de banco:
 ## Risco conhecido
 
 O teste de producao deixou saldo excedente em `CODLOCAL=10820000`. A correcao desse saldo deve ser feita por processo operacional no Sankhya, depois de confirmar o saldo atual. O deploy desta release nao deve tentar transferir esse saldo para o Portal, pois isso somaria disponibilidade novamente.
+
+O teste de producao tambem mostrou que o uso de `TOP 1221` para baixa da Ressalva falha no Sankhya com erro interno. A saida correta para ajuste de estoque e `TOP 1121`.

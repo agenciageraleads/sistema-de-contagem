@@ -32,7 +32,7 @@ A prioridade é garantir que o que foi feito até agora está sólido antes de n
 O fluxo de fechamento é o ponto mais crítico do sistema.
 
 1. **Simulação de Ajuste (Dry Run)**:
-   - Implementar/Testar uma função de "Pré-visualização de Nota" que mostre o que seria enviado ao Sankhya (TOP 221/1221) sem efetivar a nota.
+   - Implementar/Testar uma função de "Pré-visualização de Nota" que mostre o que seria enviado ao Sankhya (TOP 221/1121) sem efetivar a nota.
 2. **Teste de API Sankhya**:
    - Validar o envio do JSON para o serviço `CACSP.incluirNota` com itens reais.
    - Tratar erros de "Estoque Insuficiente" no Sankhya durante a baixa de faltas.

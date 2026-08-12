@@ -18,7 +18,7 @@ Validaremos o ciclo de vida de uma contagem através de testes de integração.
 ### 🔄 Fluxo B: Auditoria -> Nota de Ajuste (Mock Sankhya)
 
 - **Passo 1**: Simular aprovação de divergência pelo supervisor.
-- **Passo 2**: Validar se o payload gerado para o Sankhya segue a TOP 221/1221.
+- **Passo 2**: Validar se o payload gerado para o Sankhya segue a TOP 221/1121.
 - **Passo 3**: Testar tratamento de erro quando o Sankhya retorna erro de estoque.
 
 ---

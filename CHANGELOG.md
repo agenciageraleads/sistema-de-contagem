@@ -19,6 +19,8 @@ Todas as mudancas relevantes deste projeto devem ser registradas aqui.
 ### Corrigido
 - Tratamento de EAN duplicado/concatenado vindo do cadastro do Sankhya, evitando falso erro de EAN invalido.
 - Mensagem operacional quando nao houver item pendente para o operador.
+- Baixa/retirada da Ressalva de Inventario passa a usar `TOP 1121`, o TOP correto para ajuste de saida.
+- Divergencias com falha na finalizacao Sankhya permanecem pendentes e podem ser reprocessadas pelo supervisor.
 
 ### Observacao operacional
 - A sobra de 503 unidades no `CODLOCAL=10820000` identificada no teste de producao deve ser eliminada por ajuste operacional controlado no Sankhya. Esta release corrige o comportamento da aplicacao, mas nao executa ajuste retroativo automatico nesse saldo.

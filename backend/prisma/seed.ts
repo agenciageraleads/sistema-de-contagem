@@ -90,7 +90,7 @@ async function main() {
         { chave: 'SNAPSHOT_HORA', valor: '03:00', descricao: 'Horário do snapshot diário' },
         { chave: 'DECAY_FATOR', valor: '0.5', descricao: 'Fator de decay para prioridade' },
         { chave: 'TOP_ENTRADA', valor: '221', descricao: 'TOP Sankhya para ajuste de entrada' },
-        { chave: 'TOP_SAIDA', valor: '1221', descricao: 'TOP Sankhya para ajuste de saída' },
+        { chave: 'TOP_SAIDA', valor: '1121', descricao: 'TOP Sankhya para ajuste de saída' },
         { chave: 'TOP_MOVIMENTACAO_INTERNA', valor: '700', descricao: 'TOP Sankhya para movimentação interna entre locais' },
         { chave: 'TOP_ENTRADA_TEMPORARIA', valor: '221', descricao: 'TOP Sankhya para entrada temporária em ressalva' },
         { chave: 'CODEMP', valor: '1', descricao: 'Código da empresa no Sankhya' },

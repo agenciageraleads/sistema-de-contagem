@@ -50,6 +50,11 @@ describe('ContagemService', () => {
   const mockSankhyaClient = {
     getMovimentacoes: jest.fn(),
     executeQuery: jest.fn(),
+    createAdjustmentNote: jest.fn(),
+    createInternalTransferNote: jest.fn(),
+    confirmNote: jest.fn(),
+    getReplacementCost: jest.fn(),
+    getLatestSalePrice: jest.fn(),
   };
 
   const mockSankhyaService = {
@@ -84,6 +89,11 @@ describe('ContagemService', () => {
     jest.clearAllMocks();
     mockSankhyaClient.getMovimentacoes.mockResolvedValue([]);
     mockSankhyaClient.executeQuery.mockResolvedValue([]);
+    mockSankhyaClient.createAdjustmentNote.mockResolvedValue(231999);
+    mockSankhyaClient.createInternalTransferNote.mockResolvedValue(231998);
+    mockSankhyaClient.confirmNote.mockResolvedValue(undefined);
+    mockSankhyaClient.getReplacementCost.mockResolvedValue(0);
+    mockSankhyaClient.getLatestSalePrice.mockResolvedValue(0);
     mockSankhyaService.fetchLiveStockFromSankhya.mockResolvedValue({
       saldo: 0,
       reservado: 0,
@@ -110,9 +120,7 @@ describe('ContagemService', () => {
 
       const result = await service.buscaProximo(1);
 
-      expect(result).toEqual(
-        expect.objectContaining(mockItem),
-      );
+      expect(result).toEqual(expect.objectContaining(mockItem));
       expect(prisma.filaContagem.findFirst).toHaveBeenCalledWith(
         expect.objectContaining({
           where: { lockedBy: 1, status: FilaStatus.EM_CONTAGEM },
@@ -382,9 +390,9 @@ describe('ContagemService', () => {
 
     it('deve lançar erro se o item não estiver travado para o usuário', async () => {
       mockPrismaService.filaContagem.findUnique.mockResolvedValueOnce(null);
-      await expect(
-        service.registrar(1, dtoContagem(10)),
-      ).rejects.toThrow(BadRequestException);
+      await expect(service.registrar(1, dtoContagem(10))).rejects.toThrow(
+        BadRequestException,
+      );
     });
 
     it('deve registrar OK_AUTOMATICO quando a contagem bate', async () => {
@@ -635,6 +643,83 @@ describe('ContagemService', () => {
       );
     });
 
+    it('deve manter divergência pendente quando a finalização da ressalva falha no Sankhya', async () => {
+      delete process.env.INVENTARIO_LOCAL_VALIDATION;
+      process.env.INVENTARIO_SANKHYA_RESSALVA_ENABLED = 'true';
+      mockPrismaService.filaContagem.findUnique.mockResolvedValueOnce({
+        ...mockFila,
+        codlocal: 10010000,
+        unidade: 'UN',
+        controle: ' ',
+      });
+      mockPrismaService.snapshotEstoque.findFirst.mockResolvedValueOnce({
+        ...mockSnapshot,
+        saldoEspelho: 10,
+        custoEspelho: 1,
+        unidade: 'UN',
+        controle: ' ',
+      });
+      mockPrismaService.contagem.findMany.mockResolvedValueOnce([
+        {
+          id: 51,
+          tipo: ContagemTipo.CONTAGEM,
+          qtdContada: 8,
+          esperadoNoMomento: 10,
+          createdAt: new Date(),
+        },
+      ]);
+      mockPrismaService.divergencia.findFirst.mockResolvedValueOnce({
+        id: 80,
+        saldoAjustado: 10,
+        movimentacoes: {
+          fluxoInventario: {
+            etapa: 'SEGUNDA_CONTAGEM',
+            segregacaoRessalva: {
+              tipo: 'TRANSFERENCIA_INTERNA',
+              quantidade: 2,
+              codlocalOrigem: 10010000,
+              codlocalDestino: 10820000,
+            },
+          },
+        },
+        contagem: { qtdContada: 8 },
+      });
+      mockSankhyaClient.createAdjustmentNote.mockRejectedValueOnce(
+        new Error('Erro Sankhya CACSP.incluirNota: Erro interno (NPE)'),
+      );
+      mockPrismaService.contagem.create.mockResolvedValueOnce({ id: 52 });
+      mockPrismaService.divergencia.update.mockResolvedValueOnce({});
+      mockPrismaService.filaContagem.update.mockResolvedValueOnce({});
+
+      const result = await service.registrar(1, dtoContagem(8));
+
+      expect(result.finalizacao!.status).toBe('FINALIZACAO_RESSALVA_ERRO');
+      expect(mockSankhyaClient.createAdjustmentNote).toHaveBeenCalledWith(
+        1,
+        expect.any(String),
+        1121,
+        expect.any(Array),
+        expect.any(String),
+      );
+      expect(prisma.divergencia.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            status: DivergenciaStatus.PENDENTE,
+            decisao: Decisao.RECONTAR,
+            adjustStatus: 'FINALIZACAO_ERROR',
+          }),
+        }),
+      );
+      expect(prisma.filaContagem.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            status: FilaStatus.BLOQUEADO_AUDITORIA,
+            motivoPriorizacao: 'FINALIZACAO_RESSALVA_ERRO',
+          }),
+        }),
+      );
+    });
+
     it('deve exigir supervisor na terceira contagem', async () => {
       mockPrismaService.filaContagem.findUnique.mockResolvedValueOnce(mockFila);
       mockPrismaService.snapshotEstoque.findFirst.mockResolvedValueOnce(
@@ -654,9 +739,9 @@ describe('ContagemService', () => {
         role: 'OPERADOR',
       });
 
-      await expect(
-        service.registrar(1, dtoContagem(13)),
-      ).rejects.toThrow(BadRequestException);
+      await expect(service.registrar(1, dtoContagem(13))).rejects.toThrow(
+        BadRequestException,
+      );
     });
 
     it('deve complementar a ressalva antes de liberar a sobra definida pela terceira contagem', async () => {

@@ -8,6 +8,10 @@ import {
 } from './inventario-flow';
 
 describe('inventario-flow', () => {
+  it('usa TOP 1121 para baixa/retirada da ressalva', () => {
+    expect(INVENTARIO_TOPS.SAIDA_RESSALVA).toBe(1121);
+  });
+
   it('conclui quando a primeira contagem bate com o snapshot', () => {
     const decisao = avaliarPrimeiraContagemInventario({
       saldoSnapshot: 100,

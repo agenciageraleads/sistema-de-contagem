@@ -6,7 +6,7 @@ export const INVENTARIO_LOCAIS = {
 export const INVENTARIO_TOPS = {
   MOVIMENTACAO_INTERNA: 700,
   ENTRADA_TEMPORARIA: 221,
-  SAIDA_RESSALVA: 1221,
+  SAIDA_RESSALVA: 1121,
 } as const;
 
 export type TipoDivergenciaInventario = 'FALTA' | 'SOBRA';

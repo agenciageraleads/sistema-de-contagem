@@ -159,7 +159,7 @@ export class SankhyaClient {
   async createAdjustmentNote(
     codemp: number,
     dtneg: string, // dd/mm/yyyy
-    top: number, // 221 ou 1221
+    top: number, // 221 ou 1121
     items: {
       codprod: number;
       qtdneg: number;

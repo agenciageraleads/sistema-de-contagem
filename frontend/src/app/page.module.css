@@ -870,6 +870,22 @@
     white-space: normal;
 }
 
+.auditErrorMeta {
+    display: block;
+    margin-top: 6px;
+    width: fit-content;
+    max-width: 100%;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-radius: 6px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #b91c1c;
+    padding: 3px 6px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: normal;
+}
+
 .prodSub {
     display: flex;
     align-items: center;
@@ -1037,7 +1053,8 @@
 }
 
 .btnApprove,
-.btnRecount {
+.btnRecount,
+.btnRetryFinalize {
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -1069,6 +1086,24 @@
     background: var(--primary);
     color: #fff;
     transform: translateY(-2px);
+}
+
+.btnRetryFinalize {
+    background: rgba(245, 158, 11, 0.12);
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.28);
+}
+
+.btnRetryFinalize:hover {
+    background: #f59e0b;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btnRetryFinalize:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* Botão FINALIZAR ANÁLISE */

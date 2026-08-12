@@ -134,6 +134,15 @@ export class ContagemController {
     return this.contagemService.sincronizarRessalvaDivergencia(id);
   }
 
+  // POST /api/contagem/divergencias/:id/reprocessar-finalizacao - Reprocessa baixa/liberação pendente da ressalva
+  @Post('divergencias/:id/reprocessar-finalizacao')
+  @Roles(UserRole.SUPERVISOR, UserRole.ADMIN)
+  async reprocessarFinalizacaoRessalva(
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return this.contagemService.reprocessarFinalizacaoRessalvaDivergencia(id);
+  }
+
   // GET /api/contagem/operadores - Lista operadores para direcionar recontagem
   @Get('operadores')
   @Roles(UserRole.SUPERVISOR, UserRole.ADMIN)
