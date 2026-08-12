@@ -20,14 +20,17 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 RUN apk add --no-cache openssl libc6-compat
+RUN addgroup -S app && adduser -S app -G app
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
+RUN chown -R app:app /app
+USER app
 
 # Expose port
 EXPOSE 3001
 
 # Entrypoint to run migrations and then the app
-CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node dist/src/main.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main.js"]

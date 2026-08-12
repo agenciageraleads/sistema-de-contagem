@@ -10,6 +10,8 @@ out/
 .env
 .env.local
 .env.production
+*.env
+*.env.local
 
 # IDE
 .vscode/
@@ -26,8 +28,17 @@ prisma/migrations/migration_lock.toml
 
 # Logs
 *.log
+*_err.txt
 npm-debug.log*
 
 # Docker volumes
 postgres_data/
 redis_data/
+
+# Banco local / validação local
+.local-pgdata/
+.local-pg.log
+
+# Relatórios gerados localmente
+playwright-report/
+coverage/

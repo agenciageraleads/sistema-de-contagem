@@ -12,6 +12,7 @@ model User {
   nome                  String
   login                 String         @unique
   senhaHash             String         @map("senha_hash")
+  codusuSankhya         Int?           @map("codusu_sankhya")
   role                  UserRole       @default(OPERADOR)
   ativo                 Boolean        @default(true)
   createdAt             DateTime       @default(now()) @map("created_at")
@@ -21,8 +22,44 @@ model User {
   filaLocked            FilaContagem[] @relation("locker")
   filaPriorizada        FilaContagem[] @relation("priorizador")
   metas                 MetaUser[]
+  entregasCriadas       Entrega[]      @relation("entrega_criador")
 
   @@map("users")
+}
+
+model Entrega {
+  id               Int      @id @default(autoincrement())
+  numeroPedido     String   @map("numero_pedido")
+  clienteNome      String   @map("cliente_nome")
+  telefone         String?
+  enderecoTexto    String   @map("endereco_texto")
+  bairro           String?
+  cidade           String?
+  uf               String?
+  googleMapsUrl    String?  @map("google_maps_url")
+  latitude         Decimal? @db.Decimal(10, 7)
+  longitude        Decimal? @db.Decimal(10, 7)
+  pagamento        String?
+  observacoes      String?
+  motoristaSpokeId String?  @map("motorista_spoke_id")
+  motoristaNome    String?  @map("motorista_nome")
+  planSpokeId      String?  @map("plan_spoke_id")
+  routeSpokeId     String?  @map("route_spoke_id")
+  stopSpokeId      String?  @map("stop_spoke_id")
+  trackingLink     String?  @map("tracking_link")
+  webAppLink       String?  @map("web_app_link")
+  spokeOperationId String?  @map("spoke_operation_id")
+  status           String   @default("RASCUNHO")
+  statusDetalhe    String?  @map("status_detalhe")
+  createdBy        Int      @map("created_by")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  criador          User     @relation("entrega_criador", fields: [createdBy], references: [id])
+
+  @@index([numeroPedido])
+  @@index([status])
+  @@index([createdAt])
+  @@map("entregas")
 }
 
 model MetaUser {
@@ -39,21 +76,22 @@ model MetaUser {
 }
 
 model SnapshotEstoque {
-  id           Int        @id @default(autoincrement())
-  dataRef      DateTime   @map("data_ref") @db.Date
-  codemp       Int
-  codlocal     Int
-  codprod      Int
-  descprod     String
-  marca        String?
-  controle     String?
-  codgrupoprod Int?
-  saldoEspelho Decimal    @map("saldo_espelho") @db.Decimal(15, 4)
-  custoEspelho Decimal    @map("custo_espelho") @db.Decimal(15, 4)
-  valorEstoque Decimal    @map("valor_estoque") @db.Decimal(15, 2)
-  createdAt    DateTime   @default(now()) @map("created_at")
-  unidade      String?
-  contagens    Contagem[]
+  id                   Int        @id @default(autoincrement())
+  dataRef              DateTime   @map("data_ref") @db.Date
+  codemp               Int
+  codlocal             Int
+  codprod              Int
+  descprod             String
+  marca                String?
+  controle             String?
+  codigoBarrasCadastro String?    @map("codigo_barras_cadastro")
+  codgrupoprod         Int?
+  saldoEspelho         Decimal    @map("saldo_espelho") @db.Decimal(15, 4)
+  custoEspelho         Decimal    @map("custo_espelho") @db.Decimal(15, 4)
+  valorEstoque         Decimal    @map("valor_estoque") @db.Decimal(15, 2)
+  createdAt            DateTime   @default(now()) @map("created_at")
+  unidade              String?
+  contagens            Contagem[]
 
   @@unique([dataRef, codemp, codlocal, codprod])
   @@index([dataRef])
@@ -62,32 +100,33 @@ model SnapshotEstoque {
 }
 
 model FilaContagem {
-  id                Int        @id @default(autoincrement())
-  codprod           Int
-  codlocal          Int
-  codemp            Int
-  descprod          String
-  marca             String?
-  controle          String?
-  prioridadeBase    Int        @default(0) @map("prioridade_base")
-  prioridadeManual  Int        @default(0) @map("prioridade_manual")
-  motivoPriorizacao String?    @map("motivo_priorizacao")
-  priorizadoPor     Int?       @map("priorizado_por")
-  status            FilaStatus @default(PENDENTE)
-  ultimoEvento      DateTime?  @map("ultimo_evento")
-  contagensOk       Int        @default(0) @map("contagens_ok")
-  naoAchouCount     Int        @default(0) @map("nao_achou_count")
-  recontagens       Int        @default(0)
-  ultimaContagemEm  DateTime?  @map("ultima_contagem_em")
-  ultimoNaoAchouPor Int?       @map("ultimo_nao_achou_por")
-  lockedBy          Int?       @map("locked_by")
-  lockedAt          DateTime?  @map("locked_at")
-  createdAt         DateTime   @default(now()) @map("created_at")
-  updatedAt         DateTime   @updatedAt @map("updated_at")
-  unidade           String?
-  contagens         Contagem[]
-  locker            User?      @relation("locker", fields: [lockedBy], references: [id])
-  priorizador       User?      @relation("priorizador", fields: [priorizadoPor], references: [id])
+  id                   Int        @id @default(autoincrement())
+  codprod              Int
+  codlocal             Int
+  codemp               Int
+  descprod             String
+  marca                String?
+  controle             String?
+  codigoBarrasCadastro String?    @map("codigo_barras_cadastro")
+  prioridadeBase       Int        @default(0) @map("prioridade_base")
+  prioridadeManual     Int        @default(0) @map("prioridade_manual")
+  motivoPriorizacao    String?    @map("motivo_priorizacao")
+  priorizadoPor        Int?       @map("priorizado_por")
+  status               FilaStatus @default(PENDENTE)
+  ultimoEvento         DateTime?  @map("ultimo_evento")
+  contagensOk          Int        @default(0) @map("contagens_ok")
+  naoAchouCount        Int        @default(0) @map("nao_achou_count")
+  recontagens          Int        @default(0)
+  ultimaContagemEm     DateTime?  @map("ultima_contagem_em")
+  ultimoNaoAchouPor    Int?       @map("ultimo_nao_achou_por")
+  lockedBy             Int?       @map("locked_by")
+  lockedAt             DateTime?  @map("locked_at")
+  createdAt            DateTime   @default(now()) @map("created_at")
+  updatedAt            DateTime   @updatedAt @map("updated_at")
+  unidade              String?
+  contagens            Contagem[]
+  locker               User?      @relation("locker", fields: [lockedBy], references: [id])
+  priorizador          User?      @relation("priorizador", fields: [priorizadoPor], references: [id])
 
   @@unique([codprod, codlocal, codemp])
   @@index([status, prioridadeManual, prioridadeBase])
@@ -109,6 +148,7 @@ model Contagem {
   esperadoNoMomento  Decimal?         @map("esperado_no_momento") @db.Decimal(15, 4)
   divergencia        Decimal?         @db.Decimal(15, 4)
   divergenciaPercent Decimal?         @map("divergencia_percent") @db.Decimal(8, 4)
+  codigoBarrasLido   String?          @map("codigo_barras_lido")
   statusAnalise      StatusAnalise    @default(DIVERGENCIA_PENDENTE) @map("status_analise")
   notas              String?
   createdAt          DateTime         @default(now()) @map("created_at")
@@ -125,26 +165,26 @@ model Contagem {
 }
 
 model Divergencia {
-  id           Int               @id @default(autoincrement())
-  contagemId   Int               @unique @map("contagem_id")
-  severidade   Severidade        @default(BAIXA)
-  decisao      Decisao?
-  aprovadoPor  Int?              @map("aprovado_por")
-  aprovadoEm   DateTime?         @map("aprovado_em")
-  ajusteTipo   AjusteTipo?       @map("ajuste_tipo")
-  ajusteQtd    Decimal?          @map("ajuste_qtd") @db.Decimal(15, 4)
-  sankhyaDocId String?           @map("sankhya_doc_id")
-  status       DivergenciaStatus @default(PENDENTE)
-  observacoes    String?
-  movimentacoes  Json?             @map("movimentacoes")
-  saldoAjustado  Decimal?          @map("saldo_ajustado") @db.Decimal(15, 4)
-  createdAt      DateTime          @default(now()) @map("created_at")
-  updatedAt      DateTime          @updatedAt @map("updated_at")
-  adjustDate     DateTime?         @map("adjust_date")
-  adjustNoteId   Int?              @map("adjust_note_id")
-  adjustStatus   String?           @map("adjust_status")
-  aprovador    User?             @relation("aprovador", fields: [aprovadoPor], references: [id])
-  contagem     Contagem          @relation(fields: [contagemId], references: [id])
+  id            Int               @id @default(autoincrement())
+  contagemId    Int               @unique @map("contagem_id")
+  severidade    Severidade        @default(BAIXA)
+  decisao       Decisao?
+  aprovadoPor   Int?              @map("aprovado_por")
+  aprovadoEm    DateTime?         @map("aprovado_em")
+  ajusteTipo    AjusteTipo?       @map("ajuste_tipo")
+  ajusteQtd     Decimal?          @map("ajuste_qtd") @db.Decimal(15, 4)
+  sankhyaDocId  String?           @map("sankhya_doc_id")
+  status        DivergenciaStatus @default(PENDENTE)
+  observacoes   String?
+  movimentacoes Json?             @map("movimentacoes")
+  saldoAjustado Decimal?          @map("saldo_ajustado") @db.Decimal(15, 4)
+  createdAt     DateTime          @default(now()) @map("created_at")
+  updatedAt     DateTime          @updatedAt @map("updated_at")
+  adjustDate    DateTime?         @map("adjust_date")
+  adjustNoteId  Int?              @map("adjust_note_id")
+  adjustStatus  String?           @map("adjust_status")
+  aprovador     User?             @relation("aprovador", fields: [aprovadoPor], references: [id])
+  contagem      Contagem          @relation(fields: [contagemId], references: [id])
 
   @@index([status])
   @@index([severidade])

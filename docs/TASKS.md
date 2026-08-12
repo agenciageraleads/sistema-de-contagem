@@ -15,7 +15,7 @@ Este arquivo é a fonte de verdade para todos os agentes. **LEIA SEMPRE ANTES DE
   - [x] Validar concorrência na `buscaProximo`.
   - [x] Validar reset de `contagensOk` em caso de divergência. (Validado via `test/contagem-integration.e2e-spec.ts`)
 - [x] Criar Testes para `SankhyaService`:
-  - [x] Validar geração do JSON de inclusão de nota (TOP 221/1221) e integração REAL. (Validado via `test/sankhya-note-sim.e2e-spec.ts`)
+  - [x] Validar geração do JSON de inclusão de nota (TOP 221/1121) e integração REAL. (Validado via `test/sankhya-note-sim.e2e-spec.ts`)
   - [ ] Criar mock de resposta de erro do Sankhya e validar tratamento.
 
 ### 💰 Financeiro & Ajustes

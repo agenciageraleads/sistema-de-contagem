@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: contagem_prod
-      POSTGRES_USER: contagem_user
-      POSTGRES_PASSWORD: 'S1stem@_C0nt@gem_2026_Prod!'
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - pgdata_prod:/var/lib/postgresql/data
     networks:
@@ -19,16 +19,20 @@ services:
   backend:
     image: ghcr.io/agenciageraleads/sistema-de-contagem/backend:latest
     environment:
-      DATABASE_URL: postgresql://contagem_user:S1stem%40_C0nt%40gem_2026_Prod%21@db:5432/contagem_prod?schema=public
-      JWT_SECRET: 'WKbn tCxvaJTl3aopVn6nq0INIuwKci0ycjimdVXZ4YQ='
-      JWT_EXPIRES_IN: '7d'
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
       PORT: 3001
       NODE_ENV: production
-      SANKHYA_API_URL: 'https://api.sankhya.com.br/gateway/v1'
-      SANKHYA_CLIENT_ID: '64e0e9b5-f556-4f82-819a-f2424bdab17d'
-      SANKHYA_CLIENT_SECRET: '1trd8ldkjdgPmA6hvfCaBkf7EBLa1Fyh'
-      SANKHYA_TOKEN: '63242219-eca1-4f73-b07d-1c18a0996256'
-      SANKHYA_X_TOKEN: '63242219-eca1-4f73-b07d-1c18a0996256'
+      FRONTEND_ALLOWED_ORIGINS: https://${APP_DOMAIN}
+      THROTTLE_TTL_MS: ${THROTTLE_TTL_MS:-60000}
+      THROTTLE_LIMIT: ${THROTTLE_LIMIT:-120}
+      SANKHYA_API_URL: ${SANKHYA_API_URL}
+      SANKHYA_CLIENT_ID: ${SANKHYA_CLIENT_ID}
+      SANKHYA_CLIENT_SECRET: ${SANKHYA_CLIENT_SECRET}
+      SANKHYA_TOKEN: ${SANKHYA_TOKEN}
+      SANKHYA_X_TOKEN: ${SANKHYA_X_TOKEN}
+      SPOKE_API_KEY: ${SPOKE_API_KEY}
     depends_on:
       - db
     networks:
@@ -41,17 +45,25 @@ services:
           - node.role == manager
       labels:
         - traefik.enable=1
-        - traefik.http.routers.contagem-api.rule=Host(`contagem.vps.portaleletricos.com.br`) && PathPrefix(`/api`)
+        - traefik.http.routers.contagem-api.rule=Host(`${APP_DOMAIN}`) && PathPrefix(`/api`)
         - traefik.http.routers.contagem-api.entrypoints=websecure
         - traefik.http.routers.contagem-api.tls.certresolver=letsencryptresolver
         - traefik.http.routers.contagem-api.priority=2
+        - traefik.http.routers.contagem-api.middlewares=contagem-sec-headers@docker
         - traefik.http.services.contagem-api.loadbalancer.server.port=3001
+        - traefik.http.middlewares.contagem-sec-headers.headers.stsSeconds=31536000
+        - traefik.http.middlewares.contagem-sec-headers.headers.stsIncludeSubdomains=true
+        - traefik.http.middlewares.contagem-sec-headers.headers.stsPreload=true
+        - traefik.http.middlewares.contagem-sec-headers.headers.contentTypeNosniff=true
+        - traefik.http.middlewares.contagem-sec-headers.headers.browserXssFilter=true
+        - traefik.http.middlewares.contagem-sec-headers.headers.frameDeny=true
+        - traefik.http.middlewares.contagem-sec-headers.headers.referrerPolicy=no-referrer
 
   frontend:
     image: ghcr.io/agenciageraleads/sistema-de-contagem/frontend:latest
     environment:
-      API_URL: https://contagem.vps.portaleletricos.com.br/api
-      NEXT_PUBLIC_API_URL: https://contagem.vps.portaleletricos.com.br/api
+      API_URL: https://${APP_DOMAIN}/api
+      NEXT_PUBLIC_API_URL: https://${APP_DOMAIN}/api
     networks:
       - portaleletricos
     deploy:
@@ -62,10 +74,11 @@ services:
           - node.role == manager
       labels:
         - traefik.enable=1
-        - traefik.http.routers.contagem-web.rule=Host(`contagem.vps.portaleletricos.com.br`)
+        - traefik.http.routers.contagem-web.rule=Host(`${APP_DOMAIN}`)
         - traefik.http.routers.contagem-web.entrypoints=websecure
         - traefik.http.routers.contagem-web.tls.certresolver=letsencryptresolver
         - traefik.http.routers.contagem-web.priority=1
+        - traefik.http.routers.contagem-web.middlewares=contagem-sec-headers@docker
         - traefik.http.services.contagem-web.loadbalancer.server.port=3000
 
 networks:

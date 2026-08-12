@@ -6,8 +6,8 @@ import { SankhyaController } from './sankhya.controller';
 
 @Global()
 @Module({
-    controllers: [SankhyaController],
-    providers: [SankhyaService, SankhyaClient],
-    exports: [SankhyaService, SankhyaClient],
+  controllers: [SankhyaController],
+  providers: [SankhyaService, SankhyaClient],
+  exports: [SankhyaService, SankhyaClient],
 })
-export class SankhyaModule { }
+export class SankhyaModule {}
