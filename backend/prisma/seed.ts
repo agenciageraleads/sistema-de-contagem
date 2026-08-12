@@ -1,5 +1,5 @@
 // Seed de desenvolvimento - Cria dados iniciais para testar o sistema
-import { PrismaClient, UserRole } from '@prisma/client';
+import { FilaStatus, PrismaClient, UserRole } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -91,8 +91,11 @@ async function main() {
         { chave: 'DECAY_FATOR', valor: '0.5', descricao: 'Fator de decay para prioridade' },
         { chave: 'TOP_ENTRADA', valor: '221', descricao: 'TOP Sankhya para ajuste de entrada' },
         { chave: 'TOP_SAIDA', valor: '1221', descricao: 'TOP Sankhya para ajuste de saída' },
+        { chave: 'TOP_MOVIMENTACAO_INTERNA', valor: '700', descricao: 'TOP Sankhya para movimentação interna entre locais' },
+        { chave: 'TOP_ENTRADA_TEMPORARIA', valor: '221', descricao: 'TOP Sankhya para entrada temporária em ressalva' },
         { chave: 'CODEMP', valor: '1', descricao: 'Código da empresa no Sankhya' },
         { chave: 'CODLOCAL', valor: '10010000', descricao: 'Código do local principal' },
+        { chave: 'CODLOCAL_RESSALVA_INVENTARIO', valor: '10820000', descricao: 'Local de estoque segregado para ressalva de inventário' },
     ];
 
     for (const cfg of configs) {
@@ -103,6 +106,114 @@ async function main() {
         });
     }
     console.log('✅ Configurações criadas');
+
+    if (process.env.SEED_INVENTARIO_VALIDATION_ITEMS === 'true') {
+        const dataRef = new Date('2026-07-28T00:00:00.000Z');
+        const itensValidacao = [
+            {
+                codprod: 900001,
+                descprod: 'VALIDACAO LOCAL - Falta para Auditoria',
+                marca: 'VALIDACAO',
+                controle: 'FALTA',
+                codigoBarrasCadastro: '7899000010001',
+                saldo: 100,
+                custo: 12.5,
+            },
+            {
+                codprod: 900002,
+                descprod: 'VALIDACAO LOCAL - Movimento Explicado',
+                marca: 'VALIDACAO',
+                controle: 'MOVIMENTO',
+                codigoBarrasCadastro: '7899000020000',
+                saldo: 100,
+                custo: 8.75,
+            },
+            {
+                codprod: 900003,
+                descprod: 'VALIDACAO LOCAL - Sobra para Auditoria',
+                marca: 'VALIDACAO',
+                controle: 'SOBRA',
+                codigoBarrasCadastro: '7899000030009',
+                saldo: 50,
+                custo: 18.3,
+            },
+        ];
+
+        for (const item of itensValidacao) {
+            await prisma.snapshotEstoque.upsert({
+                where: {
+                    dataRef_codemp_codlocal_codprod: {
+                        dataRef,
+                        codemp: 1,
+                        codlocal: 10010000,
+                        codprod: item.codprod,
+                    },
+                },
+                update: {
+                    descprod: item.descprod,
+                    marca: item.marca,
+                    controle: item.controle,
+                    codigoBarrasCadastro: item.codigoBarrasCadastro,
+                    saldoEspelho: item.saldo,
+                    custoEspelho: item.custo,
+                    valorEstoque: item.saldo * item.custo,
+                    unidade: 'UN',
+                },
+                create: {
+                    dataRef,
+                    codemp: 1,
+                    codlocal: 10010000,
+                    codprod: item.codprod,
+                    descprod: item.descprod,
+                    marca: item.marca,
+                    controle: item.controle,
+                    codigoBarrasCadastro: item.codigoBarrasCadastro,
+                    codgrupoprod: 999,
+                    saldoEspelho: item.saldo,
+                    custoEspelho: item.custo,
+                    valorEstoque: item.saldo * item.custo,
+                    unidade: 'UN',
+                },
+            });
+
+            await prisma.filaContagem.upsert({
+                where: {
+                    codprod_codlocal_codemp: {
+                        codprod: item.codprod,
+                        codlocal: 10010000,
+                        codemp: 1,
+                    },
+                },
+                update: {
+                    descprod: item.descprod,
+                    marca: item.marca,
+                    controle: item.controle,
+                    codigoBarrasCadastro: item.codigoBarrasCadastro,
+                    status: FilaStatus.PENDENTE,
+                    prioridadeManual: 9999,
+                    motivoPriorizacao: 'VALIDACAO_LOCAL_INVENTARIO',
+                    lockedBy: null,
+                    lockedAt: null,
+                    unidade: 'UN',
+                },
+                create: {
+                    codprod: item.codprod,
+                    codlocal: 10010000,
+                    codemp: 1,
+                    descprod: item.descprod,
+                    marca: item.marca,
+                    controle: item.controle,
+                    codigoBarrasCadastro: item.codigoBarrasCadastro,
+                    prioridadeBase: 100,
+                    prioridadeManual: 9999,
+                    motivoPriorizacao: 'VALIDACAO_LOCAL_INVENTARIO',
+                    status: FilaStatus.PENDENTE,
+                    unidade: 'UN',
+                },
+            });
+        }
+        console.log('✅ Itens de validação local do inventário criados');
+    }
 
     console.log('');
     console.log('🎉 Seed concluído!');

@@ -1,0 +1,65 @@
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - contagem_nova_pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: 7d
+      PORT: 3001
+      NODE_ENV: production
+      FRONTEND_ALLOWED_ORIGINS: http://${SERVER_IP}:3010,https://coletor.vps.portaleletricos.com.br
+      THROTTLE_TTL_MS: 60000
+      THROTTLE_LIMIT: 120
+      SANKHYA_API_URL: ${SANKHYA_API_URL}
+      SANKHYA_CLIENT_ID: ${SANKHYA_CLIENT_ID}
+      SANKHYA_CLIENT_SECRET: ${SANKHYA_CLIENT_SECRET}
+      SANKHYA_TOKEN: ${SANKHYA_TOKEN}
+      SANKHYA_X_TOKEN: ${SANKHYA_X_TOKEN}
+      SPOKE_API_KEY: ${SPOKE_API_KEY}
+      INVENTARIO_SANKHYA_RESSALVA_ENABLED: ${INVENTARIO_SANKHYA_RESSALVA_ENABLED:-true}
+      INVENTARIO_DIRECIONADA_SANKHYA_ENABLED: ${INVENTARIO_DIRECIONADA_SANKHYA_ENABLED:-true}
+    command: >
+      sh -c "npx prisma migrate deploy &&
+      node dist/src/main.js"
+    ports:
+      - "3011:3001"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      API_URL: /api
+      NEXT_PUBLIC_API_URL: /api
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    ports:
+      - "3010:3000"
+
+volumes:
+  contagem_nova_pgdata:

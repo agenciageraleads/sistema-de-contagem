@@ -7,20 +7,20 @@ export const ROLES_KEY = 'roles';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-    constructor(private reflector: Reflector) { }
+  constructor(private reflector: Reflector) {}
 
-    canActivate(context: ExecutionContext): boolean {
-        const requiredRoles = this.reflector.getAllAndOverride<UserRole[]>(ROLES_KEY, [
-            context.getHandler(),
-            context.getClass(),
-        ]);
+  canActivate(context: ExecutionContext): boolean {
+    const requiredRoles = this.reflector.getAllAndOverride<UserRole[]>(
+      ROLES_KEY,
+      [context.getHandler(), context.getClass()],
+    );
 
-        // Se a rota não tem @Roles(), então qualquer autenticado pode acessar
-        if (!requiredRoles) {
-            return true;
-        }
-
-        const { user } = context.switchToHttp().getRequest();
-        return requiredRoles.includes(user.role);
+    // Se a rota não tem @Roles(), então qualquer autenticado pode acessar
+    if (!requiredRoles) {
+      return true;
     }
+
+    const { user } = context.switchToHttp().getRequest();
+    return requiredRoles.includes(user.role);
+  }
 }

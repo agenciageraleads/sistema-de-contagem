@@ -10,6 +10,9 @@ Sistema de auditoria e contagem cíclica para inventário contínuo, focado em p
 - **[PLANO_DE_ACAO.md](./PLANO_DE_ACAO.md)**: Tarefas imediatas e guia técnico.
 - **[API_SPEC.md](./API_SPEC.md)**: Documentação técnica dos endpoints da API.
 - **[ARCHITECTURE.md](./.agent/ARCHITECTURE.md)**: Detalhes da stack e infraestrutura.
+- **[SECURITY_DEPLOY_VPS.md](./docs/SECURITY_DEPLOY_VPS.md)**: Guia de deploy seguro em VPS.
+- **[CHANGELOG.md](./CHANGELOG.md)**: Histórico de releases e mudanças publicadas.
+- **[Release 2026-08-12](./docs/releases/2026-08-12-contagem-ean-fila-real.md)**: EAN obrigatório, fila real e checklist de deploy.
 
 ---
 

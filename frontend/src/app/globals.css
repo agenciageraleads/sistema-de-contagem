@@ -6,12 +6,12 @@
   --success: #10b981;
   --error: #ef4444;
   --warning: #f59e0b;
-  --bg-main: #020617;
-  --bg-card: #0f172a;
-  --bg-input: #1e293b;
-  --border: rgba(255, 255, 255, 0.08);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --bg-main: #eef4ff;
+  --bg-card: #ffffff;
+  --bg-input: #edf3ff;
+  --border: rgba(148, 163, 184, 0.35);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
   --text-muted: #64748b;
   --radius-md: 12px;
   --radius-lg: 20px;
@@ -26,7 +26,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg-main);
+  background: linear-gradient(180deg, #f4f8ff 0%, #eaf2ff 100%);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
